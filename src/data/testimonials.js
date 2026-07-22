@@ -27,7 +27,7 @@ export const TESTIMONIALS = [
 export const TESTIMONIALS_ES = [
   {
     quote:
-      'Altura no nos mandó currículums sin más — entendieron nuestro negocio lo suficiente como para decirnos qué candidatos realmente iban a funcionar acá. Ese criterio nos ahorró meses.',
+      'Altura no se limitó a mandarnos currículums — entendieron nuestro negocio lo suficiente como para decirnos qué candidatos realmente iban a funcionar aquí. Ese criterio nos ahorró meses.',
     name: 'Fundador y CEO',
     role: 'Empresa SaaS Serie B',
   },

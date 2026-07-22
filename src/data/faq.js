@@ -70,7 +70,7 @@ export const FAQS_ES = [
   {
     question: '¿Cómo es su proceso?',
     answer:
-      'Cada búsqueda avanza a través de seis etapas: discovery, búsqueda de candidatos, evaluación, terna final, contratación y — cuando es útil — acompañamiento post-contratación. Podés ver el detalle completo en la sección de Proceso más abajo, pero en resumen: invertimos fuerte al principio para que la terna que recibís sea genuinamente sólida.',
+      'Cada búsqueda avanza a través de seis etapas: discovery, búsqueda de candidatos, evaluación, terna final, contratación y — cuando es útil — acompañamiento post-contratación. Puedes ver el detalle completo en la sección de Proceso más abajo, pero en resumen: invertimos fuerte al principio para que la terna que recibes sea genuinamente sólida.',
   },
   {
     question: '¿Cómo cobran por sus búsquedas?',
@@ -80,6 +80,6 @@ export const FAQS_ES = [
   {
     question: '¿Qué pasa si una colocación no funciona?',
     answer:
-      'Respaldamos nuestras colocaciones con una garantía de reemplazo, cuyos detalles confirmamos por escrito antes de empezar cada búsqueda. Preferimos ser claros con los términos desde el principio en vez de ocultarlos — preguntanos directamente durante tu consulta.',
+      'Respaldamos nuestras colocaciones con una garantía de reemplazo, cuyos detalles confirmamos por escrito antes de empezar cada búsqueda. Preferimos ser claros con los términos desde el principio en vez de ocultarlos — pregúntanos directamente durante tu consulta.',
   },
 ];

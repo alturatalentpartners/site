@@ -174,7 +174,7 @@ export const SERVICES_ES = [
     slug: 'sales-recruitment',
     icon: 'trending-up',
     title: 'Reclutamiento de Ventas',
-    short: 'Líderes de ingresos y talento comercial capaz de vender tu producto en el mercado en el que realmente operás.',
+    short: 'Líderes de ingresos y talento comercial capaz de vender tu producto en el mercado en el que realmente operas.',
     detail:
       'Evaluamos a los candidatos de ventas contra tu motion comercial real — tamaño de deal, duración del ciclo, sofisticación del comprador — y no contra un historial de cuota genérico que no se traslada.',
   },

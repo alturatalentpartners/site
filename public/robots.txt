@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://alturatalentpartners.github.io/alturaweb/sitemap-index.xml
+Sitemap: https://alturatalentpartners.github.io/site/sitemap-index.xml

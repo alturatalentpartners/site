@@ -4,7 +4,7 @@ export const SITE = {
   tagline: 'Helping growing companies hire exceptional talent through strategic recruiting and executive search.',
   description:
     'Altura Talent Partners is a boutique executive search and strategic recruiting firm helping startups, scale-ups and established companies across North America, LATAM and Europe hire exceptional talent.',
-  url: 'https://alturatalentpartners.github.io/alturaweb',
+  url: 'https://alturatalentpartners.github.io/site',
   phone: '+1 713 630 9012',
   phoneHref: 'tel:+17136309012',
   email: 'alturatalentpartners@gmail.com',

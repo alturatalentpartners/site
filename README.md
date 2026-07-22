@@ -95,14 +95,14 @@ npx astro check
 
 `astro.config.mjs`, `src/data/site.js`, `public/robots.txt` and
 `brand/email-signature.html` are already configured for
-**github.com/alturatalentpartners/alturaweb**. If you ever rename the repo
+**github.com/alturatalentpartners/site**. If you ever rename the repo
 or move to a different GitHub account, update the `GITHUB_USERNAME` /
 `REPO_NAME` constants at the top of `astro.config.mjs` and mirror the
 change in those other 3 files.
 
 If you're deploying to a **custom domain** or a **user/org page** (a repo
 literally named `<username>.github.io`) instead of a project page, open
-`astro.config.mjs` and set `base: '/'` instead of `/alturaweb`.
+`astro.config.mjs` and set `base: '/'` instead of `/site`.
 
 ### Contact form and career applications (free, no backend)
 
@@ -133,7 +133,7 @@ step, no `gh-pages` branch, no paid CI minutes for a public repo.
 ### 1. Create the GitHub repository
 
 Go to [github.com/new](https://github.com/new) and create a new repository
-named **`alturaweb`** under the **alturatalentpartners** account. Leave it
+named **`site`** under the **alturatalentpartners** account. Leave it
 empty — no README, no `.gitignore` — since this project already has both.
 
 **Keep it public.** GitHub Pages is free forever for public repositories.
@@ -144,7 +144,7 @@ Private repos require a paid GitHub plan to use Pages.
 From inside this project folder:
 
 ```bash
-git remote add origin https://github.com/alturatalentpartners/alturaweb.git
+git remote add origin https://github.com/alturatalentpartners/site.git
 git branch -M main
 git push -u origin main
 ```
@@ -160,7 +160,7 @@ git push -u origin main
 3. That's it — the push in step 2 already triggered the workflow. Check
    the **Actions** tab to watch it build and deploy.
 4. Once it finishes, your site is live at:
-   `https://alturatalentpartners.github.io/alturaweb/`
+   `https://alturatalentpartners.github.io/site/`
 
 Every future `git push` to `main` redeploys automatically.
 

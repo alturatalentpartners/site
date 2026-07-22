@@ -12,7 +12,7 @@ import sitemap from '@astrojs/sitemap';
 // <username>.github.io) or you attach a custom domain, set `base` to '/'.
 // ---------------------------------------------------------------------------
 const GITHUB_USERNAME = 'alturatalentpartners';
-const REPO_NAME = 'alturaweb';
+const REPO_NAME = 'site';
 
 export default defineConfig({
   site: `https://${GITHUB_USERNAME}.github.io/${REPO_NAME}/`,

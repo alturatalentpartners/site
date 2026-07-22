@@ -1,4 +1,22 @@
 User-agent: *
 Allow: /
 
+# Explicitly welcome AI answer-engine crawlers — being indexable by these
+# increases the odds of being cited by ChatGPT, Perplexity, Copilot, and
+# Google AI Overviews for searches like "executive search firm".
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
 Sitemap: https://alturatalentpartners.github.io/site/sitemap-index.xml

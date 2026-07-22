@@ -8,6 +8,8 @@ import ProcessStep from '../components/ProcessStep.astro';
 import Testimonial from '../components/Testimonial.astro';
 import FAQItem from '../components/FAQItem.astro';
 import ContactForm from '../components/ContactForm.astro';
+import CalendlyButton from '../components/CalendlyButton.astro';
+import CTABanner from '../components/CTABanner.astro';
 import { SERVICES, SERVICES_ES } from '../data/services.js';
 import { INDUSTRIES, INDUSTRIES_ES } from '../data/industries.js';
 import { TESTIMONIALS, TESTIMONIALS_ES } from '../data/testimonials.js';
@@ -27,9 +29,9 @@ const featuredServices = services.slice(0, 9);
 
 const copy = {
   en: {
-    metaTitle: 'Executive Search & Strategic Recruiting',
+    metaTitle: 'Executive Search Firm | Strategic Recruiting',
     metaDescription:
-      'Altura Talent Partners is a boutique executive search and strategic recruiting firm helping growing companies across North America, LATAM and Europe hire exceptional talent.',
+      'Altura Talent Partners is a boutique executive search firm helping startups and growing companies hire finance, technology, sales and executive assistant talent — remote and international — across North America, LATAM and Europe.',
     eyebrow: 'Executive Search & Strategic Recruiting',
     h1: 'Helping Growing Companies Build Exceptional Teams',
     lede: 'Altura Talent Partners is a boutique search firm for founders and leadership teams who won’t compromise on who they hire. We recruit across North America, LATAM and Europe — remote and onsite — for the roles that define what happens next.',
@@ -154,6 +156,20 @@ const copy = {
   },
 }[lang];
 
+// Explicit service catalog for structured data — these serviceType values
+// are chosen to match how prospective clients actually search (executive
+// search firm, finance recruiter, startup recruiter, remote/AI/international
+// recruiting), not just Altura's own internal service names.
+const SERVICE_TYPES = [
+  'Executive Search Firm',
+  'Finance Recruiter',
+  'Startup Recruiter',
+  'Executive Assistant Recruitment',
+  'Remote Recruiting',
+  'AI Recruiting',
+  'International Recruiting',
+];
+
 const schema = [
   {
     '@context': 'https://schema.org',
@@ -166,12 +182,34 @@ const schema = [
     sameAs: [SITE.linkedin],
     areaServed: ['North America', 'Latin America', 'Europe'],
     priceRange: '$$$',
+    makesOffer: SERVICE_TYPES.map((serviceType) => ({
+      '@type': 'Offer',
+      itemOffered: {
+        '@type': 'Service',
+        name: serviceType,
+        serviceType,
+        provider: { '@type': 'ProfessionalService', name: SITE.name },
+        areaServed: ['North America', 'Latin America', 'Europe'],
+      },
+    })),
   },
   {
     '@context': 'https://schema.org',
     '@type': 'WebSite',
     name: SITE.name,
     url: SITE.url,
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: {
+        '@type': 'Answer',
+        text: faq.answer,
+      },
+    })),
   },
 ];
 ---
@@ -185,7 +223,7 @@ const schema = [
         <h1>{copy.h1}</h1>
         <p class="lede">{copy.lede}</p>
         <div class="hero-actions">
-          <a href={path('contact/')} class="btn btn-accent">{copy.ctaAccent}</a>
+          <CalendlyButton label={copy.ctaAccent} class="btn btn-accent" />
           <a href={path('services/')} class="btn btn-ghost">{copy.ctaGhost}</a>
         </div>
       </div>
@@ -310,6 +348,8 @@ const schema = [
       </div>
     </div>
   </section>
+
+  <CTABanner lang={lang} />
 
   <!-- Testimonials -->
   <section class="section section-gray">

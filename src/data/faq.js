@@ -15,14 +15,24 @@ export const FAQS = [
       'Both. We work with venture-backed startups making their first leadership hires, scale-ups building out functions for the first time, and established companies replacing or adding to an existing team. What matters more than size is that the hire is genuinely important to the business.',
   },
   {
+    question: 'Do you work as a startup recruiter, or only with established companies?',
+    answer:
+      'Startups are a core part of our practice. As a startup recruiter, we understand that an early hire carries more risk and more upside than the same role at a large company — so we assess for founder-mode judgment and comfort with ambiguity, not just résumé pedigree.',
+  },
+  {
     question: 'How long does a typical search take?',
     answer:
       'Most searches complete in four to eight weeks from kickoff to signed offer, depending on seniority, specificity of the brief and how competitive the market is for that profile. We’ll give you a realistic timeline during discovery, and we’d rather tell you six weeks and deliver in five than promise two and deliver in six.',
   },
   {
-    question: 'Do you recruit remote and international talent?',
+    question: 'Do you offer remote recruiting and international recruiting?',
     answer:
-      'Yes. We recruit across North America, LATAM and Europe, for both onsite and fully remote roles. International and distributed hiring is a core part of our practice, not an add-on — including guidance on compensation benchmarking across regions.',
+      'Yes. Remote recruiting and international recruiting are core parts of our practice, not an add-on — we place both onsite and fully remote talent across North America, LATAM and Europe, including guidance on compensation benchmarking across regions.',
+  },
+  {
+    question: 'Do you recruit AI and machine learning talent?',
+    answer:
+      'Yes. AI recruiting is a growing part of our technology practice — we place machine learning engineers, applied scientists and AI product leaders for companies building AI-native products, evaluated by people who understand the difference between real ML experience and buzzword-matching.',
   },
   {
     question: 'What does your process look like?',
@@ -58,14 +68,24 @@ export const FAQS_ES = [
       'Ambas. Trabajamos con startups respaldadas por venture capital haciendo sus primeras contrataciones de liderazgo, scale-ups armando funciones por primera vez, y empresas consolidadas reemplazando o sumando a un equipo existente. Lo que importa más que el tamaño es que la contratación sea genuinamente importante para el negocio.',
   },
   {
+    question: '¿Trabajan como reclutadores de startups, o solo con empresas consolidadas?',
+    answer:
+      'Las startups son parte central de nuestra práctica. Como reclutadores especializados en startups, entendemos que una contratación temprana implica más riesgo y más potencial que el mismo rol en una empresa grande — por eso evaluamos criterio y comodidad con la ambigüedad, no solo el currículum.',
+  },
+  {
     question: '¿Cuánto dura una búsqueda típica?',
     answer:
       'La mayoría de las búsquedas se completan entre cuatro y ocho semanas desde el kickoff hasta la oferta firmada, dependiendo del seniority, la especificidad del brief y qué tan competitivo esté el mercado para ese perfil. Te damos un plazo realista durante el discovery, y preferimos decirte seis semanas y entregar en cinco antes que prometer dos y entregar en seis.',
   },
   {
-    question: '¿Reclutan talento remoto e internacional?',
+    question: '¿Ofrecen reclutamiento remoto e internacional?',
     answer:
-      'Sí. Reclutamos en Norteamérica, LATAM y Europa, tanto para roles presenciales como completamente remotos. La contratación internacional y distribuida es parte central de nuestra práctica, no un agregado — incluye asesoramiento sobre benchmarking de compensación entre regiones.',
+      'Sí. El reclutamiento remoto y el reclutamiento internacional son parte central de nuestra práctica, no un agregado — colocamos talento tanto presencial como completamente remoto en Norteamérica, LATAM y Europa, incluyendo asesoramiento sobre benchmarking de compensación entre regiones.',
+  },
+  {
+    question: '¿Reclutan talento de inteligencia artificial y machine learning?',
+    answer:
+      'Sí. El reclutamiento de IA es una parte creciente de nuestra práctica de tecnología — colocamos ingenieros de machine learning, applied scientists y líderes de producto de IA para empresas que construyen productos AI-native, evaluados por personas que entienden la diferencia entre experiencia real en ML y currículums con palabras de moda.',
   },
   {
     question: '¿Cómo es su proceso?',

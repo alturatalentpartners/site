@@ -1,6 +1,7 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
+import CalendlyButton from './CalendlyButton.astro';
 import { NAV_ROUTES } from '../data/site.js';
 import { useTranslations, localizePath, getRouteFromUrl } from '../i18n/utils.js';
 
@@ -18,7 +19,6 @@ const route = getRouteFromUrl(Astro.url);
 const switchHref = `${base}${localizePath(route, otherLang).replace(/^\//, '')}`;
 
 const homeHref = `${base}${localizePath('', lang).replace(/^\//, '')}`;
-const contactHref = `${base}${localizePath('contact/', lang).replace(/^\//, '')}`;
 ---
 
 <header class="navbar" id="navbar">
@@ -43,7 +43,7 @@ const contactHref = `${base}${localizePath('contact/', lang).replace(/^\//, '')}
 
     <div class="navbar-actions">
       <a href={switchHref} class="lang-switch">{t('nav.langSwitch')}</a>
-      <a href={contactHref} class="btn btn-primary">{t('nav.cta')}</a>
+      <CalendlyButton label={t('nav.cta')} class="btn btn-primary" />
     </div>
 
     <button
@@ -66,7 +66,7 @@ const contactHref = `${base}${localizePath('contact/', lang).replace(/^\//, '')}
       ))}
     </ul>
     <a href={switchHref} class="lang-switch lang-switch-mobile">{t('nav.langSwitch')}</a>
-    <a href={contactHref} class="btn btn-primary btn-block">{t('nav.cta')}</a>
+    <CalendlyButton label={t('nav.cta')} class="btn btn-primary btn-block" />
   </div>
 </header>
 

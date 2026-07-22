@@ -1,0 +1,19 @@
+---
+import { SITE } from '../data/site.js';
+
+interface Props {
+  label: string;
+  class?: string;
+}
+const { label, class: className = 'btn btn-accent' } = Astro.props;
+---
+
+<a
+  href={SITE.calendlyUrl}
+  target="_blank"
+  rel="noopener noreferrer"
+  data-calendly={SITE.calendlyUrl}
+  class={className}
+>
+  {label}
+</a>

@@ -1,12 +1,11 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
+import CTABanner from '../components/CTABanner.astro';
 import { SITE } from '../data/site.js';
 import { localizePath } from '../i18n/utils.js';
 
 const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
-const base = import.meta.env.BASE_URL;
-const path = (p: string) => `${base}${localizePath(p, lang).replace(/^\//, '')}`;
 
 const copy = {
   en: {
@@ -41,9 +40,6 @@ const copy = {
       { number: '15+', label: 'Recruiting specialties across functions' },
       { number: '13', label: 'Industries we actively recruit within' },
     ],
-    ctaH2: 'Have a role that needs the right search partner?',
-    ctaLede: 'Tell us what you’re hiring for and we’ll walk you through how we’d approach it.',
-    ctaBtn: 'Book a Consultation',
   },
   es: {
     metaTitle: 'Nosotros',
@@ -77,9 +73,6 @@ const copy = {
       { number: '15+', label: 'Especialidades de reclutamiento por función' },
       { number: '13', label: 'Industrias en las que reclutamos activamente' },
     ],
-    ctaH2: '¿Tienes un rol que necesita el socio de búsqueda correcto?',
-    ctaLede: 'Cuéntanos qué estás contratando y te mostramos cómo lo abordaríamos.',
-    ctaBtn: 'Agendar Consulta',
   },
 }[lang];
 
@@ -155,13 +148,7 @@ const schema = {
     </div>
   </section>
 
-  <section class="section section-gray cta-section">
-    <div class="container text-center">
-      <h2>{copy.ctaH2}</h2>
-      <p class="lede mx-auto">{copy.ctaLede}</p>
-      <a href={path('contact/')} class="btn btn-primary">{copy.ctaBtn}</a>
-    </div>
-  </section>
+  <CTABanner lang={lang} />
 </Layout>
 
 <style>
@@ -255,14 +242,6 @@ const schema = {
   .stat-label {
     font-size: var(--fs-sm);
     color: var(--color-ink-500);
-  }
-
-  .cta-section h2 {
-    margin-bottom: 1rem;
-  }
-
-  .cta-section .lede {
-    margin-bottom: 2rem;
   }
 
   @media (max-width: 900px) {

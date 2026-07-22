@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
+import CalendlyButton from '../components/CalendlyButton.astro';
 import { SITE } from '../data/site.js';
 import { localizePath } from '../i18n/utils.js';
 
@@ -19,6 +20,8 @@ const copy = {
     linkedin: 'LinkedIn',
     whereWeWork: 'Where we work',
     whereWeWorkValue: 'North America, LATAM & Europe — remote and onsite',
+    preferCalendly: 'Prefer to just grab a time?',
+    bookBtn: 'Book a Consultation',
     pageName: 'Contact Altura Talent Partners',
   },
   es: {
@@ -32,6 +35,8 @@ const copy = {
     linkedin: 'LinkedIn',
     whereWeWork: 'Dónde trabajamos',
     whereWeWorkValue: 'Norteamérica, LATAM y Europa — remoto y presencial',
+    preferCalendly: '¿Prefieres agendar directamente?',
+    bookBtn: 'Agendar Consulta',
     pageName: 'Contactar a Altura Talent Partners',
   },
 }[lang];
@@ -89,6 +94,12 @@ const schema = {
           <div>
             <h3>{copy.whereWeWork}</h3>
             <p>{copy.whereWeWorkValue}</p>
+          </div>
+        </div>
+        <div class="info-card info-card-calendly">
+          <div>
+            <h3>{copy.preferCalendly}</h3>
+            <CalendlyButton label={copy.bookBtn} class="btn btn-ghost btn-block" />
           </div>
         </div>
       </div>
@@ -149,6 +160,19 @@ const schema = {
 
   .info-card p {
     font-size: var(--fs-sm);
+  }
+
+  .info-card-calendly {
+    background: var(--color-gray-50);
+    border-style: dashed;
+  }
+
+  .info-card-calendly > div {
+    width: 100%;
+  }
+
+  .info-card-calendly h3 {
+    margin-bottom: 0.75rem;
   }
 
   @media (max-width: 900px) {

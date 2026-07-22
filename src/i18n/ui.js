@@ -39,6 +39,9 @@ export const ui = {
     'btn.bookConsultation': 'Book a Consultation',
     'btn.backHome': 'Back to homepage',
 
+    'cta.heading': 'Looking for your next key hire?',
+    'cta.subtext': 'Schedule a free consultation.',
+
     'form.name': 'Full name',
     'form.email': 'Work email',
     'form.company': 'Company',
@@ -85,6 +88,9 @@ export const ui = {
     'btn.exploreIndustries': 'Explorar Industrias',
     'btn.bookConsultation': 'Agendar Consulta',
     'btn.backHome': 'Volver al inicio',
+
+    'cta.heading': '¿Buscas tu próxima contratación clave?',
+    'cta.subtext': 'Agenda una consulta gratuita.',
 
     'form.name': 'Nombre completo',
     'form.email': 'Email de trabajo',

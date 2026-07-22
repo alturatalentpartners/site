@@ -75,6 +75,10 @@ const esURL = new URL(`${base}${localizePath(route, 'es').replace(/^\//, '')}`, 
     {schemaList.map((item) => (
       <script type="application/ld+json" set:html={JSON.stringify(item)} is:inline />
     ))}
+
+    <!-- Calendly popup widget — loaded on every page so any [data-calendly] button works -->
+    <link href="https://assets.calendly.com/assets/external/widget.css" rel="stylesheet" />
+    <script src="https://assets.calendly.com/assets/external/widget.js" type="text/javascript" async is:inline></script>
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>
@@ -99,6 +103,23 @@ const esURL = new URL(`${base}${localizePath(route, 'es').replace(/^\//, '')}`, 
         { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
       );
       revealEls.forEach((el) => observer.observe(el));
+    </script>
+
+    <script>
+      // Any [data-calendly] link opens the Calendly popup instead of navigating
+      // away, once the widget script has loaded. Falls back to a normal link
+      // (opens Calendly in a new tab) if the widget script fails to load.
+      document.querySelectorAll('[data-calendly]').forEach((el) => {
+        el.addEventListener('click', (e) => {
+          const url = el.getAttribute('data-calendly');
+          // @ts-ignore — Calendly is injected globally by widget.js
+          if (window.Calendly && url) {
+            e.preventDefault();
+            // @ts-ignore
+            window.Calendly.initPopupWidget({ url });
+          }
+        });
+      });
     </script>
   </body>
 </html>

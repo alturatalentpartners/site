@@ -13,7 +13,7 @@ export const SERVICES = [
     title: 'Strategic Recruiting',
     short: 'Recruiting designed around your growth plan, not a generic req — every search ties back to a business outcome.',
     detail:
-      'Before we source a single candidate, we align on what the hire needs to be true in six, twelve and twenty-four months. That context shapes how we search, assess and sell the opportunity.',
+      'Before we source a single candidate, we align on what the hire needs to be true in six, twelve and twenty-four months. That context shapes how we search, assess and sell the opportunity. As a startup recruiter for venture-backed founders and a search partner for established companies alike, we tailor the process to your stage rather than running one playbook for everyone.',
   },
   {
     slug: 'leadership-hiring',
@@ -27,7 +27,7 @@ export const SERVICES = [
     slug: 'finance-recruitment',
     icon: 'bar-chart',
     title: 'Finance Recruitment',
-    short: 'CFOs, controllers, FP&A and finance leaders who bring rigor to how a growing company manages capital.',
+    short: 'As your finance recruiter, we find CFOs, controllers, FP&A and finance leaders who bring rigor to how a growing company manages capital.',
     detail:
       'From first finance hire to a full leadership team, we recruit professionals who can build the financial infrastructure a scaling business needs — and who investors and boards trust.',
   },
@@ -67,9 +67,9 @@ export const SERVICES = [
     slug: 'technology-recruitment',
     icon: 'code',
     title: 'Technology Recruitment',
-    short: 'Engineering and product leaders vetted by people who understand what strong technical judgment looks like.',
+    short: 'Engineering, product and AI recruiting — leaders vetted by people who understand what strong technical judgment looks like.',
     detail:
-      'We recruit CTOs, engineering leaders and senior technical talent, with search briefs built around your architecture, stage and the specific problems your team is solving.',
+      'We recruit CTOs, engineering leaders and senior technical talent, with search briefs built around your architecture, stage and the specific problems your team is solving. AI recruiting is a growing part of this practice — machine learning engineers, applied scientists and AI product leaders for companies building AI-native products.',
   },
   {
     slug: 'hr-recruitment',
@@ -90,8 +90,8 @@ export const SERVICES = [
   {
     slug: 'remote-hiring',
     icon: 'globe',
-    title: 'Remote Hiring',
-    short: 'Distributed hiring built for companies that recruit talent wherever it lives, not just where they’re headquartered.',
+    title: 'Remote Recruiting',
+    short: 'Remote recruiting built for companies that hire talent wherever it lives, not just where they’re headquartered.',
     detail:
       'We source, assess and help you structure offers for remote talent — with an understanding of time zones, compensation benchmarking and the realities of distributed teams.',
   },
@@ -136,7 +136,7 @@ export const SERVICES_ES = [
     title: 'Reclutamiento Estratégico',
     short: 'Reclutamiento diseñado en función de tu plan de crecimiento, no de una vacante genérica — cada búsqueda conecta con un resultado de negocio.',
     detail:
-      'Antes de contactar a un solo candidato, definimos juntos qué debe ser cierto sobre esa contratación en seis, doce y veinticuatro meses. Ese contexto define cómo buscamos, evaluamos y presentamos la oportunidad.',
+      'Antes de contactar a un solo candidato, definimos juntos qué debe ser cierto sobre esa contratación en seis, doce y veinticuatro meses. Ese contexto define cómo buscamos, evaluamos y presentamos la oportunidad — el mismo rigor tanto si eres una startup en tu primera contratación como si eres una empresa consolidada sumando a un equipo existente.',
   },
   {
     slug: 'leadership-hiring',
@@ -150,7 +150,7 @@ export const SERVICES_ES = [
     slug: 'finance-recruitment',
     icon: 'bar-chart',
     title: 'Reclutamiento de Finanzas',
-    short: 'CFOs, controllers, FP&A y líderes financieros que aportan rigor a cómo una empresa en crecimiento administra su capital.',
+    short: 'Como tu reclutador de finanzas, encontramos CFOs, controllers, FP&A y líderes financieros que aportan rigor a cómo una empresa en crecimiento administra su capital.',
     detail:
       'Desde la primera contratación en finanzas hasta un equipo de liderazgo completo, reclutamos profesionales capaces de construir la infraestructura financiera que necesita una empresa en expansión — y en quienes confían inversores y directorios.',
   },
@@ -190,9 +190,9 @@ export const SERVICES_ES = [
     slug: 'technology-recruitment',
     icon: 'code',
     title: 'Reclutamiento de Tecnología',
-    short: 'Líderes de ingeniería y producto evaluados por personas que entienden qué es realmente un buen criterio técnico.',
+    short: 'Ingeniería, producto y reclutamiento de IA — líderes evaluados por personas que entienden qué es realmente un buen criterio técnico.',
     detail:
-      'Reclutamos CTOs, líderes de ingeniería y talento técnico senior, con briefs de búsqueda construidos en torno a tu arquitectura, etapa y los problemas específicos que resuelve tu equipo.',
+      'Reclutamos CTOs, líderes de ingeniería y talento técnico senior, con briefs de búsqueda construidos en torno a tu arquitectura, etapa y los problemas específicos que resuelve tu equipo. El reclutamiento de IA es una parte creciente de esta práctica — ingenieros de machine learning, applied scientists y líderes de producto de IA para empresas que construyen productos AI-native.',
   },
   {
     slug: 'hr-recruitment',
@@ -213,8 +213,8 @@ export const SERVICES_ES = [
   {
     slug: 'remote-hiring',
     icon: 'globe',
-    title: 'Contratación Remota',
-    short: 'Contratación distribuida para empresas que reclutan talento donde sea que esté, no solo donde tienen sede.',
+    title: 'Reclutamiento Remoto',
+    short: 'Reclutamiento remoto para empresas que contratan talento donde sea que esté, no solo donde tienen sede.',
     detail:
       'Buscamos, evaluamos y te ayudamos a estructurar ofertas para talento remoto — con entendimiento de husos horarios, benchmarking de compensación y la realidad de los equipos distribuidos.',
   },

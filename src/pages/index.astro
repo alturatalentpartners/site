@@ -1,0 +1,525 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import HeroGraphic from '../components/HeroGraphic.astro';
+import ServiceCard from '../components/ServiceCard.astro';
+import IndustryCard from '../components/IndustryCard.astro';
+import ProcessStep from '../components/ProcessStep.astro';
+import Testimonial from '../components/Testimonial.astro';
+import FAQItem from '../components/FAQItem.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SERVICES } from '../data/services.js';
+import { INDUSTRIES } from '../data/industries.js';
+import { TESTIMONIALS } from '../data/testimonials.js';
+import { FAQS } from '../data/faq.js';
+import { SITE } from '../data/site.js';
+
+const base = import.meta.env.BASE_URL;
+const featuredServices = SERVICES.slice(0, 9);
+
+const process = [
+  {
+    title: 'Discovery',
+    description:
+      'We start by understanding the role in business terms — what success looks like in the first year, who this person reports to, and why the seat is open now.',
+  },
+  {
+    title: 'Candidate Search',
+    description:
+      'We map the market and engage both active and passive candidates, prioritizing quality of fit over volume of résumés.',
+  },
+  {
+    title: 'Assessment',
+    description:
+      'Structured interviews and reference checks assess judgment, track record and alignment with how your team actually works.',
+  },
+  {
+    title: 'Shortlist',
+    description:
+      'You receive a small number of genuinely qualified finalists, with our honest read on strengths and risks for each.',
+  },
+  {
+    title: 'Hiring',
+    description:
+      'We support offer strategy and negotiation, helping close the candidate you actually want without losing them to process delay.',
+  },
+  {
+    title: 'Optional Post-Hire Support',
+    description:
+      'We check in through the first 90 days to catch onboarding issues early and make sure the hire is landing the way it should.',
+    isLast: true,
+  },
+];
+
+const differentiators = [
+  {
+    icon: 'compass',
+    title: 'Business Understanding First',
+    description: 'We start every search by learning your business, not just your job description — so every candidate we bring you actually fits.',
+  },
+  {
+    icon: 'scale',
+    title: 'Confidential, Consultative Process',
+    description: 'Sensitive searches stay sensitive. We operate as an extension of your team, not a vendor working a transaction.',
+  },
+  {
+    icon: 'globe',
+    title: 'Cross-Border Reach',
+    description: 'North America, LATAM and Europe — remote or onsite — with market-specific knowledge in every region we work.',
+  },
+  {
+    icon: 'handshake',
+    title: 'Accountable Beyond the Offer',
+    description: 'Our job isn’t done at signature. We stay engaged through onboarding because a hire only succeeds once they’re actually delivering.',
+  },
+];
+
+const comparison = [
+  { altura: 'A small number of deliberate, senior searches at a time', other: 'High volume of roles worked simultaneously' },
+  { altura: 'Search built around your business context and goals', other: 'Generic keyword matching against a job title' },
+  { altura: 'Direct engagement with passive, high-caliber candidates', other: 'Primarily inbound applicants and job board traffic' },
+  { altura: 'A senior partner involved from discovery to close', other: 'Handed off to a junior recruiter after the intake call' },
+  { altura: 'Continued support through the first 90 days', other: 'Relationship ends at the signed offer' },
+];
+
+const schema = [
+  {
+    '@context': 'https://schema.org',
+    '@type': 'ProfessionalService',
+    name: SITE.name,
+    description: SITE.description,
+    url: SITE.url,
+    telephone: SITE.phone,
+    email: SITE.email,
+    sameAs: [SITE.linkedin],
+    areaServed: ['North America', 'Latin America', 'Europe'],
+    priceRange: '$$$',
+  },
+  {
+    '@context': 'https://schema.org',
+    '@type': 'WebSite',
+    name: SITE.name,
+    url: SITE.url,
+  },
+];
+---
+
+<Layout
+  title="Executive Search &amp; Strategic Recruiting"
+  description="Altura Talent Partners is a boutique executive search and strategic recruiting firm helping growing companies across North America, LATAM and Europe hire exceptional talent."
+  schema={schema}
+>
+  <!-- Hero -->
+  <section class="hero section-sm">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <span class="eyebrow">Executive Search &amp; Strategic Recruiting</span>
+        <h1>Helping Growing Companies Build Exceptional Teams</h1>
+        <p class="lede">
+          Altura Talent Partners is a boutique search firm for founders and leadership
+          teams who won&rsquo;t compromise on who they hire. We recruit across North
+          America, LATAM and Europe — remote and onsite — for the roles that define
+          what happens next.
+        </p>
+        <div class="hero-actions">
+          <a href={`${base}contact/`} class="btn btn-accent">Book a Consultation</a>
+          <a href={`${base}services/`} class="btn btn-ghost">Learn More</a>
+        </div>
+      </div>
+      <HeroGraphic />
+    </div>
+  </section>
+
+  <!-- Trusted by / positioning -->
+  <section class="trusted section-sm section-gray">
+    <div class="container">
+      <p class="trusted-label text-center">Built for the people who own the hiring decision</p>
+      <div class="trusted-chips">
+        {['Startup Founders', 'CEOs', 'COOs', 'CFOs', 'Business Owners', 'Private Equity', 'VC-Backed Startups'].map((chip) => (
+          <span class="chip">{chip}</span>
+        ))}
+      </div>
+      <div class="trusted-stats grid grid-3">
+        <div class="stat">
+          <span class="stat-number">4&ndash;8 wks</span>
+          <span class="stat-label">Typical search timeline</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">3 regions</span>
+          <span class="stat-label">North America, LATAM &amp; Europe</span>
+        </div>
+        <div class="stat">
+          <span class="stat-number">Boutique</span>
+          <span class="stat-label">Senior partner on every search</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why Altura -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Why Altura</span>
+        <h2>Recruiting that behaves like a business partner, not a vendor</h2>
+        <p class="lede">Four commitments that shape how we run every search.</p>
+      </div>
+      <div class="grid grid-4">
+        {differentiators.map((item) => (
+          <div class="diff-card reveal">
+            <span class="diff-icon"><Icon name={item.icon} size={22} /></span>
+            <h3>{item.title}</h3>
+            <p>{item.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Services -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Services</span>
+        <h2>Search and recruiting built around your function</h2>
+        <p class="lede">
+          From first leadership hire to a full team build-out, we recruit across the
+          roles that matter most to a growing business.
+        </p>
+      </div>
+      <div class="grid grid-3">
+        {featuredServices.map((service) => (
+          <ServiceCard icon={service.icon} title={service.title} description={service.short} href={`${base}services/#${service.slug}`} />
+        ))}
+      </div>
+      <div class="section-cta text-center">
+        <a href={`${base}services/`} class="btn btn-ghost">View All Services <Icon name="arrowRight" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Industries -->
+  <section class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Industries</span>
+        <h2>Sector knowledge that shapes a smarter search</h2>
+        <p class="lede">We recruit across thirteen industries, each with its own talent market and hiring bar.</p>
+      </div>
+      <div class="grid grid-3 industries-grid">
+        {INDUSTRIES.map((industry) => (
+          <IndustryCard icon={industry.icon} title={industry.title} description={industry.description} />
+        ))}
+      </div>
+      <div class="section-cta text-center">
+        <a href={`${base}industries/`} class="btn btn-ghost">Explore Industries <Icon name="arrowRight" size={16} /></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Process -->
+  <section class="section section-gray">
+    <div class="container container-narrow">
+      <div class="section-header">
+        <span class="eyebrow">Our Process</span>
+        <h2>A disciplined, six-stage search process</h2>
+        <p class="lede">The same structured process behind every engagement, senior or specialist.</p>
+      </div>
+      <div class="process-list">
+        {process.map((step, i) => (
+          <ProcessStep number={String(i + 1).padStart(2, '0')} title={step.title} description={step.description} isLast={step.isLast} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Why companies choose us -->
+  <section class="section">
+    <div class="container container-narrow">
+      <div class="section-header">
+        <span class="eyebrow">Why Companies Choose Us</span>
+        <h2>The difference shows up in the shortlist</h2>
+      </div>
+      <div class="comparison-table reveal">
+        <div class="comparison-head">
+          <span></span>
+          <span class="comparison-head-altura">Altura Talent Partners</span>
+          <span class="comparison-head-other">Typical Agency</span>
+        </div>
+        {comparison.map((row) => (
+          <div class="comparison-row">
+            <span class="comparison-icon"><Icon name="check" size={16} /></span>
+            <span class="comparison-altura">{row.altura}</span>
+            <span class="comparison-other">{row.other}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials -->
+  <section class="section section-gray">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Testimonials</span>
+        <h2>What hiring leaders say after working with us</h2>
+      </div>
+      <div class="grid grid-3">
+        {TESTIMONIALS.map((t) => (
+          <Testimonial quote={t.quote} name={t.name} role={t.role} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section">
+    <div class="container container-narrow">
+      <div class="section-header">
+        <span class="eyebrow">FAQ</span>
+        <h2>Questions we hear before a search kicks off</h2>
+      </div>
+      <div class="faq-list">
+        {FAQS.map((faq) => (
+          <FAQItem question={faq.question} answer={faq.answer} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section class="section section-gray" id="contact">
+    <div class="container contact-grid">
+      <div class="contact-intro">
+        <span class="eyebrow">Get in Touch</span>
+        <h2>Let&rsquo;s talk about who you need to hire</h2>
+        <p class="lede">
+          Tell us about the role and we&rsquo;ll get back to you within one business
+          day to talk through fit, timeline and next steps.
+        </p>
+        <ul class="contact-details">
+          <li><Icon name="phone" size={18} /> <a href={SITE.phoneHref}>{SITE.phone}</a></li>
+          <li><Icon name="mail" size={18} /> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
+          <li><Icon name="linkedin" size={18} /> <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+        </ul>
+      </div>
+      <ContactForm />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .hero-grid {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 3rem;
+    align-items: center;
+  }
+
+  .hero-copy .eyebrow {
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-copy h1 {
+    margin-bottom: 1.5rem;
+  }
+
+  .hero-copy .lede {
+    max-width: 52ch;
+    margin-bottom: 2.25rem;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .trusted-label {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--color-ink-500);
+    text-transform: uppercase;
+    margin-bottom: 1.5rem;
+  }
+
+  .trusted-chips {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.75rem;
+    margin-bottom: 3rem;
+  }
+
+  .chip {
+    padding: 0.5rem 1.1rem;
+    border-radius: var(--radius-full);
+    background: var(--color-white);
+    border: 1px solid var(--color-ink-200);
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .trusted-stats {
+    max-width: 760px;
+    margin-inline: auto;
+    text-align: center;
+  }
+
+  .stat-number {
+    display: block;
+    font-size: var(--fs-2xl);
+    font-weight: 700;
+    color: var(--color-primary);
+    letter-spacing: -0.02em;
+  }
+
+  .stat-label {
+    font-size: var(--fs-xs);
+    color: var(--color-ink-500);
+  }
+
+  .section-header {
+    max-width: 640px;
+    margin-bottom: 3rem;
+  }
+
+  .section-header .eyebrow {
+    margin-bottom: 1rem;
+  }
+
+  .section-header h2 {
+    margin-bottom: 1rem;
+  }
+
+  .diff-card {
+    padding: 0.5rem 0;
+  }
+
+  .diff-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background: var(--color-gray-50);
+    color: var(--color-accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .diff-card h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: 0.6rem;
+  }
+
+  .diff-card p {
+    font-size: var(--fs-sm);
+  }
+
+  .section-cta {
+    margin-top: 3rem;
+  }
+
+  .section-cta .btn {
+    gap: 0.5rem;
+  }
+
+  .comparison-table {
+    background: var(--color-white);
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-lg);
+    overflow: hidden;
+  }
+
+  .comparison-head,
+  .comparison-row {
+    display: grid;
+    grid-template-columns: 32px 1fr 1fr;
+    gap: 1rem;
+    align-items: center;
+    padding: 1.1rem 1.5rem;
+  }
+
+  .comparison-head {
+    background: var(--color-primary);
+    color: #fff;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  .comparison-row {
+    border-top: 1px solid var(--color-ink-200);
+    font-size: var(--fs-sm);
+  }
+
+  .comparison-icon {
+    color: var(--color-accent);
+  }
+
+  .comparison-altura {
+    color: var(--color-primary);
+    font-weight: 500;
+  }
+
+  .comparison-other {
+    color: var(--color-ink-500);
+  }
+
+  .faq-list {
+    border-top: 1px solid var(--color-ink-200);
+  }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.85fr 1.15fr;
+    gap: 3.5rem;
+    align-items: start;
+  }
+
+  .contact-intro h2 {
+    margin: 1rem 0 1.25rem;
+  }
+
+  .contact-details {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+
+  .contact-details li {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--color-primary);
+  }
+
+  .contact-details a:hover {
+    color: var(--color-accent);
+  }
+
+  @media (max-width: 900px) {
+    .hero-grid,
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+    .comparison-head,
+    .comparison-row {
+      grid-template-columns: 24px 1fr;
+    }
+    .comparison-other {
+      grid-column: 2;
+      padding-top: 0.25rem;
+      font-size: var(--fs-xs);
+    }
+    .comparison-head-other {
+      display: none;
+    }
+  }
+</style>

@@ -1,0 +1,114 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../data/site.js';
+
+const lastUpdated = 'July 22, 2026';
+---
+
+<Layout
+  title="Terms of Service"
+  description="The terms governing your use of the Altura Talent Partners website."
+>
+  <section class="section-sm">
+    <div class="container container-narrow legal">
+      <span class="eyebrow">Legal</span>
+      <h1>Terms of Service</h1>
+      <p class="text-muted">Last updated: {lastUpdated}</p>
+
+      <p>
+        These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the
+        website located at {SITE.url} (the &ldquo;Site&rdquo;), operated by
+        Altura Talent Partners (&ldquo;Altura,&rdquo; &ldquo;we,&rdquo;
+        &ldquo;us&rdquo; or &ldquo;our&rdquo;). By using this Site, you agree
+        to these Terms.
+      </p>
+
+      <h2>Use of This Site</h2>
+      <p>
+        This Site is provided to give visitors information about Altura&rsquo;s
+        executive search and strategic recruiting services, and to allow
+        prospective clients to get in touch with us. You agree to use the
+        Site only for lawful purposes and not to submit false, misleading or
+        malicious information through our contact form.
+      </p>
+
+      <h2>No Guarantee of Services</h2>
+      <p>
+        Submitting an inquiry through this Site does not create a client
+        relationship, engagement, or guarantee of services. Any search or
+        recruiting engagement with Altura is subject to a separate written
+        agreement between Altura and the client, which will govern the scope,
+        fees and terms of that engagement.
+      </p>
+
+      <h2>Intellectual Property</h2>
+      <p>
+        All content on this Site — including text, graphics, logos and the
+        Altura name and mark — is the property of Altura Talent Partners or
+        its licensors and is protected by applicable intellectual property
+        laws. You may not reproduce, distribute or create derivative works
+        from this content without our prior written consent.
+      </p>
+
+      <h2>No Professional Advice</h2>
+      <p>
+        Content on this Site is provided for general informational purposes
+        only and does not constitute legal, financial, or employment advice.
+        You should not rely on this Site as a substitute for professional
+        advice specific to your situation.
+      </p>
+
+      <h2>Third-Party Links</h2>
+      <p>
+        This Site may link to third-party websites, including our LinkedIn
+        page and our contact-form processor. We are not responsible for the
+        content, accuracy or privacy practices of third-party sites.
+      </p>
+
+      <h2>Limitation of Liability</h2>
+      <p>
+        To the fullest extent permitted by law, Altura Talent Partners shall
+        not be liable for any indirect, incidental, or consequential damages
+        arising out of your use of, or inability to use, this Site.
+      </p>
+
+      <h2>Changes to These Terms</h2>
+      <p>
+        We may revise these Terms from time to time. Continued use of the
+        Site after changes are posted constitutes your acceptance of the
+        updated Terms.
+      </p>
+
+      <h2>Governing Law</h2>
+      <p>
+        These Terms are governed by the laws of the State of Texas, United
+        States, without regard to its conflict-of-law principles.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        Questions about these Terms can be sent to{' '}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or {SITE.phone}.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal h1 {
+    margin: 1rem 0 0.5rem;
+  }
+  .legal h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: var(--fs-xl);
+  }
+  .legal p {
+    margin-bottom: 1rem;
+    line-height: 1.75;
+  }
+  .legal a {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+</style>

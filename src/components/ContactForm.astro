@@ -1,0 +1,214 @@
+---
+import { SITE } from '../data/site.js';
+
+// ---------------------------------------------------------------------------
+// This form submits via Web3Forms (https://web3forms.com) — a free,
+// no-backend form relay that works perfectly on static GitHub Pages sites.
+// It requires no credit card and includes a generous free tier forever.
+//
+// Setup (2 minutes):
+//   1. Go to https://web3forms.com and enter your email to get a free
+//      Access Key (no signup required).
+//   2. Paste that key below, replacing "YOUR_WEB3FORMS_ACCESS_KEY".
+// Until you do, the form will show a friendly message directing visitors
+// to email you directly instead.
+// ---------------------------------------------------------------------------
+const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+---
+
+<form id="contactForm" class="contact-form" data-access-key={WEB3FORMS_ACCESS_KEY} novalidate>
+  <input type="hidden" name="subject" value="New consultation request — Altura Talent Partners website" />
+  <input type="hidden" name="from_name" value="Altura Talent Partners Website" />
+  <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" />
+
+  <div class="form-row">
+    <div class="form-field">
+      <label for="name">Full name</label>
+      <input type="text" id="name" name="name" required autocomplete="name" />
+    </div>
+    <div class="form-field">
+      <label for="email">Work email</label>
+      <input type="email" id="email" name="email" required autocomplete="email" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-field">
+      <label for="company">Company</label>
+      <input type="text" id="company" name="company" autocomplete="organization" />
+    </div>
+    <div class="form-field">
+      <label for="phone">Phone <span class="text-muted">(optional)</span></label>
+      <input type="tel" id="phone" name="phone" autocomplete="tel" />
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="need">What do you need help hiring for?</label>
+    <select id="need" name="need">
+      <option value="">Select an option</option>
+      <option>Executive Search</option>
+      <option>Leadership Hiring</option>
+      <option>Finance Recruitment</option>
+      <option>Technology Recruitment</option>
+      <option>Sales Recruitment</option>
+      <option>Marketing Recruitment</option>
+      <option>Operations Recruitment</option>
+      <option>HR Recruitment</option>
+      <option>Customer Success Recruitment</option>
+      <option>Remote / International Hiring</option>
+      <option>Something else</option>
+    </select>
+  </div>
+
+  <div class="form-field">
+    <label for="message">Tell us about the role</label>
+    <textarea id="message" name="message" rows="5" required placeholder="Seniority, team, timeline, location — whatever's useful."></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-accent btn-block" id="formSubmit">
+    <span class="btn-label">Send Message</span>
+  </button>
+
+  <p class="form-status" id="formStatus" role="status" aria-live="polite"></p>
+
+  <p class="form-alt">
+    Prefer email? Reach us directly at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+  </p>
+</form>
+
+<style>
+  .contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    box-shadow: var(--shadow-md);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .form-field label {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-sm);
+    padding: 0.8rem 0.95rem;
+    font-size: var(--fs-sm);
+    background: var(--color-gray-50);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: var(--color-white);
+    box-shadow: var(--shadow-focus);
+  }
+
+  .form-field textarea {
+    resize: vertical;
+    min-height: 120px;
+  }
+
+  .form-status {
+    font-size: var(--fs-sm);
+    min-height: 1.2em;
+  }
+
+  .form-status[data-state='success'] {
+    color: var(--color-success);
+  }
+
+  .form-status[data-state='error'] {
+    color: #b91c1c;
+  }
+
+  .form-alt {
+    font-size: var(--fs-xs);
+    color: var(--color-ink-500);
+    text-align: center;
+  }
+
+  .form-alt a {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('contactForm') as HTMLFormElement | null;
+  const status = document.getElementById('formStatus');
+  const submitBtn = document.getElementById('formSubmit') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !status || !submitBtn) return;
+
+    const accessKey = form.dataset.accessKey;
+    if (!accessKey || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
+      status.dataset.state = 'error';
+      status.textContent =
+        'Online submission isn’t configured yet — please email us directly using the link below.';
+      return;
+    }
+
+    const formData = new FormData(form);
+    formData.append('access_key', accessKey);
+
+    submitBtn.disabled = true;
+    const label = submitBtn.querySelector('.btn-label');
+    const originalLabel = label?.textContent ?? 'Send Message';
+    if (label) label.textContent = 'Sending…';
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        status.dataset.state = 'success';
+        status.textContent = 'Thank you — we’ll be in touch within one business day.';
+        form.reset();
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
+    } catch (err) {
+      status.dataset.state = 'error';
+      status.textContent = 'Something went wrong. Please email us directly using the link below.';
+    } finally {
+      submitBtn.disabled = false;
+      if (label) label.textContent = originalLabel;
+    }
+  });
+</script>

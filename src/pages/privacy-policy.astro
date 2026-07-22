@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { SITE } from '../data/site.js';
+
+const lastUpdated = 'July 22, 2026';
+---
+
+<Layout
+  title="Privacy Policy"
+  description="How Altura Talent Partners collects, uses and protects information submitted through this website."
+  noindex={false}
+>
+  <section class="section-sm">
+    <div class="container container-narrow legal">
+      <span class="eyebrow">Legal</span>
+      <h1>Privacy Policy</h1>
+      <p class="text-muted">Last updated: {lastUpdated}</p>
+
+      <p>
+        Altura Talent Partners (&ldquo;Altura,&rdquo; &ldquo;we,&rdquo; &ldquo;us&rdquo;
+        or &ldquo;our&rdquo;) respects your privacy. This policy explains what
+        information we collect through this website, how we use it, and the
+        choices you have.
+      </p>
+
+      <h2>Information We Collect</h2>
+      <p>We collect information in the following ways:</p>
+      <ul>
+        <li>
+          <strong>Information you provide directly.</strong> When you submit our
+          contact form, we collect your name, email address, phone number
+          (if provided), company name, and any details you share about the
+          role you&rsquo;re hiring for.
+        </li>
+        <li>
+          <strong>Information from direct contact.</strong> If you email or call
+          us directly, we retain that correspondence in order to respond to
+          you and maintain a record of our engagement.
+        </li>
+      </ul>
+      <p>
+        This website does not use advertising trackers, and we do not sell or
+        rent your personal information to third parties.
+      </p>
+
+      <h2>How We Use Your Information</h2>
+      <p>We use the information we collect to:</p>
+      <ul>
+        <li>Respond to inquiries submitted through our contact form or by email/phone</li>
+        <li>Evaluate and progress recruiting and search engagements you initiate with us</li>
+        <li>Maintain records required for our business operations</li>
+        <li>Improve the services we offer</li>
+      </ul>
+
+      <h2>Third-Party Services</h2>
+      <p>
+        Our contact form is processed by a third-party form-relay service
+        (Web3Forms), which transmits your submission to our email inbox. We do
+        not control how that provider processes data in transit; you can
+        review their privacy practices at their website before submitting the
+        form if you have concerns. This site is hosted on GitHub Pages, which
+        may log standard server access data (such as IP address and browser
+        type) as part of normal web hosting operations.
+      </p>
+
+      <h2>Data Retention</h2>
+      <p>
+        We retain information submitted to us for as long as reasonably
+        necessary to fulfill the purposes described in this policy, or as
+        required by law. You may request that we delete your information at
+        any time by contacting us using the details below.
+      </p>
+
+      <h2>Your Choices</h2>
+      <p>You may contact us at any time to:</p>
+      <ul>
+        <li>Request a copy of the information we hold about you</li>
+        <li>Request correction or deletion of your information</li>
+        <li>Opt out of future communications from us</li>
+      </ul>
+
+      <h2>Children&rsquo;s Privacy</h2>
+      <p>
+        This website and our services are intended for business professionals
+        and are not directed to individuals under the age of 18. We do not
+        knowingly collect information from children.
+      </p>
+
+      <h2>Changes to This Policy</h2>
+      <p>
+        We may update this policy from time to time. The &ldquo;Last
+        updated&rdquo; date at the top of this page reflects the most recent
+        revision.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have questions about this policy or how your information is
+        handled, contact us at{' '}
+        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or {SITE.phone}.
+      </p>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .legal h1 {
+    margin: 1rem 0 0.5rem;
+  }
+  .legal h2 {
+    margin-top: 2.5rem;
+    margin-bottom: 1rem;
+    font-size: var(--fs-xl);
+  }
+  .legal p {
+    margin-bottom: 1rem;
+    line-height: 1.75;
+  }
+  .legal ul {
+    list-style: disc;
+    padding-left: 1.4rem;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .legal ul li {
+    color: var(--color-ink-700);
+    line-height: 1.7;
+  }
+  .legal a {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+</style>

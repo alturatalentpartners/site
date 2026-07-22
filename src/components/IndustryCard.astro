@@ -1,0 +1,60 @@
+---
+import Icon from './Icon.astro';
+
+interface Props {
+  icon: string;
+  title: string;
+  description: string;
+}
+const { icon, title, description } = Astro.props;
+---
+
+<div class="industry-card reveal">
+  <span class="industry-icon"><Icon name={icon} size={20} /></span>
+  <div>
+    <h3>{title}</h3>
+    <p>{description}</p>
+  </div>
+</div>
+
+<style>
+  .industry-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-ink-200);
+    background: var(--color-white);
+    transition: border-color 0.25s ease, box-shadow 0.25s ease;
+  }
+
+  .industry-card:hover {
+    border-color: var(--color-accent);
+    box-shadow: var(--shadow-sm);
+  }
+
+  .industry-icon {
+    flex-shrink: 0;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--color-gray-50);
+    color: var(--color-secondary);
+  }
+
+  .industry-card h3 {
+    font-size: var(--fs-base);
+    font-weight: 600;
+    margin-bottom: 0.35rem;
+  }
+
+  .industry-card p {
+    font-size: var(--fs-xs);
+    line-height: 1.6;
+    color: var(--color-ink-500);
+  }
+</style>

@@ -1,0 +1,60 @@
+---
+// Brand mark: two ascending navy peaks forming an abstract "A" (Altura = height),
+// with a gold accent wedge at the crossbar. See /brand/brand-guide.md for usage rules.
+interface Props {
+  theme?: 'dark' | 'light';
+  showWordmark?: boolean;
+}
+const { theme = 'dark', showWordmark = true } = Astro.props;
+const peakColor = theme === 'dark' ? '#0F172A' : '#FFFFFF';
+const gold = '#B08D57';
+---
+
+<span class="logo" data-theme={theme}>
+  <svg class="logo-mark" width="32" height="32" viewBox="0 0 120 120" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+    <path d="M18 96 L52 28 L74 96" stroke={peakColor} stroke-width="8" stroke-linecap="butt" stroke-linejoin="bevel" />
+    <path d="M34 96 L76 14 L104 96" stroke={peakColor} stroke-width="12" stroke-linecap="butt" stroke-linejoin="bevel" />
+    <polygon points="63,46 73,76 63,80 54,50" fill={gold} />
+  </svg>
+  {showWordmark && (
+    <span class="logo-word">
+      <span class="logo-name">Altura</span>
+      <span class="logo-sub">Talent Partners</span>
+    </span>
+  )}
+</span>
+
+<style>
+  .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.7rem;
+  }
+  .logo-mark {
+    flex-shrink: 0;
+  }
+  .logo-word {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.05;
+  }
+  .logo-name {
+    font-size: 1.15rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #0f172a;
+  }
+  .logo[data-theme='light'] .logo-name {
+    color: #ffffff;
+  }
+  .logo-sub {
+    font-size: 0.6rem;
+    font-weight: 600;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--color-gold);
+  }
+  .logo[data-theme='light'] .logo-sub {
+    color: var(--color-gold);
+  }
+</style>

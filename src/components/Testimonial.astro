@@ -1,0 +1,82 @@
+---
+interface Props {
+  quote: string;
+  name: string;
+  role: string;
+}
+const { quote, name, role } = Astro.props;
+const initials = name
+  .split(' ')
+  .map((n) => n[0])
+  .join('')
+  .slice(0, 2);
+---
+
+<figure class="testimonial reveal">
+  <blockquote>“{quote}”</blockquote>
+  <figcaption>
+    <span class="avatar">{initials}</span>
+    <span>
+      <span class="name">{name}</span>
+      <span class="role">{role}</span>
+    </span>
+  </figcaption>
+</figure>
+
+<style>
+  .testimonial {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    background: var(--color-white);
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-md);
+    padding: 2.25rem;
+  }
+
+  .testimonial blockquote {
+    font-size: var(--fs-lg);
+    font-weight: 500;
+    color: var(--color-primary);
+    line-height: 1.55;
+    letter-spacing: -0.01em;
+  }
+
+  .testimonial figcaption {
+    display: flex;
+    align-items: center;
+    gap: 0.85rem;
+    margin-top: 2rem;
+  }
+
+  .avatar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: var(--radius-full);
+    background: var(--color-primary);
+    color: #fff;
+    font-size: var(--fs-xs);
+    font-weight: 700;
+    flex-shrink: 0;
+  }
+
+  figcaption > span:last-child {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .name {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .role {
+    font-size: var(--fs-xs);
+    color: var(--color-ink-500);
+  }
+</style>

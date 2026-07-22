@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 140" width="1280" height="280">
+  <g transform="translate(10,10)">
+    <path d="M18 96 L52 28 L74 96" fill="none" stroke="#FFFFFF" stroke-width="8" stroke-linecap="butt" stroke-linejoin="bevel"/>
+    <path d="M34 96 L76 14 L104 96" fill="none" stroke="#FFFFFF" stroke-width="12" stroke-linecap="butt" stroke-linejoin="bevel"/>
+    <polygon points="63,46 73,76 63,80 54,50" fill="#B08D57"/>
+  </g>
+  <text x="152" y="82" font-family="'Helvetica Neue', Arial, sans-serif" font-size="56" font-weight="700" letter-spacing="1" fill="#FFFFFF">ALTURA</text>
+  <text x="154" y="110" font-family="'Helvetica Neue', Arial, sans-serif" font-size="17" font-weight="700" letter-spacing="5" fill="#B08D57">TALENT PARTNERS</text>
+</svg>

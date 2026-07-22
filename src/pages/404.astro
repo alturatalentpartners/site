@@ -1,0 +1,78 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+
+const base = import.meta.env.BASE_URL;
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: 'about/', label: 'About' },
+  { href: 'services/', label: 'Services' },
+  { href: 'industries/', label: 'Industries' },
+  { href: 'contact/', label: 'Contact' },
+];
+---
+
+<Layout title="Page Not Found" description="The page you’re looking for doesn’t exist." noindex={true}>
+  <section class="section not-found">
+    <div class="container container-narrow text-center">
+      <span class="not-found-code">404</span>
+      <h1>This page took a wrong turn</h1>
+      <p class="lede mx-auto">
+        The page you&rsquo;re looking for doesn&rsquo;t exist or may have
+        moved. Here are a few places to pick back up.
+      </p>
+      <div class="not-found-links">
+        {links.map((link) => (
+          <a href={`${base}${link.href.replace(/^\//, '')}`} class="btn btn-ghost">{link.label}</a>
+        ))}
+      </div>
+      <a href={`${base}`} class="not-found-home">
+        <Icon name="arrowRight" size={16} /> Back to homepage
+      </a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .not-found {
+    display: flex;
+    align-items: center;
+    min-height: 60vh;
+  }
+
+  .not-found-code {
+    display: block;
+    font-size: clamp(4rem, 12vw, 7rem);
+    font-weight: 700;
+    color: var(--color-ink-200);
+    letter-spacing: -0.03em;
+    line-height: 1;
+    margin-bottom: 1rem;
+  }
+
+  .not-found h1 {
+    margin-bottom: 1rem;
+  }
+
+  .not-found .lede {
+    margin-bottom: 2.5rem;
+  }
+
+  .not-found-links {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 0.85rem;
+    margin-bottom: 2.5rem;
+  }
+
+  .not-found-home {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    color: var(--color-accent);
+  }
+</style>

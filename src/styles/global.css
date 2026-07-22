@@ -1,0 +1,406 @@
+@import '@fontsource-variable/inter';
+
+/* ==========================================================================
+   Design tokens — Altura Talent Partners
+   ========================================================================== */
+:root {
+  /* Brand colors */
+  --color-primary: #0f172a;      /* deep navy — headlines, nav, footer */
+  --color-secondary: #1e40af;    /* corporate blue — supporting accents */
+  --color-accent: #2563eb;       /* action blue — links, buttons, focus */
+  --color-gray-50: #f8fafc;      /* section backgrounds */
+
+  --color-gold: #b08d57;   /* brand mark accent — use sparingly */
+
+  --color-white: #ffffff;
+  --color-ink-700: #334155;
+  --color-ink-500: #64748b;
+  --color-ink-300: #cbd5e1;
+  --color-ink-200: #e2e8f0;
+  --color-ink-100: #f1f5f9;
+
+  --color-success: #15803d;
+
+  /* Typography */
+  --font-sans: 'Inter Variable', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+
+  --fs-2xs: 0.75rem;
+  --fs-xs: 0.8125rem;
+  --fs-sm: 0.9375rem;
+  --fs-base: 1.0625rem;
+  --fs-lg: 1.25rem;
+  --fs-xl: 1.5rem;
+  --fs-2xl: 1.875rem;
+  --fs-3xl: clamp(1.75rem, 4vw, 2.5rem);
+  --fs-4xl: clamp(2rem, 5vw, 3.25rem);
+  --fs-5xl: clamp(2.5rem, 6.5vw, 4rem);
+
+  /* Spacing */
+  --space-section: clamp(4rem, 8vw, 8rem);
+  --space-section-sm: clamp(3rem, 5vw, 5rem);
+
+  /* Layout */
+  --container-max: 1280px;
+  --container-narrow: 860px;
+  --radius-sm: 10px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-full: 999px;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 4px 16px rgba(15, 23, 42, 0.06);
+  --shadow-lg: 0 20px 40px -12px rgba(15, 23, 42, 0.14);
+  --shadow-focus: 0 0 0 3px rgba(37, 99, 235, 0.35);
+
+  /* Motion */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --duration-base: 0.5s;
+}
+
+/* ==========================================================================
+   Reset
+   ========================================================================== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+* {
+  margin: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: var(--fs-base);
+  line-height: 1.65;
+  color: var(--color-primary);
+  background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-feature-settings: 'cv11', 'ss01';
+}
+
+img,
+picture,
+svg,
+video {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input,
+textarea,
+select,
+button {
+  font: inherit;
+  color: inherit;
+}
+
+ul,
+ol {
+  list-style: none;
+  padding: 0;
+}
+
+:focus-visible {
+  outline: none;
+  box-shadow: var(--shadow-focus);
+  border-radius: 4px;
+}
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+h1,
+h2,
+h3,
+h4 {
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.12;
+  color: var(--color-primary);
+}
+
+h1 {
+  font-size: var(--fs-5xl);
+  font-weight: 700;
+  letter-spacing: -0.03em;
+}
+
+h2 {
+  font-size: var(--fs-3xl);
+}
+
+h3 {
+  font-size: var(--fs-xl);
+}
+
+p {
+  color: var(--color-ink-700);
+}
+
+.lede {
+  font-size: var(--fs-lg);
+  color: var(--color-ink-700);
+  line-height: 1.6;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: var(--fs-2xs);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-secondary);
+}
+
+.eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+
+/* ==========================================================================
+   Layout helpers
+   ========================================================================== */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: var(--container-narrow);
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 3rem);
+}
+
+.section {
+  padding-block: var(--space-section);
+}
+
+.section-sm {
+  padding-block: var(--space-section-sm);
+}
+
+.section-gray {
+  background: var(--color-gray-50);
+}
+
+.grid {
+  display: grid;
+  gap: 1.75rem;
+}
+
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+@media (max-width: 900px) {
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .grid-3 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ==========================================================================
+   Buttons
+   ========================================================================== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 1.75rem;
+  border-radius: var(--radius-full);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  letter-spacing: -0.005em;
+  border: 1px solid transparent;
+  transition: transform 0.25s var(--ease-out), background 0.25s var(--ease-out), border-color 0.25s var(--ease-out), box-shadow 0.25s var(--ease-out);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--color-primary);
+  color: var(--color-white);
+}
+
+.btn-primary:hover {
+  background: #1c2942;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-accent {
+  background: var(--color-accent);
+  color: var(--color-white);
+}
+
+.btn-accent:hover {
+  background: #1d4ed8;
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--color-primary);
+  border-color: var(--color-ink-300);
+}
+
+.btn-ghost:hover {
+  border-color: var(--color-primary);
+  transform: translateY(-1px);
+}
+
+.btn-ghost-light {
+  background: transparent;
+  color: var(--color-white);
+  border-color: rgba(255, 255, 255, 0.35);
+}
+
+.btn-ghost-light:hover {
+  border-color: var(--color-white);
+  transform: translateY(-1px);
+}
+
+.btn-block {
+  width: 100%;
+}
+
+/* ==========================================================================
+   Cards
+   ========================================================================== */
+.card {
+  background: var(--color-white);
+  border: 1px solid var(--color-ink-200);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  transition: transform 0.35s var(--ease-out), box-shadow 0.35s var(--ease-out), border-color 0.35s var(--ease-out);
+}
+
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+  border-color: transparent;
+}
+
+/* ==========================================================================
+   Scroll reveal
+   ========================================================================== */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity var(--duration-base) var(--ease-out), transform var(--duration-base) var(--ease-out);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ==========================================================================
+   Utilities
+   ========================================================================== */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.text-muted {
+  color: var(--color-ink-500);
+}
+
+.mx-auto {
+  margin-inline: auto;
+}
+
+.skip-link {
+  position: fixed;
+  top: -100px;
+  left: 1rem;
+  z-index: 1000;
+  background: var(--color-primary);
+  color: var(--color-white);
+  padding: 0.75rem 1.25rem;
+  border-radius: var(--radius-sm);
+  transition: top 0.2s var(--ease-out);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}

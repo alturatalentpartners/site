@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 360" width="840" height="720">
+  <g transform="translate(150,20)">
+    <path d="M18 96 L52 28 L74 96" fill="none" stroke="#0F172A" stroke-width="8" stroke-linecap="butt" stroke-linejoin="bevel"/>
+    <path d="M34 96 L76 14 L104 96" fill="none" stroke="#0F172A" stroke-width="12" stroke-linecap="butt" stroke-linejoin="bevel"/>
+    <polygon points="63,46 73,76 63,80 54,50" fill="#B08D57"/>
+  </g>
+  <text x="210" y="200" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="46" font-weight="700" letter-spacing="1" fill="#0F172A">ALTURA</text>
+  <text x="210" y="228" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="14" font-weight="700" letter-spacing="5" fill="#B08D57">TALENT PARTNERS</text>
+  <line x1="150" y1="260" x2="270" y2="260" stroke="#E2E8F0" stroke-width="1.5" />
+  <text x="210" y="288" text-anchor="middle" font-family="'Helvetica Neue', Arial, sans-serif" font-size="13" font-weight="500" letter-spacing="1.5" fill="#64748B">EXCEPTIONAL TALENT. LASTING IMPACT.</text>
+</svg>

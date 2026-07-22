@@ -1,0 +1,62 @@
+---
+import Layout from '../layouts/Layout.astro';
+import IndustryCard from '../components/IndustryCard.astro';
+import { INDUSTRIES } from '../data/industries.js';
+
+const base = import.meta.env.BASE_URL;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ItemList',
+  itemListElement: INDUSTRIES.map((ind, i) => ({
+    '@type': 'ListItem',
+    position: i + 1,
+    name: ind.title,
+  })),
+};
+---
+
+<Layout
+  title="Industries"
+  description="Altura Talent Partners recruits across technology, finance, healthcare, professional services, retail, manufacturing, energy and more — for companies across North America, LATAM and Europe."
+  schema={schema}
+>
+  <section class="page-hero section-sm">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Industries</span>
+      <h1>Sector knowledge that shapes a smarter search</h1>
+      <p class="lede mx-auto">
+        Hiring standards, compensation benchmarks and talent pools vary by
+        industry. We recruit across thirteen sectors, each with its own bar
+        for what &ldquo;exceptional&rdquo; looks like.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <div class="grid grid-3">
+        {INDUSTRIES.map((industry) => (
+          <IndustryCard icon={industry.icon} title={industry.title} description={industry.description} />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section section-gray cta-section">
+    <div class="container text-center">
+      <h2>Hiring in an industry not listed here?</h2>
+      <p class="lede mx-auto">We regularly work outside this list — reach out and we&rsquo;ll tell you honestly whether we have the right expertise for your search.</p>
+      <a href={`${base}contact/`} class="btn btn-primary">Book a Consultation</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .cta-section h2 {
+    margin-bottom: 1rem;
+  }
+  .cta-section .lede {
+    margin-bottom: 2rem;
+  }
+</style>

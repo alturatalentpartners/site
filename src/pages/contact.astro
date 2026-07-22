@@ -1,0 +1,135 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import ContactForm from '../components/ContactForm.astro';
+import { SITE } from '../data/site.js';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'ContactPage',
+  name: 'Contact Altura Talent Partners',
+  url: `${SITE.url}/contact/`,
+  mainEntity: {
+    '@type': 'Organization',
+    name: SITE.name,
+    email: SITE.email,
+    telephone: SITE.phone,
+    sameAs: [SITE.linkedin],
+  },
+};
+---
+
+<Layout
+  title="Contact"
+  description="Get in touch with Altura Talent Partners to talk through an executive search, strategic recruiting engagement or hiring strategy for your company."
+  schema={schema}
+>
+  <section class="page-hero section-sm">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">Contact</span>
+      <h1>Let&rsquo;s talk about who you need to hire</h1>
+      <p class="lede mx-auto">
+        Tell us about the role, the team and the timeline. We&rsquo;ll get back
+        to you within one business day to talk through fit and next steps —
+        no obligation, no pressure.
+      </p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container contact-grid">
+      <div class="contact-info">
+        <div class="info-card">
+          <span class="info-icon"><Icon name="phone" size={18} /></span>
+          <div>
+            <h3>Call us</h3>
+            <a href={SITE.phoneHref}>{SITE.phone}</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <span class="info-icon"><Icon name="mail" size={18} /></span>
+          <div>
+            <h3>Email us</h3>
+            <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <span class="info-icon"><Icon name="linkedin" size={18} /></span>
+          <div>
+            <h3>LinkedIn</h3>
+            <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">Altura Talent Partners</a>
+          </div>
+        </div>
+        <div class="info-card">
+          <span class="info-icon"><Icon name="globe" size={18} /></span>
+          <div>
+            <h3>Where we work</h3>
+            <p>North America, LATAM &amp; Europe — remote and onsite</p>
+          </div>
+        </div>
+      </div>
+      <ContactForm />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .contact-grid {
+    display: grid;
+    grid-template-columns: 0.7fr 1.3fr;
+    gap: 3rem;
+    align-items: start;
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .info-card {
+    display: flex;
+    gap: 1rem;
+    align-items: flex-start;
+    padding: 1.5rem;
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-md);
+  }
+
+  .info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: var(--radius-sm);
+    background: var(--color-gray-50);
+    color: var(--color-accent);
+    flex-shrink: 0;
+  }
+
+  .info-card h3 {
+    font-size: var(--fs-sm);
+    font-weight: 600;
+    margin-bottom: 0.3rem;
+  }
+
+  .info-card a {
+    font-size: var(--fs-sm);
+    color: var(--color-ink-700);
+  }
+
+  .info-card a:hover {
+    color: var(--color-accent);
+  }
+
+  .info-card p {
+    font-size: var(--fs-sm);
+  }
+
+  @media (max-width: 900px) {
+    .contact-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

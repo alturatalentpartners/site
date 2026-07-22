@@ -2,94 +2,182 @@
 import Layout from '../layouts/Layout.astro';
 import { SITE } from '../data/site.js';
 
-const lastUpdated = 'July 22, 2026';
+const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
+const lastUpdated = lang === 'es' ? '22 de julio de 2026' : 'July 22, 2026';
+
+const meta =
+  lang === 'es'
+    ? { title: 'Términos de Servicio', description: 'Los términos que rigen el uso del sitio web de Altura Talent Partners.' }
+    : { title: 'Terms of Service', description: 'The terms governing your use of the Altura Talent Partners website.' };
 ---
 
-<Layout
-  title="Terms of Service"
-  description="The terms governing your use of the Altura Talent Partners website."
->
+<Layout title={meta.title} description={meta.description}>
   <section class="section-sm">
     <div class="container container-narrow legal">
       <span class="eyebrow">Legal</span>
-      <h1>Terms of Service</h1>
-      <p class="text-muted">Last updated: {lastUpdated}</p>
+      <h1>{meta.title}</h1>
+      <p class="text-muted">{lang === 'es' ? 'Última actualización' : 'Last updated'}: {lastUpdated}</p>
 
-      <p>
-        These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the
-        website located at {SITE.url} (the &ldquo;Site&rdquo;), operated by
-        Altura Talent Partners (&ldquo;Altura,&rdquo; &ldquo;we,&rdquo;
-        &ldquo;us&rdquo; or &ldquo;our&rdquo;). By using this Site, you agree
-        to these Terms.
-      </p>
+      {lang === 'es' ? (
+        <Fragment>
+          <p>
+            Estos Términos de Servicio (&ldquo;Términos&rdquo;) rigen tu uso del
+            sitio web ubicado en {SITE.url} (el &ldquo;Sitio&rdquo;), operado por
+            Altura Talent Partners (&ldquo;Altura,&rdquo; &ldquo;nosotros&rdquo; o
+            &ldquo;nuestro&rdquo;). Al usar este Sitio, aceptás estos Términos.
+          </p>
 
-      <h2>Use of This Site</h2>
-      <p>
-        This Site is provided to give visitors information about Altura&rsquo;s
-        executive search and strategic recruiting services, and to allow
-        prospective clients to get in touch with us. You agree to use the
-        Site only for lawful purposes and not to submit false, misleading or
-        malicious information through our contact form.
-      </p>
+          <h2>Uso de este Sitio</h2>
+          <p>
+            Este Sitio se ofrece para brindar a los visitantes información sobre
+            los servicios de búsqueda ejecutiva y reclutamiento estratégico de
+            Altura, y para permitir que potenciales clientes se contacten con
+            nosotros. Aceptás usar el Sitio solo para fines lícitos y no enviar
+            información falsa, engañosa o maliciosa a través de nuestro
+            formulario de contacto.
+          </p>
 
-      <h2>No Guarantee of Services</h2>
-      <p>
-        Submitting an inquiry through this Site does not create a client
-        relationship, engagement, or guarantee of services. Any search or
-        recruiting engagement with Altura is subject to a separate written
-        agreement between Altura and the client, which will govern the scope,
-        fees and terms of that engagement.
-      </p>
+          <h2>Sin Garantía de Servicios</h2>
+          <p>
+            Enviar una consulta a través de este Sitio no crea una relación de
+            cliente, un compromiso ni una garantía de servicios. Cualquier
+            búsqueda o proceso de reclutamiento con Altura está sujeto a un
+            acuerdo escrito separado entre Altura y el cliente, que regirá el
+            alcance, los honorarios y los términos de ese compromiso.
+          </p>
 
-      <h2>Intellectual Property</h2>
-      <p>
-        All content on this Site — including text, graphics, logos and the
-        Altura name and mark — is the property of Altura Talent Partners or
-        its licensors and is protected by applicable intellectual property
-        laws. You may not reproduce, distribute or create derivative works
-        from this content without our prior written consent.
-      </p>
+          <h2>Propiedad Intelectual</h2>
+          <p>
+            Todo el contenido de este Sitio — incluyendo texto, gráficos, logos y
+            el nombre y la marca Altura — es propiedad de Altura Talent Partners
+            o de sus licenciantes y está protegido por las leyes de propiedad
+            intelectual aplicables. No podés reproducir, distribuir ni crear
+            obras derivadas de este contenido sin nuestro consentimiento previo
+            por escrito.
+          </p>
 
-      <h2>No Professional Advice</h2>
-      <p>
-        Content on this Site is provided for general informational purposes
-        only and does not constitute legal, financial, or employment advice.
-        You should not rely on this Site as a substitute for professional
-        advice specific to your situation.
-      </p>
+          <h2>No Constituye Asesoramiento Profesional</h2>
+          <p>
+            El contenido de este Sitio se ofrece solo con fines informativos
+            generales y no constituye asesoramiento legal, financiero ni
+            laboral. No deberías depender de este Sitio como sustituto de
+            asesoramiento profesional específico para tu situación.
+          </p>
 
-      <h2>Third-Party Links</h2>
-      <p>
-        This Site may link to third-party websites, including our LinkedIn
-        page and our contact-form processor. We are not responsible for the
-        content, accuracy or privacy practices of third-party sites.
-      </p>
+          <h2>Enlaces a Terceros</h2>
+          <p>
+            Este Sitio puede enlazar a sitios web de terceros, incluyendo nuestra
+            página de LinkedIn y nuestro procesador de formularios de contacto.
+            No somos responsables por el contenido, la exactitud ni las
+            prácticas de privacidad de sitios de terceros.
+          </p>
 
-      <h2>Limitation of Liability</h2>
-      <p>
-        To the fullest extent permitted by law, Altura Talent Partners shall
-        not be liable for any indirect, incidental, or consequential damages
-        arising out of your use of, or inability to use, this Site.
-      </p>
+          <h2>Limitación de Responsabilidad</h2>
+          <p>
+            En la máxima medida permitida por la ley, Altura Talent Partners no
+            será responsable por ningún daño indirecto, incidental o
+            consecuente que surja del uso o la imposibilidad de uso de este
+            Sitio.
+          </p>
 
-      <h2>Changes to These Terms</h2>
-      <p>
-        We may revise these Terms from time to time. Continued use of the
-        Site after changes are posted constitutes your acceptance of the
-        updated Terms.
-      </p>
+          <h2>Cambios a estos Términos</h2>
+          <p>
+            Podemos revisar estos Términos de tanto en tanto. El uso continuado
+            del Sitio después de publicados los cambios constituye tu
+            aceptación de los Términos actualizados.
+          </p>
 
-      <h2>Governing Law</h2>
-      <p>
-        These Terms are governed by the laws of the State of Texas, United
-        States, without regard to its conflict-of-law principles.
-      </p>
+          <h2>Ley Aplicable</h2>
+          <p>
+            Estos Términos se rigen por las leyes del Estado de Texas, Estados
+            Unidos, sin considerar sus principios de conflicto de leyes.
+          </p>
 
-      <h2>Contact Us</h2>
-      <p>
-        Questions about these Terms can be sent to{' '}
-        <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or {SITE.phone}.
-      </p>
+          <h2>Contactanos</h2>
+          <p>
+            Las preguntas sobre estos Términos pueden enviarse a{' '}
+            <a href={`mailto:${SITE.email}`}>{SITE.email}</a> o al {SITE.phone}.
+          </p>
+        </Fragment>
+      ) : (
+        <Fragment>
+          <p>
+            These Terms of Service (&ldquo;Terms&rdquo;) govern your use of the
+            website located at {SITE.url} (the &ldquo;Site&rdquo;), operated by
+            Altura Talent Partners (&ldquo;Altura,&rdquo; &ldquo;we,&rdquo;
+            &ldquo;us&rdquo; or &ldquo;our&rdquo;). By using this Site, you agree
+            to these Terms.
+          </p>
+
+          <h2>Use of This Site</h2>
+          <p>
+            This Site is provided to give visitors information about Altura&rsquo;s
+            executive search and strategic recruiting services, and to allow
+            prospective clients to get in touch with us. You agree to use the
+            Site only for lawful purposes and not to submit false, misleading or
+            malicious information through our contact form.
+          </p>
+
+          <h2>No Guarantee of Services</h2>
+          <p>
+            Submitting an inquiry through this Site does not create a client
+            relationship, engagement, or guarantee of services. Any search or
+            recruiting engagement with Altura is subject to a separate written
+            agreement between Altura and the client, which will govern the scope,
+            fees and terms of that engagement.
+          </p>
+
+          <h2>Intellectual Property</h2>
+          <p>
+            All content on this Site — including text, graphics, logos and the
+            Altura name and mark — is the property of Altura Talent Partners or
+            its licensors and is protected by applicable intellectual property
+            laws. You may not reproduce, distribute or create derivative works
+            from this content without our prior written consent.
+          </p>
+
+          <h2>No Professional Advice</h2>
+          <p>
+            Content on this Site is provided for general informational purposes
+            only and does not constitute legal, financial, or employment advice.
+            You should not rely on this Site as a substitute for professional
+            advice specific to your situation.
+          </p>
+
+          <h2>Third-Party Links</h2>
+          <p>
+            This Site may link to third-party websites, including our LinkedIn
+            page and our contact-form processor. We are not responsible for the
+            content, accuracy or privacy practices of third-party sites.
+          </p>
+
+          <h2>Limitation of Liability</h2>
+          <p>
+            To the fullest extent permitted by law, Altura Talent Partners shall
+            not be liable for any indirect, incidental, or consequential damages
+            arising out of your use of, or inability to use, this Site.
+          </p>
+
+          <h2>Changes to These Terms</h2>
+          <p>
+            We may revise these Terms from time to time. Continued use of the
+            Site after changes are posted constitutes your acceptance of the
+            updated Terms.
+          </p>
+
+          <h2>Governing Law</h2>
+          <p>
+            These Terms are governed by the laws of the State of Texas, United
+            States, without regard to its conflict-of-law principles.
+          </p>
+
+          <h2>Contact Us</h2>
+          <p>
+            Questions about these Terms can be sent to{' '}
+            <a href={`mailto:${SITE.email}`}>{SITE.email}</a> or {SITE.phone}.
+          </p>
+        </Fragment>
+      )}
     </div>
   </section>
 </Layout>

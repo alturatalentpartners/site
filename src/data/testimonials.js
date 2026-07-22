@@ -22,3 +22,25 @@ export const TESTIMONIALS = [
     role: 'International Manufacturing Group',
   },
 ];
+
+// Spanish placeholders — same disclaimer as above applies.
+export const TESTIMONIALS_ES = [
+  {
+    quote:
+      'Altura no nos mandó currículums sin más — entendieron nuestro negocio lo suficiente como para decirnos qué candidatos realmente iban a funcionar acá. Ese criterio nos ahorró meses.',
+    name: 'Fundador y CEO',
+    role: 'Empresa SaaS Serie B',
+  },
+  {
+    quote:
+      'Llevábamos dos trimestres tratando de cubrir un puesto de VP de Finanzas con nuestra propia red. Altura armó una búsqueda como corresponde y tuvimos oferta firmada en seis semanas.',
+    name: 'COO',
+    role: 'Fintech en Etapa de Crecimiento',
+  },
+  {
+    quote:
+      'Lo que más se destacó fue la disciplina del proceso — plazos claros, datos reales de mercado, y candidatos genuinamente evaluados y no simplemente interesados.',
+    name: 'CHRO',
+    role: 'Grupo Industrial Internacional',
+  },
+];

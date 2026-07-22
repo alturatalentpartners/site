@@ -4,7 +4,7 @@ export const SITE = {
   tagline: 'Helping growing companies hire exceptional talent through strategic recruiting and executive search.',
   description:
     'Altura Talent Partners is a boutique executive search and strategic recruiting firm helping startups, scale-ups and established companies across North America, LATAM and Europe hire exceptional talent.',
-  url: 'https://your-github-username.github.io/altura-talent-partners',
+  url: 'https://alturatalentpartners.github.io/alturaweb',
   phone: '+1 713 630 9012',
   phoneHref: 'tel:+17136309012',
   email: 'alturatalentpartners@gmail.com',
@@ -13,10 +13,7 @@ export const SITE = {
   foundingLocation: 'North America',
 };
 
-export const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/about/', label: 'About' },
-  { href: '/services/', label: 'Services' },
-  { href: '/industries/', label: 'Industries' },
-  { href: '/contact/', label: 'Contact' },
-];
+// Route slugs shared across languages — only the label changes per locale
+// (via i18n/ui.js), the path segment stays the same for simplicity and SEO
+// consistency between /about/ and /es/about/.
+export const NAV_ROUTES = ['about', 'services', 'industries', 'careers', 'contact'];

@@ -1,0 +1,242 @@
+---
+import Layout from '../layouts/Layout.astro';
+import Icon from '../components/Icon.astro';
+import ApplicationForm from '../components/ApplicationForm.astro';
+import { OPEN_POSITIONS } from '../data/careers.js';
+import { SITE } from '../data/site.js';
+import { localizePath } from '../i18n/utils.js';
+
+const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
+
+const copy = {
+  en: {
+    metaTitle: 'Careers',
+    metaDescription: 'Careers at Altura Talent Partners, plus how to apply if you’re a candidate looking to be considered for the searches we run for our clients.',
+    eyebrow: 'Careers',
+    h1: 'Build your next chapter with Altura',
+    lede: 'Two ways to connect with us: join our own team, or let us know you’re open to your next role so we can consider you for the confidential searches we run for clients.',
+    teamEyebrow: 'Careers at Altura',
+    teamH2: 'Working on our team',
+    teamLede: 'We’re a small, deliberate team — when we grow, it’s because a role genuinely needs to exist, not to hit a headcount target.',
+    emptyState: 'We don’t have any open positions on our own team right now. If that changes, this is the first place we’ll post it — in the meantime, the application below is a great way to get on our radar for future openings.',
+    positionLocation: 'Location',
+    positionType: 'Type',
+    applyBtn: 'Apply for this role',
+    candidatesEyebrow: 'For Candidates',
+    candidatesH2: 'Looking for your next role?',
+    candidatesLede: 'We run confidential executive searches for growing companies across North America, LATAM and Europe. We don’t publish our clients’ open roles publicly — that’s part of running a discreet process — but we’re always building relationships with strong professionals so we can reach out when the right opportunity comes up.',
+    candidatePoints: [
+      { icon: 'scale', title: 'Confidential by default', description: 'Your profile stays with us — we reach out only when there’s a genuine, specific fit worth your time.' },
+      { icon: 'globe', title: 'Roles across North America, LATAM & Europe', description: 'Remote and onsite, across the industries and functions we recruit for.' },
+      { icon: 'handshake', title: 'No spam, no mass outreach', description: 'We contact you when a role actually matches your background — not on a schedule.' },
+    ],
+    formEyebrow: 'Apply',
+    formH2: 'Tell us about yourself',
+    formLede: 'Whether you’re interested in joining Altura directly or want us to keep you in mind for client searches, this form covers both.',
+  },
+  es: {
+    metaTitle: 'Empleo',
+    metaDescription: 'Oportunidades en Altura Talent Partners, y cómo postularte si sos candidato/a y querés que te tengamos en cuenta para las búsquedas que hacemos para nuestros clientes.',
+    eyebrow: 'Empleo',
+    h1: 'Construí tu próximo capítulo con Altura',
+    lede: 'Dos formas de conectar con nosotros: sumarte a nuestro equipo, o avisarnos que estás abierto/a a una nueva oportunidad para que te tengamos en cuenta en las búsquedas confidenciales que hacemos para nuestros clientes.',
+    teamEyebrow: 'Empleo en Altura',
+    teamH2: 'Trabajar en nuestro equipo',
+    teamLede: 'Somos un equipo chico y deliberado — cuando crecemos, es porque un rol realmente necesita existir, no para cumplir un número de headcount.',
+    emptyState: 'No tenemos posiciones abiertas en nuestro propio equipo en este momento. Si eso cambia, este va a ser el primer lugar donde lo publiquemos — mientras tanto, la postulación de abajo es una excelente forma de estar en nuestro radar para futuras oportunidades.',
+    positionLocation: 'Ubicación',
+    positionType: 'Tipo',
+    applyBtn: 'Postularme a este rol',
+    candidatesEyebrow: 'Para Candidatos',
+    candidatesH2: '¿Buscás tu próxima posición?',
+    candidatesLede: 'Llevamos adelante búsquedas ejecutivas confidenciales para empresas en crecimiento de Norteamérica, LATAM y Europa. No publicamos públicamente los roles abiertos de nuestros clientes — eso es parte de mantener un proceso discreto — pero siempre estamos construyendo relaciones con profesionales sólidos para poder contactarlos cuando surge la oportunidad correcta.',
+    candidatePoints: [
+      { icon: 'scale', title: 'Confidencial por defecto', description: 'Tu perfil queda con nosotros — te contactamos solo cuando hay un fit genuino y específico que vale tu tiempo.' },
+      { icon: 'globe', title: 'Roles en Norteamérica, LATAM y Europa', description: 'Remotos y presenciales, en las industrias y funciones en las que reclutamos.' },
+      { icon: 'handshake', title: 'Sin spam, sin contacto masivo', description: 'Te contactamos cuando un rol realmente coincide con tu perfil — no según un cronograma.' },
+    ],
+    formEyebrow: 'Postulate',
+    formH2: 'Contanos sobre vos',
+    formLede: 'Ya sea que te interese sumarte directamente a Altura o que quieras que te tengamos en cuenta para búsquedas de clientes, este formulario cubre ambos casos.',
+  },
+}[lang];
+
+const positions = OPEN_POSITIONS;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebPage',
+  name: lang === 'es' ? 'Empleo en Altura Talent Partners' : 'Careers at Altura Talent Partners',
+  url: `${SITE.url}${localizePath('careers/', lang)}`,
+};
+---
+
+<Layout title={copy.metaTitle} description={copy.metaDescription} schema={schema}>
+  <section class="page-hero section-sm">
+    <div class="container container-narrow text-center">
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.h1}</h1>
+      <p class="lede mx-auto">{copy.lede}</p>
+    </div>
+  </section>
+
+  <!-- Internal openings -->
+  <section class="section">
+    <div class="container container-narrow">
+      <div class="section-header">
+        <span class="eyebrow">{copy.teamEyebrow}</span>
+        <h2>{copy.teamH2}</h2>
+        <p class="lede">{copy.teamLede}</p>
+      </div>
+
+      {positions.length === 0 ? (
+        <div class="empty-state card">
+          <Icon name="briefcase" size={22} />
+          <p>{copy.emptyState}</p>
+        </div>
+      ) : (
+        <div class="positions-list">
+          {positions.map((pos) => (
+            <article class="position-card reveal">
+              <div>
+                <h3>{lang === 'es' ? pos.titleEs : pos.title}</h3>
+                <div class="position-meta">
+                  <span>{copy.positionLocation}: {lang === 'es' ? pos.locationEs : pos.location}</span>
+                  <span>{copy.positionType}: {lang === 'es' ? pos.typeEs : pos.type}</span>
+                </div>
+                <p>{lang === 'es' ? pos.descriptionEs : pos.description}</p>
+              </div>
+              <a href="#apply" class="btn btn-ghost">{copy.applyBtn}</a>
+            </article>
+          ))}
+        </div>
+      )}
+    </div>
+  </section>
+
+  <!-- For candidates -->
+  <section class="section section-gray">
+    <div class="container container-narrow">
+      <div class="section-header">
+        <span class="eyebrow">{copy.candidatesEyebrow}</span>
+        <h2>{copy.candidatesH2}</h2>
+        <p class="lede">{copy.candidatesLede}</p>
+      </div>
+      <div class="grid grid-3">
+        {copy.candidatePoints.map((point) => (
+          <div class="point-card reveal">
+            <span class="point-icon"><Icon name={point.icon} size={22} /></span>
+            <h3>{point.title}</h3>
+            <p>{point.description}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- Application form -->
+  <section class="section" id="apply">
+    <div class="container container-narrow">
+      <div class="section-header text-center mx-auto">
+        <span class="eyebrow">{copy.formEyebrow}</span>
+        <h2>{copy.formH2}</h2>
+        <p class="lede mx-auto">{copy.formLede}</p>
+      </div>
+      <ApplicationForm lang={lang} />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .section-header {
+    max-width: 640px;
+    margin-bottom: 3rem;
+  }
+
+  .section-header .eyebrow {
+    margin-bottom: 1rem;
+  }
+
+  .section-header h2 {
+    margin-bottom: 1rem;
+  }
+
+  .empty-state {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    color: var(--color-ink-500);
+  }
+
+  .empty-state :global(svg) {
+    color: var(--color-accent);
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+
+  .positions-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+  }
+
+  .position-card {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1.5rem;
+    padding: 1.75rem;
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-md);
+  }
+
+  .position-card h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: 0.5rem;
+  }
+
+  .position-meta {
+    display: flex;
+    gap: 1.25rem;
+    font-size: var(--fs-xs);
+    color: var(--color-ink-500);
+    margin-bottom: 0.75rem;
+  }
+
+  .position-card p {
+    font-size: var(--fs-sm);
+    max-width: 56ch;
+  }
+
+  .point-card {
+    padding: 0.5rem 0;
+  }
+
+  .point-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 48px;
+    height: 48px;
+    border-radius: var(--radius-sm);
+    background: var(--color-white);
+    color: var(--color-accent);
+    margin-bottom: 1.25rem;
+  }
+
+  .point-card h3 {
+    font-size: var(--fs-lg);
+    margin-bottom: 0.6rem;
+  }
+
+  .point-card p {
+    font-size: var(--fs-sm);
+  }
+
+  @media (max-width: 640px) {
+    .position-card {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+  }
+</style>

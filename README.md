@@ -41,14 +41,31 @@ altura-talent-partners/
 ├── brand/                         # Logo files, social banners, business card, brand guide
 ├── public/                        # Static files copied as-is (favicon, robots.txt, images)
 ├── src/
-│   ├── components/                # Navbar, Footer, cards, form, icons, etc.
-│   ├── data/                      # Site copy as data: services, industries, FAQ, testimonials
-│   ├── layouts/Layout.astro       # Shared <head>, SEO meta, nav/footer wrapper
-│   ├── pages/                     # One file per route (file-based routing)
+│   ├── components/                # Navbar, Footer, cards, forms, icons, etc.
+│   ├── data/                      # Site copy as data: services, industries, FAQ, testimonials, careers
+│   ├── i18n/                      # ui.js (shared UI strings) + utils.js (locale helpers)
+│   ├── layouts/Layout.astro       # Shared <head>, SEO meta, hreflang, nav/footer wrapper
+│   ├── pages/                     # English routes (default locale, unprefixed)
+│   │   └── es/                    # Spanish routes — thin wrappers around the English page components
 │   └── styles/global.css          # Design tokens + base styles
 ├── astro.config.mjs
 └── package.json
 ```
+
+### Bilingual site (English / Spanish)
+
+The site is fully bilingual — English at `/` and Spanish at `/es/` — using
+Astro's built-in i18n routing (`astro.config.mjs`). Each page (e.g.
+`src/pages/about.astro`) owns both languages' copy in a `copy = { en: {...},
+es: {...} }[lang]` object at the top of the file; the language is detected
+via `Astro.currentLocale`. The `src/pages/es/*.astro` files are 3-line
+wrappers that import and render the matching English page component — so
+there's one source of truth per page, not two files to keep in sync.
+
+To add a new page, follow that same pattern: write the page once with a
+bilingual `copy` object, then add a matching `src/pages/es/<name>.astro`
+wrapper. Shared chrome (nav labels, footer, buttons) lives in
+`src/i18n/ui.js` instead of being repeated per page.
 
 ---
 
@@ -76,34 +93,34 @@ npx astro check
 
 ## Before you deploy — required configuration
 
-This repo ships with placeholder values in **4 files**. Search for
-`your-github-username` and replace it with your actual GitHub username in
-each:
-
-| File | What to change |
-|---|---|
-| `astro.config.mjs` | `GITHUB_USERNAME` constant (line ~14) — also confirm `REPO_NAME` matches your repo's actual name |
-| `src/data/site.js` | `SITE.url` |
-| `public/robots.txt` | `Sitemap:` line |
-| `brand/email-signature.html` | example `LOGO_URL` in the comment |
+`astro.config.mjs`, `src/data/site.js`, `public/robots.txt` and
+`brand/email-signature.html` are already configured for
+**github.com/alturatalentpartners/alturaweb**. If you ever rename the repo
+or move to a different GitHub account, update the `GITHUB_USERNAME` /
+`REPO_NAME` constants at the top of `astro.config.mjs` and mirror the
+change in those other 3 files.
 
 If you're deploying to a **custom domain** or a **user/org page** (a repo
 literally named `<username>.github.io`) instead of a project page, open
-`astro.config.mjs` and set `base: '/'` instead of `/altura-talent-partners`.
+`astro.config.mjs` and set `base: '/'` instead of `/alturaweb`.
 
-### Contact form (free, no backend)
+### Contact form and career applications (free, no backend)
 
-The contact form (`src/components/ContactForm.astro`) submits via
-[Web3Forms](https://web3forms.com) — free forever, no credit card, no
-signup wall.
+Both the contact form (`src/components/ContactForm.astro`) and the careers
+application form (`src/components/ApplicationForm.astro`, includes a PDF
+résumé upload) submit via [Web3Forms](https://web3forms.com) — free
+forever, no credit card, no signup wall.
 
 1. Go to [web3forms.com](https://web3forms.com), enter your email, get a
    free Access Key.
-2. Open `src/components/ContactForm.astro` and replace
-   `YOUR_WEB3FORMS_ACCESS_KEY` with your real key.
+2. Paste that same key into **both** `WEB3FORMS_ACCESS_KEY` constants —
+   one in `ContactForm.astro`, one in `ApplicationForm.astro` — replacing
+   `YOUR_WEB3FORMS_ACCESS_KEY`.
 
-Until you do this, the form shows visitors a friendly message pointing them
-to email you directly instead — it won't silently fail.
+Until you do this, each form shows visitors a friendly message pointing
+them to email you directly instead — it won't silently fail. Keep résumé
+PDFs under ~5MB; double-check current attachment limits in your Web3Forms
+dashboard.
 
 ---
 
@@ -116,9 +133,8 @@ step, no `gh-pages` branch, no paid CI minutes for a public repo.
 ### 1. Create the GitHub repository
 
 Go to [github.com/new](https://github.com/new) and create a new repository
-named `altura-talent-partners` (or update `REPO_NAME` in
-`astro.config.mjs` to match whatever name you choose). Leave it empty — no
-README, no `.gitignore` — since this project already has both.
+named **`alturaweb`** under the **alturatalentpartners** account. Leave it
+empty — no README, no `.gitignore` — since this project already has both.
 
 **Keep it public.** GitHub Pages is free forever for public repositories.
 Private repos require a paid GitHub plan to use Pages.
@@ -128,7 +144,7 @@ Private repos require a paid GitHub plan to use Pages.
 From inside this project folder:
 
 ```bash
-git remote add origin https://github.com/<your-username>/altura-talent-partners.git
+git remote add origin https://github.com/alturatalentpartners/alturaweb.git
 git branch -M main
 git push -u origin main
 ```
@@ -144,7 +160,7 @@ git push -u origin main
 3. That's it — the push in step 2 already triggered the workflow. Check
    the **Actions** tab to watch it build and deploy.
 4. Once it finishes, your site is live at:
-   `https://<your-username>.github.io/altura-talent-partners/`
+   `https://alturatalentpartners.github.io/alturaweb/`
 
 Every future `git push` to `main` redeploys automatically.
 
@@ -177,6 +193,8 @@ Already wired up:
 
 - Per-page meta titles/descriptions, canonical URLs, Open Graph + Twitter
   Card tags
+- `hreflang` alternate tags (English/Spanish) on every page, plus
+  language-aware entries in the sitemap
 - `schema.org` JSON-LD (Organization, WebSite, ItemList, AboutPage,
   ContactPage)
 - Auto-generated `sitemap-index.xml` via `@astrojs/sitemap`
@@ -188,8 +206,8 @@ Already wired up:
 
 ## Performance
 
-The production build (`npm run build`) currently outputs roughly **550KB
-total** across all 8 pages combined — self-hosted variable font (woff2,
+The production build (`npm run build`) outputs 17 pages (8 English + 8
+Spanish + a single shared `404.html`) — self-hosted variable font (woff2,
 subset by script), a handful of small hand-written SVG icons, and no
 client-side framework. That footprint is what makes a 95+ Lighthouse score
 achievable without additional tuning; verify it yourself in Chrome DevTools

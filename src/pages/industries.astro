@@ -1,14 +1,41 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import IndustryCard from '../components/IndustryCard.astro';
-import { INDUSTRIES } from '../data/industries.js';
+import { INDUSTRIES, INDUSTRIES_ES } from '../data/industries.js';
+import { localizePath } from '../i18n/utils.js';
 
+const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
 const base = import.meta.env.BASE_URL;
+const path = (p: string) => `${base}${localizePath(p, lang).replace(/^\//, '')}`;
+const industries = lang === 'es' ? INDUSTRIES_ES : INDUSTRIES;
+
+const copy = {
+  en: {
+    metaTitle: 'Industries',
+    metaDescription: 'Altura Talent Partners recruits across technology, finance, healthcare, professional services, retail, manufacturing, energy and more — for companies across North America, LATAM and Europe.',
+    eyebrow: 'Industries',
+    h1: 'Sector knowledge that shapes a smarter search',
+    lede: 'Hiring standards, compensation benchmarks and talent pools vary by industry. We recruit across thirteen sectors, each with its own bar for what "exceptional" looks like.',
+    ctaH2: 'Hiring in an industry not listed here?',
+    ctaLede: 'We regularly work outside this list — reach out and we’ll tell you honestly whether we have the right expertise for your search.',
+    ctaBtn: 'Book a Consultation',
+  },
+  es: {
+    metaTitle: 'Industrias',
+    metaDescription: 'Altura Talent Partners recluta en tecnología, finanzas, salud, servicios profesionales, retail, manufactura, energía y más — para empresas de Norteamérica, LATAM y Europa.',
+    eyebrow: 'Industrias',
+    h1: 'Conocimiento de sector que mejora cada búsqueda',
+    lede: 'Los estándares de contratación, los benchmarks de compensación y los pools de talento varían según la industria. Reclutamos en trece sectores, cada uno con su propia vara de lo que significa "excepcional".',
+    ctaH2: '¿Contratás en una industria que no está en esta lista?',
+    ctaLede: 'Trabajamos habitualmente fuera de esta lista — escribinos y te decimos con honestidad si tenemos el expertise correcto para tu búsqueda.',
+    ctaBtn: 'Agendar Consulta',
+  },
+}[lang];
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  itemListElement: INDUSTRIES.map((ind, i) => ({
+  itemListElement: industries.map((ind, i) => ({
     '@type': 'ListItem',
     position: i + 1,
     name: ind.title,
@@ -16,27 +43,19 @@ const schema = {
 };
 ---
 
-<Layout
-  title="Industries"
-  description="Altura Talent Partners recruits across technology, finance, healthcare, professional services, retail, manufacturing, energy and more — for companies across North America, LATAM and Europe."
-  schema={schema}
->
+<Layout title={copy.metaTitle} description={copy.metaDescription} schema={schema}>
   <section class="page-hero section-sm">
     <div class="container container-narrow text-center">
-      <span class="eyebrow">Industries</span>
-      <h1>Sector knowledge that shapes a smarter search</h1>
-      <p class="lede mx-auto">
-        Hiring standards, compensation benchmarks and talent pools vary by
-        industry. We recruit across thirteen sectors, each with its own bar
-        for what &ldquo;exceptional&rdquo; looks like.
-      </p>
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.h1}</h1>
+      <p class="lede mx-auto">{copy.lede}</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <div class="grid grid-3">
-        {INDUSTRIES.map((industry) => (
+        {industries.map((industry) => (
           <IndustryCard icon={industry.icon} title={industry.title} description={industry.description} />
         ))}
       </div>
@@ -45,9 +64,9 @@ const schema = {
 
   <section class="section section-gray cta-section">
     <div class="container text-center">
-      <h2>Hiring in an industry not listed here?</h2>
-      <p class="lede mx-auto">We regularly work outside this list — reach out and we&rsquo;ll tell you honestly whether we have the right expertise for your search.</p>
-      <a href={`${base}contact/`} class="btn btn-primary">Book a Consultation</a>
+      <h2>{copy.ctaH2}</h2>
+      <p class="lede mx-auto">{copy.ctaLede}</p>
+      <a href={path('contact/')} class="btn btn-primary">{copy.ctaBtn}</a>
     </div>
   </section>
 </Layout>

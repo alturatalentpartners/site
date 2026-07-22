@@ -3,12 +3,44 @@ import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import ContactForm from '../components/ContactForm.astro';
 import { SITE } from '../data/site.js';
+import { localizePath } from '../i18n/utils.js';
+
+const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
+
+const copy = {
+  en: {
+    metaTitle: 'Contact',
+    metaDescription: 'Get in touch with Altura Talent Partners to talk through an executive search, strategic recruiting engagement or hiring strategy for your company.',
+    eyebrow: 'Contact',
+    h1: 'Let’s talk about who you need to hire',
+    lede: 'Tell us about the role, the team and the timeline. We’ll get back to you within one business day to talk through fit and next steps — no obligation, no pressure.',
+    callUs: 'Call us',
+    emailUs: 'Email us',
+    linkedin: 'LinkedIn',
+    whereWeWork: 'Where we work',
+    whereWeWorkValue: 'North America, LATAM & Europe — remote and onsite',
+    pageName: 'Contact Altura Talent Partners',
+  },
+  es: {
+    metaTitle: 'Contacto',
+    metaDescription: 'Contactá a Altura Talent Partners para hablar sobre una búsqueda ejecutiva, un proceso de reclutamiento estratégico o una estrategia de contratación para tu empresa.',
+    eyebrow: 'Contacto',
+    h1: 'Hablemos de a quién necesitás contratar',
+    lede: 'Contanos sobre el rol, el equipo y los plazos. Te contactaremos dentro de un día hábil para hablar de fit y próximos pasos — sin obligación, sin presión.',
+    callUs: 'Llamanos',
+    emailUs: 'Escribinos',
+    linkedin: 'LinkedIn',
+    whereWeWork: 'Dónde trabajamos',
+    whereWeWorkValue: 'Norteamérica, LATAM y Europa — remoto y presencial',
+    pageName: 'Contactar a Altura Talent Partners',
+  },
+}[lang];
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ContactPage',
-  name: 'Contact Altura Talent Partners',
-  url: `${SITE.url}/contact/`,
+  name: copy.pageName,
+  url: `${SITE.url}${localizePath('contact/', lang)}`,
   mainEntity: {
     '@type': 'Organization',
     name: SITE.name,
@@ -19,20 +51,12 @@ const schema = {
 };
 ---
 
-<Layout
-  title="Contact"
-  description="Get in touch with Altura Talent Partners to talk through an executive search, strategic recruiting engagement or hiring strategy for your company."
-  schema={schema}
->
+<Layout title={copy.metaTitle} description={copy.metaDescription} schema={schema}>
   <section class="page-hero section-sm">
     <div class="container container-narrow text-center">
-      <span class="eyebrow">Contact</span>
-      <h1>Let&rsquo;s talk about who you need to hire</h1>
-      <p class="lede mx-auto">
-        Tell us about the role, the team and the timeline. We&rsquo;ll get back
-        to you within one business day to talk through fit and next steps —
-        no obligation, no pressure.
-      </p>
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.h1}</h1>
+      <p class="lede mx-auto">{copy.lede}</p>
     </div>
   </section>
 
@@ -42,33 +66,33 @@ const schema = {
         <div class="info-card">
           <span class="info-icon"><Icon name="phone" size={18} /></span>
           <div>
-            <h3>Call us</h3>
+            <h3>{copy.callUs}</h3>
             <a href={SITE.phoneHref}>{SITE.phone}</a>
           </div>
         </div>
         <div class="info-card">
           <span class="info-icon"><Icon name="mail" size={18} /></span>
           <div>
-            <h3>Email us</h3>
+            <h3>{copy.emailUs}</h3>
             <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
           </div>
         </div>
         <div class="info-card">
           <span class="info-icon"><Icon name="linkedin" size={18} /></span>
           <div>
-            <h3>LinkedIn</h3>
+            <h3>{copy.linkedin}</h3>
             <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">Altura Talent Partners</a>
           </div>
         </div>
         <div class="info-card">
           <span class="info-icon"><Icon name="globe" size={18} /></span>
           <div>
-            <h3>Where we work</h3>
-            <p>North America, LATAM &amp; Europe — remote and onsite</p>
+            <h3>{copy.whereWeWork}</h3>
+            <p>{copy.whereWeWorkValue}</p>
           </div>
         </div>
       </div>
-      <ContactForm />
+      <ContactForm lang={lang} />
     </div>
   </section>
 </Layout>

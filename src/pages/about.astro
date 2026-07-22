@@ -2,92 +2,116 @@
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
 import { SITE } from '../data/site.js';
+import { localizePath } from '../i18n/utils.js';
 
+const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
 const base = import.meta.env.BASE_URL;
+const path = (p: string) => `${base}${localizePath(p, lang).replace(/^\//, '')}`;
 
-const isNot = [
-  'A staffing agency working high volume, low-context roles',
-  'A mass recruiting operation optimizing for speed over fit',
-  'A freelance recruiter working one search at a time',
-];
-
-const values = [
-  {
-    icon: 'compass',
-    title: 'Quality Over Volume',
-    description: 'We run fewer searches at a time so every one of them gets the attention a real hiring decision deserves.',
+const copy = {
+  en: {
+    metaTitle: 'About Us',
+    metaDescription: 'Altura Talent Partners is a boutique executive search and strategic recruiting firm — not a staffing agency. Learn how we work with founders and leadership teams.',
+    eyebrow: 'About Altura',
+    h1: 'A search partner, not a résumé pipeline',
+    lede: 'Altura Talent Partners is a boutique executive search and strategic recruiting firm. We help startups, scale-ups and established companies hire exceptional professionals — with the judgment and discretion those decisions deserve.',
+    whoEyebrow: 'Who We Are',
+    whoH2: 'We operate as a strategic hiring partner',
+    whoP1: 'Every company we work with is trying to solve the same underlying problem: they have a role that matters too much to get wrong, and not enough internal bandwidth to run the kind of search it deserves. That’s the gap we fill.',
+    whoP2: 'We work internationally, recruiting remote and onsite talent across North America, LATAM and Europe. Our process is built around business understanding and long-term fit — not speed for its own sake.',
+    isNotH3: 'What we are not',
+    isNot: [
+      'A staffing agency working high volume, low-context roles',
+      'A mass recruiting operation optimizing for speed over fit',
+      'A freelance recruiter working one search at a time',
+    ],
+    valuesEyebrow: 'What We Value',
+    valuesH2: 'The principles behind every search',
+    values: [
+      { icon: 'compass', title: 'Quality Over Volume', description: 'We run fewer searches at a time so every one of them gets the attention a real hiring decision deserves.' },
+      { icon: 'bulb', title: 'Business Understanding', description: 'We ask about strategy and org structure before we ask about years of experience — context shapes a better search.' },
+      { icon: 'scale', title: 'Discretion by Default', description: 'Leadership searches are often confidential. We treat every engagement with the same care, whether it’s public or not.' },
+      { icon: 'handshake', title: 'Built for the Long Term', description: 'We measure success by whether a hire is still thriving a year later, not just whether an offer got signed.' },
+    ],
+    reachEyebrow: 'Global Reach',
+    reachH2: 'North America, LATAM and Europe — remote or onsite',
+    reachLede: 'Growing companies rarely hire from a single city anymore. We recruit talent wherever it lives, with region-specific knowledge of compensation norms, talent pools and hiring practices — so an international search feels as considered as a local one.',
+    stats: [
+      { number: '3', label: 'Regions served — North America, LATAM, Europe' },
+      { number: '15+', label: 'Recruiting specialties across functions' },
+      { number: '13', label: 'Industries we actively recruit within' },
+    ],
+    ctaH2: 'Have a role that needs the right search partner?',
+    ctaLede: 'Tell us what you’re hiring for and we’ll walk you through how we’d approach it.',
+    ctaBtn: 'Book a Consultation',
   },
-  {
-    icon: 'bulb',
-    title: 'Business Understanding',
-    description: 'We ask about strategy and org structure before we ask about years of experience — context shapes a better search.',
+  es: {
+    metaTitle: 'Nosotros',
+    metaDescription: 'Altura Talent Partners es una firma boutique de búsqueda ejecutiva y reclutamiento estratégico — no una agencia de staffing. Conocé cómo trabajamos con fundadores y equipos de liderazgo.',
+    eyebrow: 'Sobre Altura',
+    h1: 'Un socio de búsqueda, no un pipeline de currículums',
+    lede: 'Altura Talent Partners es una firma boutique de búsqueda ejecutiva y reclutamiento estratégico. Ayudamos a startups, scale-ups y empresas consolidadas a contratar profesionales excepcionales — con el criterio y la discreción que esas decisiones merecen.',
+    whoEyebrow: 'Quiénes Somos',
+    whoH2: 'Operamos como socio estratégico de contratación',
+    whoP1: 'Todas las empresas con las que trabajamos están tratando de resolver el mismo problema de fondo: tienen un rol demasiado importante como para equivocarse, y no la capacidad interna para llevar adelante el tipo de búsqueda que ese rol merece. Ese es el espacio que ocupamos.',
+    whoP2: 'Trabajamos a nivel internacional, reclutando talento remoto y presencial en Norteamérica, LATAM y Europa. Nuestro proceso está construido en torno al entendimiento del negocio y al fit de largo plazo — no a la velocidad por sí misma.',
+    isNotH3: 'Lo que no somos',
+    isNot: [
+      'Una agencia de staffing que trabaja alto volumen y poco contexto',
+      'Una operación de reclutamiento masivo que optimiza por velocidad y no por fit',
+      'Un reclutador freelance que trabaja una búsqueda a la vez',
+    ],
+    valuesEyebrow: 'Lo Que Valoramos',
+    valuesH2: 'Los principios detrás de cada búsqueda',
+    values: [
+      { icon: 'compass', title: 'Calidad Antes que Volumen', description: 'Llevamos adelante menos búsquedas a la vez para que cada una reciba la atención que una decisión de contratación real merece.' },
+      { icon: 'bulb', title: 'Entender el Negocio', description: 'Preguntamos sobre estrategia y estructura organizacional antes de preguntar por años de experiencia — el contexto mejora la búsqueda.' },
+      { icon: 'scale', title: 'Discreción por Defecto', description: 'Las búsquedas de liderazgo suelen ser confidenciales. Tratamos cada búsqueda con el mismo cuidado, sea pública o no.' },
+      { icon: 'handshake', title: 'Pensado para el Largo Plazo', description: 'Medimos el éxito según si la contratación sigue funcionando bien un año después, no solo si se firmó la oferta.' },
+    ],
+    reachEyebrow: 'Alcance Global',
+    reachH2: 'Norteamérica, LATAM y Europa — remoto o presencial',
+    reachLede: 'Las empresas en crecimiento rara vez contratan desde una sola ciudad. Reclutamos talento donde sea que esté, con conocimiento específico de cada región sobre normas de compensación, pools de talento y prácticas de contratación — para que una búsqueda internacional se sienta tan cuidada como una local.',
+    stats: [
+      { number: '3', label: 'Regiones donde operamos — Norteamérica, LATAM, Europa' },
+      { number: '15+', label: 'Especialidades de reclutamiento por función' },
+      { number: '13', label: 'Industrias en las que reclutamos activamente' },
+    ],
+    ctaH2: '¿Tenés un rol que necesita el socio de búsqueda correcto?',
+    ctaLede: 'Contanos qué estás contratando y te mostramos cómo lo abordaríamos.',
+    ctaBtn: 'Agendar Consulta',
   },
-  {
-    icon: 'scale',
-    title: 'Discretion by Default',
-    description: 'Leadership searches are often confidential. We treat every engagement with the same care, whether it’s public or not.',
-  },
-  {
-    icon: 'handshake',
-    title: 'Built for the Long Term',
-    description: 'We measure success by whether a hire is still thriving a year later, not just whether an offer got signed.',
-  },
-];
-
-const stats = [
-  { number: '3', label: 'Regions served — North America, LATAM, Europe' },
-  { number: '15+', label: 'Recruiting specialties across functions' },
-  { number: '13', label: 'Industries we actively recruit within' },
-];
+}[lang];
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'AboutPage',
-  name: 'About Altura Talent Partners',
-  url: `${SITE.url}/about/`,
+  name: lang === 'es' ? 'Sobre Altura Talent Partners' : 'About Altura Talent Partners',
+  url: `${SITE.url}${localizePath('about/', lang)}`,
 };
 ---
 
-<Layout
-  title="About Us"
-  description="Altura Talent Partners is a boutique executive search and strategic recruiting firm — not a staffing agency. Learn how we work with founders and leadership teams."
-  schema={schema}
->
+<Layout title={copy.metaTitle} description={copy.metaDescription} schema={schema}>
   <section class="page-hero section-sm">
     <div class="container container-narrow text-center">
-      <span class="eyebrow">About Altura</span>
-      <h1>A search partner, not a résumé pipeline</h1>
-      <p class="lede mx-auto">
-        Altura Talent Partners is a boutique executive search and strategic
-        recruiting firm. We help startups, scale-ups and established companies
-        hire exceptional professionals — with the judgment and discretion those
-        decisions deserve.
-      </p>
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.h1}</h1>
+      <p class="lede mx-auto">{copy.lede}</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container who-grid">
       <div class="who-copy">
-        <span class="eyebrow">Who We Are</span>
-        <h2>We operate as a strategic hiring partner</h2>
-        <p>
-          Every company we work with is trying to solve the same underlying
-          problem: they have a role that matters too much to get wrong, and
-          not enough internal bandwidth to run the kind of search it deserves.
-          That&rsquo;s the gap we fill.
-        </p>
-        <p>
-          We work internationally, recruiting remote and onsite talent across
-          North America, LATAM and Europe. Our process is built around
-          business understanding and long-term fit — not speed for its own
-          sake.
-        </p>
+        <span class="eyebrow">{copy.whoEyebrow}</span>
+        <h2>{copy.whoH2}</h2>
+        <p>{copy.whoP1}</p>
+        <p>{copy.whoP2}</p>
       </div>
       <div class="who-not card">
-        <h3>What we are not</h3>
+        <h3>{copy.isNotH3}</h3>
         <ul>
-          {isNot.map((item) => (
+          {copy.isNot.map((item) => (
             <li><Icon name="close" size={16} /><span>{item}</span></li>
           ))}
         </ul>
@@ -98,11 +122,11 @@ const schema = {
   <section class="section section-gray">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">What We Value</span>
-        <h2>The principles behind every search</h2>
+        <span class="eyebrow">{copy.valuesEyebrow}</span>
+        <h2>{copy.valuesH2}</h2>
       </div>
       <div class="grid grid-4">
-        {values.map((v) => (
+        {copy.values.map((v) => (
           <div class="value-card reveal">
             <span class="value-icon"><Icon name={v.icon} size={22} /></span>
             <h3>{v.title}</h3>
@@ -116,17 +140,12 @@ const schema = {
   <section class="section">
     <div class="container reach-grid">
       <div>
-        <span class="eyebrow">Global Reach</span>
-        <h2>North America, LATAM and Europe — remote or onsite</h2>
-        <p class="lede">
-          Growing companies rarely hire from a single city anymore. We recruit
-          talent wherever it lives, with region-specific knowledge of
-          compensation norms, talent pools and hiring practices — so an
-          international search feels as considered as a local one.
-        </p>
+        <span class="eyebrow">{copy.reachEyebrow}</span>
+        <h2>{copy.reachH2}</h2>
+        <p class="lede">{copy.reachLede}</p>
       </div>
       <div class="stats-row">
-        {stats.map((s) => (
+        {copy.stats.map((s) => (
           <div class="stat-block reveal">
             <span class="stat-number">{s.number}</span>
             <span class="stat-label">{s.label}</span>
@@ -138,9 +157,9 @@ const schema = {
 
   <section class="section section-gray cta-section">
     <div class="container text-center">
-      <h2>Have a role that needs the right search partner?</h2>
-      <p class="lede mx-auto">Tell us what you&rsquo;re hiring for and we&rsquo;ll walk you through how we&rsquo;d approach it.</p>
-      <a href={`${base}contact/`} class="btn btn-primary">Book a Consultation</a>
+      <h2>{copy.ctaH2}</h2>
+      <p class="lede mx-auto">{copy.ctaLede}</p>
+      <a href={path('contact/')} class="btn btn-primary">{copy.ctaBtn}</a>
     </div>
   </section>
 </Layout>

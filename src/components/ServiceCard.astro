@@ -6,8 +6,9 @@ interface Props {
   title: string;
   description: string;
   href?: string;
+  learnMoreLabel?: string;
 }
-const { icon, title, description, href } = Astro.props;
+const { icon, title, description, href, learnMoreLabel = 'Learn more' } = Astro.props;
 const Tag = href ? 'a' : 'div';
 ---
 
@@ -17,7 +18,7 @@ const Tag = href ? 'a' : 'div';
   <p>{description}</p>
   {href && (
     <span class="service-link">
-      Learn more <Icon name="arrowRight" size={14} />
+      {learnMoreLabel} <Icon name="arrowRight" size={14} />
     </span>
   )}
 </Tag>

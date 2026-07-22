@@ -1,0 +1,321 @@
+---
+import { SITE } from '../data/site.js';
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+
+// ---------------------------------------------------------------------------
+// Same Web3Forms setup as the contact form (see ContactForm.astro) — reuses
+// the same free access key. File attachments (the résumé/CV upload) are
+// supported on Web3Forms' free tier; keep files under ~5MB to be safe, and
+// double-check current attachment limits in your Web3Forms dashboard.
+// ---------------------------------------------------------------------------
+const WEB3FORMS_ACCESS_KEY = 'YOUR_WEB3FORMS_ACCESS_KEY';
+
+const interestOptions =
+  lang === 'es'
+    ? [
+        'Equipo de Altura (posición interna)',
+        'Búsquedas para clientes — Finanzas',
+        'Búsquedas para clientes — Tecnología',
+        'Búsquedas para clientes — Ventas',
+        'Búsquedas para clientes — Marketing',
+        'Búsquedas para clientes — Operaciones',
+        'Búsquedas para clientes — RRHH',
+        'Búsquedas para clientes — Customer Success',
+        'Búsquedas para clientes — Ejecutivo / Liderazgo',
+        'Otro',
+      ]
+    : [
+        'Altura’s own team (internal role)',
+        'Client searches — Finance',
+        'Client searches — Technology',
+        'Client searches — Sales',
+        'Client searches — Marketing',
+        'Client searches — Operations',
+        'Client searches — HR',
+        'Client searches — Customer Success',
+        'Client searches — Executive / Leadership',
+        'Something else',
+      ];
+
+const t =
+  lang === 'es'
+    ? {
+        name: 'Nombre completo',
+        email: 'Email',
+        phone: 'Teléfono',
+        currentPosition: 'Posición actual',
+        location: 'Ubicación (ciudad, país)',
+        salary: 'Rango salarial esperado',
+        salaryOptional: '(opcional)',
+        linkedin: 'Perfil de LinkedIn',
+        interest: '¿Qué te interesa?',
+        interestSelect: 'Seleccioná una opción',
+        resume: 'CV (PDF)',
+        resumeHint: 'Máximo ~5MB, formato PDF.',
+        message: 'Contanos un poco más',
+        messageOptional: '(opcional)',
+        messagePlaceholder: 'Lo que quieras agregar sobre tu perfil o lo que buscás.',
+        submit: 'Enviar Postulación',
+        sending: 'Enviando…',
+        success: 'Gracias — recibimos tu postulación y la vamos a revisar con atención.',
+        error: 'Algo salió mal. Por favor escribinos directamente usando el enlace de abajo.',
+        notConfigured: 'El envío en línea todavía no está configurado — por favor escribinos directamente usando el enlace de abajo.',
+        preferEmail: '¿Preferís mandarnos tu CV por email? Escribinos a',
+      }
+    : {
+        name: 'Full name',
+        email: 'Email',
+        phone: 'Phone',
+        currentPosition: 'Current position',
+        location: 'Location (city, country)',
+        salary: 'Expected salary range',
+        salaryOptional: '(optional)',
+        linkedin: 'LinkedIn profile',
+        interest: 'What are you interested in?',
+        interestSelect: 'Select an option',
+        resume: 'Résumé / CV (PDF)',
+        resumeHint: 'Max ~5MB, PDF format.',
+        message: 'Tell us a bit more',
+        messageOptional: '(optional)',
+        messagePlaceholder: 'Anything else worth knowing about your background or what you’re looking for.',
+        submit: 'Submit Application',
+        sending: 'Sending…',
+        success: 'Thank you — we’ve received your application and will review it carefully.',
+        error: 'Something went wrong. Please email us directly using the link below.',
+        notConfigured: 'Online submission isn’t configured yet — please email us directly using the link below.',
+        preferEmail: 'Prefer to send your résumé by email? Reach us at',
+      };
+---
+
+<form
+  id="applicationForm"
+  class="application-form"
+  data-access-key={WEB3FORMS_ACCESS_KEY}
+  data-msg-not-configured={t.notConfigured}
+  data-msg-sending={t.sending}
+  data-msg-success={t.success}
+  data-msg-error={t.error}
+  data-label-submit={t.submit}
+  novalidate
+>
+  <input type="hidden" name="subject" value="New career application — Altura Talent Partners website" />
+  <input type="hidden" name="from_name" value="Altura Talent Partners Careers Page" />
+  <input type="checkbox" name="botcheck" class="visually-hidden" tabindex="-1" autocomplete="off" />
+
+  <div class="form-row">
+    <div class="form-field">
+      <label for="app-name">{t.name}</label>
+      <input type="text" id="app-name" name="name" required autocomplete="name" />
+    </div>
+    <div class="form-field">
+      <label for="app-email">{t.email}</label>
+      <input type="email" id="app-email" name="email" required autocomplete="email" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-field">
+      <label for="app-phone">{t.phone}</label>
+      <input type="tel" id="app-phone" name="phone" required autocomplete="tel" />
+    </div>
+    <div class="form-field">
+      <label for="app-position">{t.currentPosition}</label>
+      <input type="text" id="app-position" name="current_position" required />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-field">
+      <label for="app-location">{t.location}</label>
+      <input type="text" id="app-location" name="location" required />
+    </div>
+    <div class="form-field">
+      <label for="app-salary">{t.salary} <span class="text-muted">{t.salaryOptional}</span></label>
+      <input type="text" id="app-salary" name="salary_range" />
+    </div>
+  </div>
+
+  <div class="form-row">
+    <div class="form-field">
+      <label for="app-linkedin">{t.linkedin}</label>
+      <input type="url" id="app-linkedin" name="linkedin" placeholder="https://linkedin.com/in/…" required />
+    </div>
+    <div class="form-field">
+      <label for="app-interest">{t.interest}</label>
+      <select id="app-interest" name="interest" required>
+        <option value="">{t.interestSelect}</option>
+        {interestOptions.map((option) => <option>{option}</option>)}
+      </select>
+    </div>
+  </div>
+
+  <div class="form-field">
+    <label for="app-resume">{t.resume}</label>
+    <input type="file" id="app-resume" name="attachment" accept="application/pdf" required />
+    <span class="field-hint">{t.resumeHint}</span>
+  </div>
+
+  <div class="form-field">
+    <label for="app-message">{t.message} <span class="text-muted">{t.messageOptional}</span></label>
+    <textarea id="app-message" name="message" rows="4" placeholder={t.messagePlaceholder}></textarea>
+  </div>
+
+  <button type="submit" class="btn btn-accent btn-block" id="appFormSubmit">
+    <span class="btn-label">{t.submit}</span>
+  </button>
+
+  <p class="form-status" id="appFormStatus" role="status" aria-live="polite"></p>
+
+  <p class="form-alt">
+    {t.preferEmail} <a href={`mailto:${SITE.email}`}>{SITE.email}</a>
+  </p>
+</form>
+
+<style>
+  .application-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    background: var(--color-white);
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-lg);
+    padding: clamp(1.5rem, 3vw, 2.5rem);
+    box-shadow: var(--shadow-md);
+  }
+
+  .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+
+  .form-field {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .form-field label {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .field-hint {
+    font-size: var(--fs-2xs);
+    color: var(--color-ink-500);
+  }
+
+  .form-field input,
+  .form-field select,
+  .form-field textarea {
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-sm);
+    padding: 0.8rem 0.95rem;
+    font-size: var(--fs-sm);
+    background: var(--color-gray-50);
+    transition: border-color 0.2s ease, background 0.2s ease;
+  }
+
+  .form-field input[type='file'] {
+    padding: 0.6rem 0.95rem;
+    font-size: var(--fs-xs);
+  }
+
+  .form-field input:focus,
+  .form-field select:focus,
+  .form-field textarea:focus {
+    outline: none;
+    border-color: var(--color-accent);
+    background: var(--color-white);
+    box-shadow: var(--shadow-focus);
+  }
+
+  .form-field textarea {
+    resize: vertical;
+    min-height: 100px;
+  }
+
+  .form-status {
+    font-size: var(--fs-sm);
+    min-height: 1.2em;
+  }
+
+  .form-status[data-state='success'] {
+    color: var(--color-success);
+  }
+
+  .form-status[data-state='error'] {
+    color: #b91c1c;
+  }
+
+  .form-alt {
+    font-size: var(--fs-xs);
+    color: var(--color-ink-500);
+    text-align: center;
+  }
+
+  .form-alt a {
+    color: var(--color-accent);
+    font-weight: 600;
+  }
+
+  @media (max-width: 640px) {
+    .form-row {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<script>
+  const form = document.getElementById('applicationForm') as HTMLFormElement | null;
+  const status = document.getElementById('appFormStatus');
+  const submitBtn = document.getElementById('appFormSubmit') as HTMLButtonElement | null;
+
+  form?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!form || !status || !submitBtn) return;
+
+    const accessKey = form.dataset.accessKey;
+    if (!accessKey || accessKey === 'YOUR_WEB3FORMS_ACCESS_KEY') {
+      status.dataset.state = 'error';
+      status.textContent = form.dataset.msgNotConfigured ?? '';
+      return;
+    }
+
+    const formData = new FormData(form);
+    formData.append('access_key', accessKey);
+
+    submitBtn.disabled = true;
+    const label = submitBtn.querySelector('.btn-label');
+    const originalLabel = label?.textContent ?? form.dataset.labelSubmit ?? '';
+    if (label) label.textContent = form.dataset.msgSending ?? '';
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: { Accept: 'application/json' },
+        body: formData,
+      });
+      const result = await response.json();
+
+      if (result.success) {
+        status.dataset.state = 'success';
+        status.textContent = form.dataset.msgSuccess ?? '';
+        form.reset();
+      } else {
+        throw new Error(result.message || 'Submission failed');
+      }
+    } catch (err) {
+      status.dataset.state = 'error';
+      status.textContent = form.dataset.msgError ?? '';
+    } finally {
+      submitBtn.disabled = false;
+      if (label) label.textContent = originalLabel;
+    }
+  });
+</script>

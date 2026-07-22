@@ -1,8 +1,15 @@
 ---
 import Icon from './Icon.astro';
+import { useTranslations } from '../i18n/utils.js';
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 ---
 
-<button id="backToTop" class="back-to-top" aria-label="Back to top" type="button">
+<button id="backToTop" class="back-to-top" aria-label={t('backToTop.label')} type="button">
   <Icon name="arrowUp" size={18} />
 </button>
 

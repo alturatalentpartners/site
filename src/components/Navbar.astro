@@ -1,25 +1,40 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import { NAV_LINKS } from '../data/site.js';
+import { NAV_ROUTES } from '../data/site.js';
+import { useTranslations, localizePath, getRouteFromUrl } from '../i18n/utils.js';
 
-const currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL, '/').replace(/\/+/g, '/');
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const base = import.meta.env.BASE_URL;
+const currentPath = Astro.url.pathname.replace(base, '/').replace(/\/+/g, '/');
+
+const otherLang = lang === 'en' ? 'es' : 'en';
+const route = getRouteFromUrl(Astro.url);
+const switchHref = `${base}${localizePath(route, otherLang).replace(/^\//, '')}`;
+
+const homeHref = `${base}${localizePath('', lang).replace(/^\//, '')}`;
+const contactHref = `${base}${localizePath('contact/', lang).replace(/^\//, '')}`;
 ---
 
 <header class="navbar" id="navbar">
   <div class="container navbar-inner">
-    <a href={`${import.meta.env.BASE_URL}`} class="navbar-brand" aria-label="Altura Talent Partners — home">
+    <a href={homeHref} class="navbar-brand" aria-label="Altura Talent Partners">
       <Logo />
     </a>
 
     <nav class="navbar-nav" aria-label="Primary">
       <ul>
-        {NAV_LINKS.map((link) => {
-          const href = `${import.meta.env.BASE_URL}${link.href.replace(/^\//, '')}`;
-          const isActive = currentPath === link.href;
+        {NAV_ROUTES.map((route) => {
+          const href = `${base}${localizePath(`${route}/`, lang).replace(/^\//, '')}`;
+          const isActive = currentPath === localizePath(`${route}/`, lang);
           return (
             <li>
-              <a href={href} aria-current={isActive ? 'page' : undefined}>{link.label}</a>
+              <a href={href} aria-current={isActive ? 'page' : undefined}>{t(`nav.${route}`)}</a>
             </li>
           );
         })}
@@ -27,21 +42,31 @@ const currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL, '/').re
     </nav>
 
     <div class="navbar-actions">
-      <a href={`${import.meta.env.BASE_URL}contact/`} class="btn btn-primary">Book a Consultation</a>
+      <a href={switchHref} class="lang-switch">{t('nav.langSwitch')}</a>
+      <a href={contactHref} class="btn btn-primary">{t('nav.cta')}</a>
     </div>
 
-    <button class="navbar-toggle" id="navToggle" aria-expanded="false" aria-controls="mobileMenu" aria-label="Open menu">
+    <button
+      class="navbar-toggle"
+      id="navToggle"
+      aria-expanded="false"
+      aria-controls="mobileMenu"
+      aria-label={t('nav.openMenu')}
+      data-label-open={t('nav.openMenu')}
+      data-label-close={t('nav.closeMenu')}
+    >
       <Icon name="menu" size={22} />
     </button>
   </div>
 
   <div class="mobile-menu" id="mobileMenu">
     <ul>
-      {NAV_LINKS.map((link) => (
-        <li><a href={`${import.meta.env.BASE_URL}${link.href.replace(/^\//, '')}`}>{link.label}</a></li>
+      {NAV_ROUTES.map((route) => (
+        <li><a href={`${base}${localizePath(`${route}/`, lang).replace(/^\//, '')}`}>{t(`nav.${route}`)}</a></li>
       ))}
     </ul>
-    <a href={`${import.meta.env.BASE_URL}contact/`} class="btn btn-primary btn-block">Book a Consultation</a>
+    <a href={switchHref} class="lang-switch lang-switch-mobile">{t('nav.langSwitch')}</a>
+    <a href={contactHref} class="btn btn-primary btn-block">{t('nav.cta')}</a>
   </div>
 </header>
 
@@ -100,6 +125,32 @@ const currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL, '/').re
     height: 2px;
     background: var(--color-accent);
     border-radius: 2px;
+  }
+
+  .navbar-actions {
+    display: flex;
+    align-items: center;
+    gap: 1.25rem;
+  }
+
+  .lang-switch {
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    letter-spacing: 0.03em;
+    color: var(--color-ink-500);
+    border: 1px solid var(--color-ink-200);
+    border-radius: var(--radius-full);
+    padding: 0.4rem 0.85rem;
+    transition: color 0.2s ease, border-color 0.2s ease;
+  }
+
+  .lang-switch:hover {
+    color: var(--color-primary);
+    border-color: var(--color-primary);
+  }
+
+  .lang-switch-mobile {
+    align-self: flex-start;
   }
 
   .navbar-toggle {
@@ -164,7 +215,7 @@ const currentPath = Astro.url.pathname.replace(import.meta.env.BASE_URL, '/').re
   toggle?.addEventListener('click', () => {
     const isOpen = menu?.classList.toggle('is-open');
     toggle.setAttribute('aria-expanded', String(Boolean(isOpen)));
-    toggle.setAttribute('aria-label', isOpen ? 'Close menu' : 'Open menu');
+    toggle.setAttribute('aria-label', isOpen ? toggle.dataset.labelClose ?? '' : toggle.dataset.labelOpen ?? '');
   });
 
   menu?.querySelectorAll('a').forEach((link) => {

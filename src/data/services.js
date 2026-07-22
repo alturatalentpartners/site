@@ -120,3 +120,126 @@ export const SERVICES = [
       'Before you hire, we help you decide what to hire for: sequencing, seniority mix and org structure that match your stage and your runway.',
   },
 ];
+
+export const SERVICES_ES = [
+  {
+    slug: 'executive-search',
+    icon: 'compass',
+    title: 'Búsqueda Ejecutiva',
+    short: 'Búsqueda confidencial y basada en investigación para CEOs, C-level y líderes VP que definirán tu próxima etapa.',
+    detail:
+      'Llevamos adelante un proceso disciplinado y confidencial para tus contrataciones más determinantes: mapeamos el mercado, contactamos líderes pasivos que no están mirando portales de empleo, y presentamos una terna evaluada tanto por trayectoria como por fit.',
+  },
+  {
+    slug: 'strategic-recruiting',
+    icon: 'puzzle',
+    title: 'Reclutamiento Estratégico',
+    short: 'Reclutamiento diseñado en función de tu plan de crecimiento, no de una vacante genérica — cada búsqueda conecta con un resultado de negocio.',
+    detail:
+      'Antes de contactar a un solo candidato, definimos juntos qué debe ser cierto sobre esa contratación en seis, doce y veinticuatro meses. Ese contexto define cómo buscamos, evaluamos y presentamos la oportunidad.',
+  },
+  {
+    slug: 'leadership-hiring',
+    icon: 'star',
+    title: 'Contratación de Liderazgo',
+    short: 'Búsquedas de Dirección y VP orientadas a encontrar operadores que puedan escalar junto con la empresa, no solo ocupar el puesto.',
+    detail:
+      'Las contrataciones de liderazgo implican un riesgo desproporcionado. Evaluamos criterio ante la ambigüedad, trayectoria construyendo equipos, y alineación real con cómo opera tu empresa — no una entrevista bien ensayada.',
+  },
+  {
+    slug: 'finance-recruitment',
+    icon: 'bar-chart',
+    title: 'Reclutamiento de Finanzas',
+    short: 'CFOs, controllers, FP&A y líderes financieros que aportan rigor a cómo una empresa en crecimiento administra su capital.',
+    detail:
+      'Desde la primera contratación en finanzas hasta un equipo de liderazgo completo, reclutamos profesionales capaces de construir la infraestructura financiera que necesita una empresa en expansión — y en quienes confían inversores y directorios.',
+  },
+  {
+    slug: 'executive-assistant-recruitment',
+    icon: 'clipboard',
+    title: 'Reclutamiento de Asistentes Ejecutivos',
+    short: 'Contrataciones discretas y de alta confianza para roles de EA y chief of staff, para fundadores y equipos ejecutivos.',
+    detail:
+      'El asistente ejecutivo correcto multiplica el tiempo de un líder. Reclutamos por criterio, discreción y fluidez operativa — las cualidades que importan una vez que el puesto arranca, no solo en el currículum.',
+  },
+  {
+    slug: 'operations-recruitment',
+    icon: 'gear',
+    title: 'Reclutamiento de Operaciones',
+    short: 'Operadores que aportan estructura a un negocio en su paso de la tracción inicial a un crecimiento repetible.',
+    detail:
+      'Reclutamos líderes y especialistas en operaciones que saben construir procesos sin frenar el ritmo del negocio — una distinción que importa enormemente a la velocidad de una scale-up.',
+  },
+  {
+    slug: 'sales-recruitment',
+    icon: 'trending-up',
+    title: 'Reclutamiento de Ventas',
+    short: 'Líderes de ingresos y talento comercial capaz de vender tu producto en el mercado en el que realmente operás.',
+    detail:
+      'Evaluamos a los candidatos de ventas contra tu motion comercial real — tamaño de deal, duración del ciclo, sofisticación del comprador — y no contra un historial de cuota genérico que no se traslada.',
+  },
+  {
+    slug: 'marketing-recruitment',
+    icon: 'megaphone',
+    title: 'Reclutamiento de Marketing',
+    short: 'Líderes de marketing que entienden de marca, demanda y la disciplina de construir una posición de categoría.',
+    detail:
+      'Ya sea tu primera contratación de marketing o un VP para construir el área, reclutamos por pensamiento estratégico tanto como por ejecución de canales.',
+  },
+  {
+    slug: 'technology-recruitment',
+    icon: 'code',
+    title: 'Reclutamiento de Tecnología',
+    short: 'Líderes de ingeniería y producto evaluados por personas que entienden qué es realmente un buen criterio técnico.',
+    detail:
+      'Reclutamos CTOs, líderes de ingeniería y talento técnico senior, con briefs de búsqueda construidos en torno a tu arquitectura, etapa y los problemas específicos que resuelve tu equipo.',
+  },
+  {
+    slug: 'hr-recruitment',
+    icon: 'users',
+    title: 'Reclutamiento de RRHH',
+    short: 'Líderes de personas capaces de construir cultura e infraestructura a medida que una empresa crece más allá de su equipo fundador.',
+    detail:
+      'Ubicamos líderes de RRHH y people operations capaces de profesionalizar una organización en crecimiento sin perder la cultura que la hizo funcionar desde el principio.',
+  },
+  {
+    slug: 'customer-success-recruitment',
+    icon: 'heart',
+    title: 'Reclutamiento de Customer Success',
+    short: 'Líderes y especialistas orientados a la retención que protegen los ingresos que ya ganaste.',
+    detail:
+      'Reclutamos profesionales de customer success y account management que entienden que la renovación y la expansión se ganan de forma continua, no se gestionan recién al momento del contrato.',
+  },
+  {
+    slug: 'remote-hiring',
+    icon: 'globe',
+    title: 'Contratación Remota',
+    short: 'Contratación distribuida para empresas que reclutan talento donde sea que esté, no solo donde tienen sede.',
+    detail:
+      'Buscamos, evaluamos y te ayudamos a estructurar ofertas para talento remoto — con entendimiento de husos horarios, benchmarking de compensación y la realidad de los equipos distribuidos.',
+  },
+  {
+    slug: 'international-recruiting',
+    icon: 'map',
+    title: 'Reclutamiento Internacional',
+    short: 'Búsquedas cross-border en Norteamérica, LATAM y Europa para empresas que se expanden más allá de un mercado.',
+    detail:
+      'Ayudamos a empresas a contratar cruzando fronteras, con conocimiento específico de cada mercado sobre pools de talento, normas de compensación y prácticas de contratación en cada región donde trabajamos.',
+  },
+  {
+    slug: 'recruitment-consulting',
+    icon: 'bulb',
+    title: 'Consultoría de Reclutamiento',
+    short: 'Asesoramiento para fundadores y equipos de contratación que están construyendo o rearmando su propia función de reclutamiento.',
+    detail:
+      'Para empresas que invierten en capacidad de reclutamiento interna, asesoramos en proceso, herramientas y estándares de contratación — llevando la disciplina de una firma de búsqueda hacia adentro de tu equipo.',
+  },
+  {
+    slug: 'hiring-strategy',
+    icon: 'target',
+    title: 'Estrategia de Contratación',
+    short: 'Diseño organizacional y planificación de headcount que conecta cada contratación con lo que el negocio necesita lograr.',
+    detail:
+      'Antes de contratar, te ayudamos a decidir para qué contratar: secuencia, mix de seniority y estructura organizacional acordes a tu etapa y a tu runway.',
+  },
+];

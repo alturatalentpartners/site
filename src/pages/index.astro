@@ -8,79 +8,151 @@ import ProcessStep from '../components/ProcessStep.astro';
 import Testimonial from '../components/Testimonial.astro';
 import FAQItem from '../components/FAQItem.astro';
 import ContactForm from '../components/ContactForm.astro';
-import { SERVICES } from '../data/services.js';
-import { INDUSTRIES } from '../data/industries.js';
-import { TESTIMONIALS } from '../data/testimonials.js';
-import { FAQS } from '../data/faq.js';
+import { SERVICES, SERVICES_ES } from '../data/services.js';
+import { INDUSTRIES, INDUSTRIES_ES } from '../data/industries.js';
+import { TESTIMONIALS, TESTIMONIALS_ES } from '../data/testimonials.js';
+import { FAQS, FAQS_ES } from '../data/faq.js';
 import { SITE } from '../data/site.js';
+import { localizePath } from '../i18n/utils.js';
 
+const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
 const base = import.meta.env.BASE_URL;
-const featuredServices = SERVICES.slice(0, 9);
+const path = (p: string) => `${base}${localizePath(p, lang).replace(/^\//, '')}`;
 
-const process = [
-  {
-    title: 'Discovery',
-    description:
-      'We start by understanding the role in business terms — what success looks like in the first year, who this person reports to, and why the seat is open now.',
-  },
-  {
-    title: 'Candidate Search',
-    description:
-      'We map the market and engage both active and passive candidates, prioritizing quality of fit over volume of résumés.',
-  },
-  {
-    title: 'Assessment',
-    description:
-      'Structured interviews and reference checks assess judgment, track record and alignment with how your team actually works.',
-  },
-  {
-    title: 'Shortlist',
-    description:
-      'You receive a small number of genuinely qualified finalists, with our honest read on strengths and risks for each.',
-  },
-  {
-    title: 'Hiring',
-    description:
-      'We support offer strategy and negotiation, helping close the candidate you actually want without losing them to process delay.',
-  },
-  {
-    title: 'Optional Post-Hire Support',
-    description:
-      'We check in through the first 90 days to catch onboarding issues early and make sure the hire is landing the way it should.',
-    isLast: true,
-  },
-];
+const services = lang === 'es' ? SERVICES_ES : SERVICES;
+const industries = lang === 'es' ? INDUSTRIES_ES : INDUSTRIES;
+const testimonials = lang === 'es' ? TESTIMONIALS_ES : TESTIMONIALS;
+const faqs = lang === 'es' ? FAQS_ES : FAQS;
+const featuredServices = services.slice(0, 9);
 
-const differentiators = [
-  {
-    icon: 'compass',
-    title: 'Business Understanding First',
-    description: 'We start every search by learning your business, not just your job description — so every candidate we bring you actually fits.',
+const copy = {
+  en: {
+    metaTitle: 'Executive Search & Strategic Recruiting',
+    metaDescription:
+      'Altura Talent Partners is a boutique executive search and strategic recruiting firm helping growing companies across North America, LATAM and Europe hire exceptional talent.',
+    eyebrow: 'Executive Search & Strategic Recruiting',
+    h1: 'Helping Growing Companies Build Exceptional Teams',
+    lede: 'Altura Talent Partners is a boutique search firm for founders and leadership teams who won’t compromise on who they hire. We recruit across North America, LATAM and Europe — remote and onsite — for the roles that define what happens next.',
+    ctaAccent: 'Book a Consultation',
+    ctaGhost: 'Learn More',
+    trustedLabel: 'Built for the people who own the hiring decision',
+    trustedChips: ['Startup Founders', 'CEOs', 'COOs', 'CFOs', 'Business Owners', 'Private Equity', 'VC-Backed Startups'],
+    stats: [
+      { number: '4–8 wks', label: 'Typical search timeline' },
+      { number: '3 regions', label: 'North America, LATAM & Europe' },
+      { number: 'Boutique', label: 'Senior partner on every search' },
+    ],
+    whyEyebrow: 'Why Altura',
+    whyH2: 'Recruiting that behaves like a business partner, not a vendor',
+    whyLede: 'Four commitments that shape how we run every search.',
+    differentiators: [
+      { icon: 'compass', title: 'Business Understanding First', description: 'We start every search by learning your business, not just your job description — so every candidate we bring you actually fits.' },
+      { icon: 'scale', title: 'Confidential, Consultative Process', description: 'Sensitive searches stay sensitive. We operate as an extension of your team, not a vendor working a transaction.' },
+      { icon: 'globe', title: 'Cross-Border Reach', description: 'North America, LATAM and Europe — remote or onsite — with market-specific knowledge in every region we work.' },
+      { icon: 'handshake', title: 'Accountable Beyond the Offer', description: 'Our job isn’t done at signature. We stay engaged through onboarding because a hire only succeeds once they’re actually delivering.' },
+    ],
+    servicesEyebrow: 'Services',
+    servicesH2: 'Search and recruiting built around your function',
+    servicesLede: 'From first leadership hire to a full team build-out, we recruit across the roles that matter most to a growing business.',
+    viewAllServices: 'View All Services',
+    industriesEyebrow: 'Industries',
+    industriesH2: 'Sector knowledge that shapes a smarter search',
+    industriesLede: 'We recruit across thirteen industries, each with its own talent market and hiring bar.',
+    exploreIndustries: 'Explore Industries',
+    processEyebrow: 'Our Process',
+    processH2: 'A disciplined, six-stage search process',
+    processLede: 'The same structured process behind every engagement, senior or specialist.',
+    process: [
+      { title: 'Discovery', description: 'We start by understanding the role in business terms — what success looks like in the first year, who this person reports to, and why the seat is open now.' },
+      { title: 'Candidate Search', description: 'We map the market and engage both active and passive candidates, prioritizing quality of fit over volume of résumés.' },
+      { title: 'Assessment', description: 'Structured interviews and reference checks assess judgment, track record and alignment with how your team actually works.' },
+      { title: 'Shortlist', description: 'You receive a small number of genuinely qualified finalists, with our honest read on strengths and risks for each.' },
+      { title: 'Hiring', description: 'We support offer strategy and negotiation, helping close the candidate you actually want without losing them to process delay.' },
+      { title: 'Optional Post-Hire Support', description: 'We check in through the first 90 days to catch onboarding issues early and make sure the hire is landing the way it should.', isLast: true },
+    ],
+    whyChooseEyebrow: 'Why Companies Choose Us',
+    whyChooseH2: 'The difference shows up in the shortlist',
+    comparisonAltura: 'Altura Talent Partners',
+    comparisonOther: 'Typical Agency',
+    comparison: [
+      { altura: 'A small number of deliberate, senior searches at a time', other: 'High volume of roles worked simultaneously' },
+      { altura: 'Search built around your business context and goals', other: 'Generic keyword matching against a job title' },
+      { altura: 'Direct engagement with passive, high-caliber candidates', other: 'Primarily inbound applicants and job board traffic' },
+      { altura: 'A senior partner involved from discovery to close', other: 'Handed off to a junior recruiter after the intake call' },
+      { altura: 'Continued support through the first 90 days', other: 'Relationship ends at the signed offer' },
+    ],
+    testimonialsEyebrow: 'Testimonials',
+    testimonialsH2: 'What hiring leaders say after working with us',
+    faqEyebrow: 'FAQ',
+    faqH2: 'Questions we hear before a search kicks off',
+    contactEyebrow: 'Get in Touch',
+    contactH2: 'Let’s talk about who you need to hire',
+    contactLede: 'Tell us about the role and we’ll get back to you within one business day to talk through fit, timeline and next steps.',
   },
-  {
-    icon: 'scale',
-    title: 'Confidential, Consultative Process',
-    description: 'Sensitive searches stay sensitive. We operate as an extension of your team, not a vendor working a transaction.',
+  es: {
+    metaTitle: 'Búsqueda Ejecutiva y Reclutamiento Estratégico',
+    metaDescription:
+      'Altura Talent Partners es una firma boutique de búsqueda ejecutiva y reclutamiento estratégico que ayuda a empresas en crecimiento de Norteamérica, LATAM y Europa a contratar talento excepcional.',
+    eyebrow: 'Búsqueda Ejecutiva y Reclutamiento Estratégico',
+    h1: 'Ayudamos a Empresas en Crecimiento a Construir Equipos Excepcionales',
+    lede: 'Altura Talent Partners es una firma boutique de búsqueda para fundadores y equipos de liderazgo que no están dispuestos a resignar calidad en quién contratan. Reclutamos en Norteamérica, LATAM y Europa — remoto y presencial — para los roles que definen lo que sigue.',
+    ctaAccent: 'Agendar Consulta',
+    ctaGhost: 'Conocer Más',
+    trustedLabel: 'Pensado para quienes toman la decisión de contratación',
+    trustedChips: ['Fundadores de Startups', 'CEOs', 'COOs', 'CFOs', 'Dueños de Empresas', 'Private Equity', 'Startups con VC'],
+    stats: [
+      { number: '4–8 sem', label: 'Plazo típico de búsqueda' },
+      { number: '3 regiones', label: 'Norteamérica, LATAM y Europa' },
+      { number: 'Boutique', label: 'Socio senior en cada búsqueda' },
+    ],
+    whyEyebrow: 'Por Qué Altura',
+    whyH2: 'Reclutamiento que actúa como socio de negocio, no como proveedor',
+    whyLede: 'Cuatro compromisos que definen cómo llevamos adelante cada búsqueda.',
+    differentiators: [
+      { icon: 'compass', title: 'Primero, Entender el Negocio', description: 'Empezamos cada búsqueda entendiendo tu negocio, no solo la descripción del puesto — así cada candidato que te presentamos realmente encaja.' },
+      { icon: 'scale', title: 'Proceso Confidencial y Consultivo', description: 'Las búsquedas sensibles siguen siendo sensibles. Operamos como una extensión de tu equipo, no como un proveedor haciendo una transacción.' },
+      { icon: 'globe', title: 'Alcance Cross-Border', description: 'Norteamérica, LATAM y Europa — remoto o presencial — con conocimiento específico de cada región donde trabajamos.' },
+      { icon: 'handshake', title: 'Responsables Más Allá de la Oferta', description: 'Nuestro trabajo no termina con la firma. Seguimos presentes durante el onboarding porque una contratación solo es exitosa cuando realmente empieza a rendir.' },
+    ],
+    servicesEyebrow: 'Servicios',
+    servicesH2: 'Búsqueda y reclutamiento organizados por función',
+    servicesLede: 'Desde tu primera contratación de liderazgo hasta armar un equipo completo, reclutamos en los roles que más le importan a una empresa en crecimiento.',
+    viewAllServices: 'Ver Todos los Servicios',
+    industriesEyebrow: 'Industrias',
+    industriesH2: 'Conocimiento de sector que mejora cada búsqueda',
+    industriesLede: 'Reclutamos en trece industrias, cada una con su propio mercado de talento y su propia vara de exigencia.',
+    exploreIndustries: 'Explorar Industrias',
+    processEyebrow: 'Nuestro Proceso',
+    processH2: 'Un proceso de búsqueda disciplinado, en seis etapas',
+    processLede: 'El mismo proceso estructurado detrás de cada búsqueda, sea de liderazgo o especializada.',
+    process: [
+      { title: 'Discovery', description: 'Empezamos entendiendo el rol en términos de negocio — cómo se ve el éxito en el primer año, a quién reporta esta persona, y por qué el puesto está abierto ahora.' },
+      { title: 'Búsqueda de Candidatos', description: 'Mapeamos el mercado y contactamos tanto candidatos activos como pasivos, priorizando calidad de fit por sobre volumen de currículums.' },
+      { title: 'Evaluación', description: 'Entrevistas estructuradas y chequeo de referencias evalúan criterio, trayectoria construyendo equipos y alineación con cómo realmente opera tu empresa.' },
+      { title: 'Terna Final', description: 'Recibís un número reducido de finalistas genuinamente calificados, con nuestra lectura honesta de fortalezas y riesgos de cada uno.' },
+      { title: 'Contratación', description: 'Acompañamos la estrategia de oferta y la negociación, ayudando a cerrar al candidato que realmente querés sin perderlo por demoras en el proceso.' },
+      { title: 'Acompañamiento Post-Contratación (Opcional)', description: 'Hacemos seguimiento durante los primeros 90 días para detectar temprano cualquier problema de onboarding y asegurar que la contratación esté aterrizando bien.', isLast: true },
+    ],
+    whyChooseEyebrow: 'Por Qué Nos Eligen',
+    whyChooseH2: 'La diferencia se nota en la terna final',
+    comparisonAltura: 'Altura Talent Partners',
+    comparisonOther: 'Agencia Típica',
+    comparison: [
+      { altura: 'Pocas búsquedas senior a la vez, llevadas con dedicación', other: 'Alto volumen de vacantes trabajadas en simultáneo' },
+      { altura: 'Búsqueda construida según tu contexto y objetivos de negocio', other: 'Matching genérico por palabras clave del puesto' },
+      { altura: 'Contacto directo con candidatos pasivos de alto nivel', other: 'Mayormente postulantes inbound y tráfico de portales de empleo' },
+      { altura: 'Un socio senior involucrado desde el discovery hasta el cierre', other: 'Se deriva a un reclutador junior después de la llamada inicial' },
+      { altura: 'Acompañamiento continuo durante los primeros 90 días', other: 'La relación termina cuando se firma la oferta' },
+    ],
+    testimonialsEyebrow: 'Testimonios',
+    testimonialsH2: 'Lo que dicen los líderes que trabajaron con nosotros',
+    faqEyebrow: 'Preguntas Frecuentes',
+    faqH2: 'Preguntas que recibimos antes de arrancar una búsqueda',
+    contactEyebrow: 'Contactanos',
+    contactH2: 'Hablemos de a quién necesitás contratar',
+    contactLede: 'Contanos sobre el rol y te contactaremos dentro de un día hábil para hablar de fit, plazos y próximos pasos.',
   },
-  {
-    icon: 'globe',
-    title: 'Cross-Border Reach',
-    description: 'North America, LATAM and Europe — remote or onsite — with market-specific knowledge in every region we work.',
-  },
-  {
-    icon: 'handshake',
-    title: 'Accountable Beyond the Offer',
-    description: 'Our job isn’t done at signature. We stay engaged through onboarding because a hire only succeeds once they’re actually delivering.',
-  },
-];
-
-const comparison = [
-  { altura: 'A small number of deliberate, senior searches at a time', other: 'High volume of roles worked simultaneously' },
-  { altura: 'Search built around your business context and goals', other: 'Generic keyword matching against a job title' },
-  { altura: 'Direct engagement with passive, high-caliber candidates', other: 'Primarily inbound applicants and job board traffic' },
-  { altura: 'A senior partner involved from discovery to close', other: 'Handed off to a junior recruiter after the intake call' },
-  { altura: 'Continued support through the first 90 days', other: 'Relationship ends at the signed offer' },
-];
+}[lang];
 
 const schema = [
   {
@@ -104,54 +176,39 @@ const schema = [
 ];
 ---
 
-<Layout
-  title="Executive Search &amp; Strategic Recruiting"
-  description="Altura Talent Partners is a boutique executive search and strategic recruiting firm helping growing companies across North America, LATAM and Europe hire exceptional talent."
-  schema={schema}
->
+<Layout title={copy.metaTitle} description={copy.metaDescription} schema={schema}>
   <!-- Hero -->
   <section class="hero section-sm">
     <div class="container hero-grid">
       <div class="hero-copy">
-        <span class="eyebrow">Executive Search &amp; Strategic Recruiting</span>
-        <h1>Helping Growing Companies Build Exceptional Teams</h1>
-        <p class="lede">
-          Altura Talent Partners is a boutique search firm for founders and leadership
-          teams who won&rsquo;t compromise on who they hire. We recruit across North
-          America, LATAM and Europe — remote and onsite — for the roles that define
-          what happens next.
-        </p>
+        <span class="eyebrow">{copy.eyebrow}</span>
+        <h1>{copy.h1}</h1>
+        <p class="lede">{copy.lede}</p>
         <div class="hero-actions">
-          <a href={`${base}contact/`} class="btn btn-accent">Book a Consultation</a>
-          <a href={`${base}services/`} class="btn btn-ghost">Learn More</a>
+          <a href={path('contact/')} class="btn btn-accent">{copy.ctaAccent}</a>
+          <a href={path('services/')} class="btn btn-ghost">{copy.ctaGhost}</a>
         </div>
       </div>
-      <HeroGraphic />
+      <HeroGraphic lang={lang} />
     </div>
   </section>
 
   <!-- Trusted by / positioning -->
   <section class="trusted section-sm section-gray">
     <div class="container">
-      <p class="trusted-label text-center">Built for the people who own the hiring decision</p>
+      <p class="trusted-label text-center">{copy.trustedLabel}</p>
       <div class="trusted-chips">
-        {['Startup Founders', 'CEOs', 'COOs', 'CFOs', 'Business Owners', 'Private Equity', 'VC-Backed Startups'].map((chip) => (
+        {copy.trustedChips.map((chip) => (
           <span class="chip">{chip}</span>
         ))}
       </div>
       <div class="trusted-stats grid grid-3">
-        <div class="stat">
-          <span class="stat-number">4&ndash;8 wks</span>
-          <span class="stat-label">Typical search timeline</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">3 regions</span>
-          <span class="stat-label">North America, LATAM &amp; Europe</span>
-        </div>
-        <div class="stat">
-          <span class="stat-number">Boutique</span>
-          <span class="stat-label">Senior partner on every search</span>
-        </div>
+        {copy.stats.map((stat) => (
+          <div class="stat">
+            <span class="stat-number">{stat.number}</span>
+            <span class="stat-label">{stat.label}</span>
+          </div>
+        ))}
       </div>
     </div>
   </section>
@@ -160,12 +217,12 @@ const schema = [
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">Why Altura</span>
-        <h2>Recruiting that behaves like a business partner, not a vendor</h2>
-        <p class="lede">Four commitments that shape how we run every search.</p>
+        <span class="eyebrow">{copy.whyEyebrow}</span>
+        <h2>{copy.whyH2}</h2>
+        <p class="lede">{copy.whyLede}</p>
       </div>
       <div class="grid grid-4">
-        {differentiators.map((item) => (
+        {copy.differentiators.map((item) => (
           <div class="diff-card reveal">
             <span class="diff-icon"><Icon name={item.icon} size={22} /></span>
             <h3>{item.title}</h3>
@@ -180,20 +237,17 @@ const schema = [
   <section class="section section-gray">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">Services</span>
-        <h2>Search and recruiting built around your function</h2>
-        <p class="lede">
-          From first leadership hire to a full team build-out, we recruit across the
-          roles that matter most to a growing business.
-        </p>
+        <span class="eyebrow">{copy.servicesEyebrow}</span>
+        <h2>{copy.servicesH2}</h2>
+        <p class="lede">{copy.servicesLede}</p>
       </div>
       <div class="grid grid-3">
         {featuredServices.map((service) => (
-          <ServiceCard icon={service.icon} title={service.title} description={service.short} href={`${base}services/#${service.slug}`} />
+          <ServiceCard icon={service.icon} title={service.title} description={service.short} href={`${path('services/')}#${service.slug}`} learnMoreLabel={copy.ctaGhost} />
         ))}
       </div>
       <div class="section-cta text-center">
-        <a href={`${base}services/`} class="btn btn-ghost">View All Services <Icon name="arrowRight" size={16} /></a>
+        <a href={path('services/')} class="btn btn-ghost">{copy.viewAllServices} <Icon name="arrowRight" size={16} /></a>
       </div>
     </div>
   </section>
@@ -202,17 +256,17 @@ const schema = [
   <section class="section">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">Industries</span>
-        <h2>Sector knowledge that shapes a smarter search</h2>
-        <p class="lede">We recruit across thirteen industries, each with its own talent market and hiring bar.</p>
+        <span class="eyebrow">{copy.industriesEyebrow}</span>
+        <h2>{copy.industriesH2}</h2>
+        <p class="lede">{copy.industriesLede}</p>
       </div>
       <div class="grid grid-3 industries-grid">
-        {INDUSTRIES.map((industry) => (
+        {industries.map((industry) => (
           <IndustryCard icon={industry.icon} title={industry.title} description={industry.description} />
         ))}
       </div>
       <div class="section-cta text-center">
-        <a href={`${base}industries/`} class="btn btn-ghost">Explore Industries <Icon name="arrowRight" size={16} /></a>
+        <a href={path('industries/')} class="btn btn-ghost">{copy.exploreIndustries} <Icon name="arrowRight" size={16} /></a>
       </div>
     </div>
   </section>
@@ -221,12 +275,12 @@ const schema = [
   <section class="section section-gray">
     <div class="container container-narrow">
       <div class="section-header">
-        <span class="eyebrow">Our Process</span>
-        <h2>A disciplined, six-stage search process</h2>
-        <p class="lede">The same structured process behind every engagement, senior or specialist.</p>
+        <span class="eyebrow">{copy.processEyebrow}</span>
+        <h2>{copy.processH2}</h2>
+        <p class="lede">{copy.processLede}</p>
       </div>
       <div class="process-list">
-        {process.map((step, i) => (
+        {copy.process.map((step, i) => (
           <ProcessStep number={String(i + 1).padStart(2, '0')} title={step.title} description={step.description} isLast={step.isLast} />
         ))}
       </div>
@@ -237,16 +291,16 @@ const schema = [
   <section class="section">
     <div class="container container-narrow">
       <div class="section-header">
-        <span class="eyebrow">Why Companies Choose Us</span>
-        <h2>The difference shows up in the shortlist</h2>
+        <span class="eyebrow">{copy.whyChooseEyebrow}</span>
+        <h2>{copy.whyChooseH2}</h2>
       </div>
       <div class="comparison-table reveal">
         <div class="comparison-head">
           <span></span>
-          <span class="comparison-head-altura">Altura Talent Partners</span>
-          <span class="comparison-head-other">Typical Agency</span>
+          <span class="comparison-head-altura">{copy.comparisonAltura}</span>
+          <span class="comparison-head-other">{copy.comparisonOther}</span>
         </div>
-        {comparison.map((row) => (
+        {copy.comparison.map((row) => (
           <div class="comparison-row">
             <span class="comparison-icon"><Icon name="check" size={16} /></span>
             <span class="comparison-altura">{row.altura}</span>
@@ -261,12 +315,12 @@ const schema = [
   <section class="section section-gray">
     <div class="container">
       <div class="section-header">
-        <span class="eyebrow">Testimonials</span>
-        <h2>What hiring leaders say after working with us</h2>
+        <span class="eyebrow">{copy.testimonialsEyebrow}</span>
+        <h2>{copy.testimonialsH2}</h2>
       </div>
       <div class="grid grid-3">
-        {TESTIMONIALS.map((t) => (
-          <Testimonial quote={t.quote} name={t.name} role={t.role} />
+        {testimonials.map((item) => (
+          <Testimonial quote={item.quote} name={item.name} role={item.role} />
         ))}
       </div>
     </div>
@@ -276,11 +330,11 @@ const schema = [
   <section class="section">
     <div class="container container-narrow">
       <div class="section-header">
-        <span class="eyebrow">FAQ</span>
-        <h2>Questions we hear before a search kicks off</h2>
+        <span class="eyebrow">{copy.faqEyebrow}</span>
+        <h2>{copy.faqH2}</h2>
       </div>
       <div class="faq-list">
-        {FAQS.map((faq) => (
+        {faqs.map((faq) => (
           <FAQItem question={faq.question} answer={faq.answer} />
         ))}
       </div>
@@ -291,19 +345,16 @@ const schema = [
   <section class="section section-gray" id="contact">
     <div class="container contact-grid">
       <div class="contact-intro">
-        <span class="eyebrow">Get in Touch</span>
-        <h2>Let&rsquo;s talk about who you need to hire</h2>
-        <p class="lede">
-          Tell us about the role and we&rsquo;ll get back to you within one business
-          day to talk through fit, timeline and next steps.
-        </p>
+        <span class="eyebrow">{copy.contactEyebrow}</span>
+        <h2>{copy.contactH2}</h2>
+        <p class="lede">{copy.contactLede}</p>
         <ul class="contact-details">
           <li><Icon name="phone" size={18} /> <a href={SITE.phoneHref}>{SITE.phone}</a></li>
           <li><Icon name="mail" size={18} /> <a href={`mailto:${SITE.email}`}>{SITE.email}</a></li>
           <li><Icon name="linkedin" size={18} /> <a href={SITE.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
         </ul>
       </div>
-      <ContactForm />
+      <ContactForm lang={lang} />
     </div>
   </section>
 </Layout>

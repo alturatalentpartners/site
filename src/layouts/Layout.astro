@@ -4,6 +4,7 @@ import Navbar from '../components/Navbar.astro';
 import Footer from '../components/Footer.astro';
 import BackToTop from '../components/BackToTop.astro';
 import { SITE } from '../data/site.js';
+import { getRouteFromUrl, localizePath } from '../i18n/utils.js';
 
 interface Props {
   title: string;
@@ -21,15 +22,22 @@ const {
   ogImage = '/images/og-image.png',
 } = Astro.props;
 
+const lang = Astro.currentLocale ?? 'en';
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImageURL = new URL(ogImage, Astro.site);
 const pageTitle = title.includes(SITE.name) ? title : `${title} | ${SITE.name}`;
+const ogLocale = lang === 'es' ? 'es_419' : 'en_US';
 
 const schemaList = Array.isArray(schema) ? schema : schema ? [schema] : [];
+
+const route = getRouteFromUrl(Astro.url);
+const base = import.meta.env.BASE_URL;
+const enURL = new URL(`${base}${localizePath(route, 'en').replace(/^\//, '')}`, Astro.url.origin);
+const esURL = new URL(`${base}${localizePath(route, 'es').replace(/^\//, '')}`, Astro.url.origin);
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -37,6 +45,10 @@ const schemaList = Array.isArray(schema) ? schema : schema ? [schema] : [];
     <meta name="description" content={description} />
     <link rel="canonical" href={canonicalURL} />
     {noindex && <meta name="robots" content="noindex, nofollow" />}
+
+    <link rel="alternate" hreflang="en" href={enURL} />
+    <link rel="alternate" hreflang="es" href={esURL} />
+    <link rel="alternate" hreflang="x-default" href={enURL} />
 
     <link rel="icon" type="image/svg+xml" href={`${import.meta.env.BASE_URL}favicon.svg`} />
     <link rel="icon" type="image/png" sizes="32x32" href={`${import.meta.env.BASE_URL}images/favicon-32.png`} />
@@ -52,7 +64,7 @@ const schemaList = Array.isArray(schema) ? schema : schema ? [schema] : [];
     <meta property="og:image" content={ogImageURL} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
-    <meta property="og:locale" content="en_US" />
+    <meta property="og:locale" content={ogLocale} />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
@@ -66,12 +78,12 @@ const schemaList = Array.isArray(schema) ? schema : schema ? [schema] : [];
   </head>
   <body>
     <a href="#main" class="skip-link">Skip to main content</a>
-    <Navbar />
+    <Navbar lang={lang} />
     <main id="main">
       <slot />
     </main>
-    <Footer />
-    <BackToTop />
+    <Footer lang={lang} />
+    <BackToTop lang={lang} />
 
     <script>
       const revealEls = document.querySelectorAll('.reveal');

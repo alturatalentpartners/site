@@ -1,5 +1,14 @@
 ---
 import Icon from './Icon.astro';
+
+interface Props {
+  lang?: string;
+}
+const { lang = 'en' } = Astro.props;
+const copy =
+  lang === 'es'
+    ? { shortlist: 'Terna entregada', finalists: '4 finalistas evaluados', offer: 'Oferta aceptada', role: 'VP Finanzas · Semana 6' }
+    : { shortlist: 'Shortlist delivered', finalists: '4 vetted finalists', offer: 'Offer accepted', role: 'VP Finance · Week 6' };
 ---
 
 <div class="hero-graphic" aria-hidden="true">
@@ -23,16 +32,16 @@ import Icon from './Icon.astro';
     <div class="hg-card hg-card--top">
       <span class="hg-icon"><Icon name="check" size={16} /></span>
       <div>
-        <strong>Shortlist delivered</strong>
-        <span>4 vetted finalists</span>
+        <strong>{copy.shortlist}</strong>
+        <span>{copy.finalists}</span>
       </div>
     </div>
 
     <div class="hg-card hg-card--bottom">
       <span class="hg-icon hg-icon--gold"><Icon name="handshake" size={16} /></span>
       <div>
-        <strong>Offer accepted</strong>
-        <span>VP Finance · Week 6</span>
+        <strong>{copy.offer}</strong>
+        <span>{copy.role}</span>
       </div>
     </div>
   </div>

@@ -1,46 +1,51 @@
 ---
 import Logo from './Logo.astro';
 import Icon from './Icon.astro';
-import { SITE, NAV_LINKS } from '../data/site.js';
+import { SITE, NAV_ROUTES } from '../data/site.js';
+import { useTranslations, localizePath } from '../i18n/utils.js';
+
+interface Props {
+  lang: string;
+}
+const { lang } = Astro.props;
+const t = useTranslations(lang);
 
 const year = new Date().getFullYear();
 const base = import.meta.env.BASE_URL;
+const homeHref = `${base}${localizePath('', lang).replace(/^\//, '')}`;
 ---
 
 <footer class="footer">
   <div class="container footer-top">
     <div class="footer-brand">
-      <a href={base} aria-label="Altura Talent Partners — home">
+      <a href={homeHref} aria-label="Altura Talent Partners">
         <Logo theme="light" />
       </a>
-      <p>
-        A boutique executive search and strategic recruiting firm helping growing
-        companies across North America, LATAM and Europe build exceptional teams.
-      </p>
+      <p>{t('footer.tagline')}</p>
       <a href={SITE.linkedin} class="footer-social" target="_blank" rel="noopener noreferrer" aria-label="Altura Talent Partners on LinkedIn">
         <Icon name="linkedin" size={20} />
       </a>
     </div>
 
     <div class="footer-col">
-      <h3>Navigate</h3>
+      <h3>{t('footer.navigate')}</h3>
       <ul>
-        {NAV_LINKS.map((link) => (
-          <li><a href={`${base}${link.href.replace(/^\//, '')}`}>{link.label}</a></li>
+        {NAV_ROUTES.map((route) => (
+          <li><a href={`${base}${localizePath(`${route}/`, lang).replace(/^\//, '')}`}>{t(`nav.${route}`)}</a></li>
         ))}
       </ul>
     </div>
 
     <div class="footer-col">
-      <h3>Company</h3>
+      <h3>{t('footer.company')}</h3>
       <ul>
-        <li><a href={`${base}privacy-policy/`}>Privacy Policy</a></li>
-        <li><a href={`${base}terms/`}>Terms of Service</a></li>
+        <li><a href={`${base}${localizePath('privacy-policy/', lang).replace(/^\//, '')}`}>{t('footer.privacy')}</a></li>
+        <li><a href={`${base}${localizePath('terms/', lang).replace(/^\//, '')}`}>{t('footer.terms')}</a></li>
       </ul>
     </div>
 
     <div class="footer-col">
-      <h3>Get in touch</h3>
+      <h3>{t('footer.getInTouch')}</h3>
       <ul>
         <li>
           <a href={SITE.phoneHref}>
@@ -54,7 +59,7 @@ const base = import.meta.env.BASE_URL;
         </li>
         <li>
           <span class="footer-location">
-            <Icon name="pin" size={16} /> Serving North America, LATAM &amp; Europe
+            <Icon name="pin" size={16} /> {t('footer.serving')}
           </span>
         </li>
       </ul>
@@ -62,8 +67,8 @@ const base = import.meta.env.BASE_URL;
   </div>
 
   <div class="container footer-bottom">
-    <p>&copy; {year} Altura Talent Partners. All rights reserved.</p>
-    <p class="footer-note">Executive search &amp; strategic recruiting, built for growing companies.</p>
+    <p>&copy; {year} Altura Talent Partners. {t('footer.rights')}</p>
+    <p class="footer-note">{t('footer.note')}</p>
   </div>
 </footer>
 

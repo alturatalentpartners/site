@@ -1,44 +1,63 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Icon from '../components/Icon.astro';
-import { SERVICES } from '../data/services.js';
+import { SERVICES, SERVICES_ES } from '../data/services.js';
 import { SITE } from '../data/site.js';
+import { localizePath } from '../i18n/utils.js';
 
+const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
 const base = import.meta.env.BASE_URL;
+const path = (p: string) => `${base}${localizePath(p, lang).replace(/^\//, '')}`;
+const services = lang === 'es' ? SERVICES_ES : SERVICES;
+
+const copy = {
+  en: {
+    metaTitle: 'Services',
+    metaDescription: 'Executive search, strategic recruiting and specialist hiring across finance, technology, sales, marketing, operations, HR and more — for growing companies worldwide.',
+    eyebrow: 'Services',
+    h1: 'Search and recruiting for the roles that matter most',
+    lede: 'From first leadership hire to a full functional build-out, we recruit across the disciplines that determine whether a growing company scales well or stalls.',
+    ctaH2: 'Don’t see exactly what you need?',
+    ctaLede: 'Most searches don’t fit neatly into one category. Tell us what you’re hiring for and we’ll tell you honestly whether we’re the right fit.',
+    ctaBtn: 'Book a Consultation',
+  },
+  es: {
+    metaTitle: 'Servicios',
+    metaDescription: 'Búsqueda ejecutiva, reclutamiento estratégico y contratación de especialistas en finanzas, tecnología, ventas, marketing, operaciones, RRHH y más — para empresas en crecimiento en todo el mundo.',
+    eyebrow: 'Servicios',
+    h1: 'Búsqueda y reclutamiento para los roles que más importan',
+    lede: 'Desde tu primera contratación de liderazgo hasta armar un área funcional completa, reclutamos en las disciplinas que definen si una empresa en crecimiento escala bien o se estanca.',
+    ctaH2: '¿No encontrás exactamente lo que necesitás?',
+    ctaLede: 'La mayoría de las búsquedas no encajan perfecto en una sola categoría. Contanos qué estás contratando y te decimos con honestidad si somos el fit correcto.',
+    ctaBtn: 'Agendar Consulta',
+  },
+}[lang];
 
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'ItemList',
-  itemListElement: SERVICES.map((s, i) => ({
+  itemListElement: services.map((s, i) => ({
     '@type': 'ListItem',
     position: i + 1,
     name: s.title,
-    url: `${SITE.url}/services/#${s.slug}`,
+    url: `${SITE.url}${localizePath('services/', lang)}#${s.slug}`,
   })),
 };
 ---
 
-<Layout
-  title="Services"
-  description="Executive search, strategic recruiting and specialist hiring across finance, technology, sales, marketing, operations, HR and more — for growing companies worldwide."
-  schema={schema}
->
+<Layout title={copy.metaTitle} description={copy.metaDescription} schema={schema}>
   <section class="page-hero section-sm">
     <div class="container container-narrow text-center">
-      <span class="eyebrow">Services</span>
-      <h1>Search and recruiting for the roles that matter most</h1>
-      <p class="lede mx-auto">
-        From first leadership hire to a full functional build-out, we recruit
-        across the disciplines that determine whether a growing company scales
-        well or stalls.
-      </p>
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{copy.h1}</h1>
+      <p class="lede mx-auto">{copy.lede}</p>
     </div>
   </section>
 
   <section class="section">
     <div class="container">
       <div class="services-list">
-        {SERVICES.map((service) => (
+        {services.map((service) => (
           <article class="service-block reveal" id={service.slug}>
             <span class="service-block-icon"><Icon name={service.icon} size={24} /></span>
             <div class="service-block-body">
@@ -53,9 +72,9 @@ const schema = {
 
   <section class="section section-gray cta-section">
     <div class="container text-center">
-      <h2>Don&rsquo;t see exactly what you need?</h2>
-      <p class="lede mx-auto">Most searches don&rsquo;t fit neatly into one category. Tell us what you&rsquo;re hiring for and we&rsquo;ll tell you honestly whether we&rsquo;re the right fit.</p>
-      <a href={`${base}contact/`} class="btn btn-primary">Book a Consultation</a>
+      <h2>{copy.ctaH2}</h2>
+      <p class="lede mx-auto">{copy.ctaLede}</p>
+      <a href={path('contact/')} class="btn btn-primary">{copy.ctaBtn}</a>
     </div>
   </section>
 </Layout>

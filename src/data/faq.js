@@ -40,3 +40,46 @@ export const FAQS = [
       'We stand behind our placements with a replacement guarantee, the specifics of which we confirm in writing before a search begins. We’d rather be upfront about the terms than bury them — ask us directly during your consultation.',
   },
 ];
+
+export const FAQS_ES = [
+  {
+    question: '¿En qué se diferencia Altura de una agencia de staffing?',
+    answer:
+      'Las agencias de staffing optimizan por volumen y velocidad de colocación en muchas vacantes a la vez. Nosotros llevamos adelante menos búsquedas, pero más deliberadas — típicamente para roles de liderazgo, especialistas y posiciones críticas para el negocio — donde acertar en la contratación importa más que llenar el puesto rápido. Actuamos como socio estratégico en la decisión de contratación, no como un pipeline de currículums.',
+  },
+  {
+    question: '¿Para qué roles y niveles de seniority reclutan?',
+    answer:
+      'Nos enfocamos en contrataciones de liderazgo y especialistas: ejecutivos, VPs y directores, además de roles individuales de alto impacto en finanzas, tecnología, ventas, marketing, operaciones, RRHH y customer success. Si un rol es lo suficientemente importante como para que una mala contratación afecte al negocio, es el tipo de búsqueda que tomamos.',
+  },
+  {
+    question: '¿Trabajan con startups en etapa temprana o solo con empresas grandes?',
+    answer:
+      'Ambas. Trabajamos con startups respaldadas por venture capital haciendo sus primeras contrataciones de liderazgo, scale-ups armando funciones por primera vez, y empresas consolidadas reemplazando o sumando a un equipo existente. Lo que importa más que el tamaño es que la contratación sea genuinamente importante para el negocio.',
+  },
+  {
+    question: '¿Cuánto dura una búsqueda típica?',
+    answer:
+      'La mayoría de las búsquedas se completan entre cuatro y ocho semanas desde el kickoff hasta la oferta firmada, dependiendo del seniority, la especificidad del brief y qué tan competitivo esté el mercado para ese perfil. Te damos un plazo realista durante el discovery, y preferimos decirte seis semanas y entregar en cinco antes que prometer dos y entregar en seis.',
+  },
+  {
+    question: '¿Reclutan talento remoto e internacional?',
+    answer:
+      'Sí. Reclutamos en Norteamérica, LATAM y Europa, tanto para roles presenciales como completamente remotos. La contratación internacional y distribuida es parte central de nuestra práctica, no un agregado — incluye asesoramiento sobre benchmarking de compensación entre regiones.',
+  },
+  {
+    question: '¿Cómo es su proceso?',
+    answer:
+      'Cada búsqueda avanza a través de seis etapas: discovery, búsqueda de candidatos, evaluación, terna final, contratación y — cuando es útil — acompañamiento post-contratación. Podés ver el detalle completo en la sección de Proceso más abajo, pero en resumen: invertimos fuerte al principio para que la terna que recibís sea genuinamente sólida.',
+  },
+  {
+    question: '¿Cómo cobran por sus búsquedas?',
+    answer:
+      'Los honorarios se estructuran por búsqueda según el seniority y la complejidad del proceso, y te explicamos el pricing en una llamada inicial una vez que entendemos el rol. No publicamos una tarifa fija porque una primera contratación en finanzas y una búsqueda de CFO requieren niveles de inversión muy distintos.',
+  },
+  {
+    question: '¿Qué pasa si una colocación no funciona?',
+    answer:
+      'Respaldamos nuestras colocaciones con una garantía de reemplazo, cuyos detalles confirmamos por escrito antes de empezar cada búsqueda. Preferimos ser claros con los términos desde el principio en vez de ocultarlos — preguntanos directamente durante tu consulta.',
+  },
+];

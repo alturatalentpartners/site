@@ -106,7 +106,7 @@ const schema = {
                 </div>
                 <p>{lang === 'es' ? pos.descriptionEs : pos.description}</p>
               </div>
-              <a href="#apply" class="btn btn-ghost">{copy.applyBtn}</a>
+              <a href="#apply" class="btn btn-ghost" data-apply-role={pos.slug}>{copy.applyBtn}</a>
             </article>
           ))}
         </div>

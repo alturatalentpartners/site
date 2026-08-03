@@ -1,5 +1,6 @@
 ---
 import { SITE } from '../data/site.js';
+import { OPEN_POSITIONS } from '../data/careers.js';
 
 interface Props {
   lang: string;
@@ -14,10 +15,18 @@ const { lang } = Astro.props;
 // ---------------------------------------------------------------------------
 const WEB3FORMS_ACCESS_KEY = 'e6845b16-e6d9-4326-a801-27cee37681b3';
 
-const interestOptions =
+// Real open positions get their own option, tagged with the position slug
+// (via data-role-slug) so the "Apply for this role" buttons on the careers
+// page can auto-select the right one. The submitted value is always the
+// human-readable label, not the slug. Generic client-search categories follow.
+const roleOptions = OPEN_POSITIONS.map((pos) => ({
+  label: lang === 'es' ? pos.titleEs : pos.title,
+  slug: pos.slug,
+}));
+
+const genericOptions =
   lang === 'es'
     ? [
-        'Equipo de Altura (posición interna)',
         'Búsquedas para clientes — Finanzas',
         'Búsquedas para clientes — Tecnología',
         'Búsquedas para clientes — Ventas',
@@ -29,7 +38,6 @@ const interestOptions =
         'Otro',
       ]
     : [
-        'Altura’s own team (internal role)',
         'Client searches — Finance',
         'Client searches — Technology',
         'Client searches — Sales',
@@ -40,6 +48,11 @@ const interestOptions =
         'Client searches — Executive / Leadership',
         'Something else',
       ];
+
+const interestOptions = [
+  ...roleOptions,
+  ...genericOptions.map((label) => ({ label, slug: null })),
+];
 
 const t =
   lang === 'es'
@@ -148,7 +161,9 @@ const t =
       <label for="app-interest">{t.interest}</label>
       <select id="app-interest" name="interest" required>
         <option value="">{t.interestSelect}</option>
-        {interestOptions.map((option) => <option>{option}</option>)}
+        {interestOptions.map((option) => (
+          <option value={option.label} data-role-slug={option.slug ?? undefined}>{option.label}</option>
+        ))}
       </select>
     </div>
   </div>
@@ -272,6 +287,22 @@ const t =
 </style>
 
 <script>
+  // "Apply for this role" buttons carry data-apply-role="<slug>" — clicking one
+  // pre-selects the matching option in the interest dropdown before the page
+  // scrolls to the form via the link's normal #apply anchor behavior.
+  const interestSelect = document.getElementById('app-interest') as HTMLSelectElement | null;
+  document.querySelectorAll('[data-apply-role]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const slug = btn.getAttribute('data-apply-role');
+      if (!interestSelect || !slug) return;
+      const match = interestSelect.querySelector(`option[data-role-slug="${slug}"]`) as HTMLOptionElement | null;
+      if (match) {
+        interestSelect.value = match.value;
+        interestSelect.dispatchEvent(new Event('change'));
+      }
+    });
+  });
+
   const form = document.getElementById('applicationForm') as HTMLFormElement | null;
   const status = document.getElementById('appFormStatus');
   const submitBtn = document.getElementById('appFormSubmit') as HTMLButtonElement | null;

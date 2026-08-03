@@ -4,8 +4,9 @@ import { OPEN_POSITIONS } from '../data/careers.js';
 
 interface Props {
   lang: string;
+  defaultRoleSlug?: string;
 }
-const { lang } = Astro.props;
+const { lang, defaultRoleSlug } = Astro.props;
 
 // ---------------------------------------------------------------------------
 // Same Web3Forms setup as the contact form (see ContactForm.astro) — reuses
@@ -162,7 +163,7 @@ const t =
       <select id="app-interest" name="interest" required>
         <option value="">{t.interestSelect}</option>
         {interestOptions.map((option) => (
-          <option value={option.label} data-role-slug={option.slug ?? undefined}>{option.label}</option>
+          <option value={option.label} data-role-slug={option.slug ?? undefined} selected={option.slug === defaultRoleSlug}>{option.label}</option>
         ))}
       </select>
     </div>

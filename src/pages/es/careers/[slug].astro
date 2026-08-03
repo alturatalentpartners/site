@@ -1,0 +1,12 @@
+---
+import Page from '../../careers/[slug].astro';
+import { OPEN_POSITIONS } from '../../../data/careers.js';
+
+export function getStaticPaths() {
+  return OPEN_POSITIONS.map((pos) => ({ params: { slug: pos.slug }, props: { pos } }));
+}
+
+const { pos } = Astro.props;
+---
+
+<Page pos={pos} />

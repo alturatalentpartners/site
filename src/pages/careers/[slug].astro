@@ -1,0 +1,213 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import Icon from '../../components/Icon.astro';
+import ApplicationForm from '../../components/ApplicationForm.astro';
+import { OPEN_POSITIONS } from '../../data/careers.js';
+import { SITE } from '../../data/site.js';
+import { localizePath } from '../../i18n/utils.js';
+
+export function getStaticPaths() {
+  return OPEN_POSITIONS.map((pos) => ({ params: { slug: pos.slug }, props: { pos } }));
+}
+
+const { pos } = Astro.props;
+const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
+const base = import.meta.env.BASE_URL;
+const path = (p: string) => `${base}${localizePath(p, lang).replace(/^\//, '')}`;
+
+const title = lang === 'es' ? pos.titleEs : pos.title;
+const location = lang === 'es' ? pos.locationEs : pos.location;
+const type = lang === 'es' ? pos.typeEs : pos.type;
+const description = lang === 'es' ? pos.descriptionEs : pos.description;
+const aboutRole = lang === 'es' ? pos.aboutRoleEs : pos.aboutRole;
+const responsibilities = lang === 'es' ? pos.responsibilitiesEs : pos.responsibilities;
+const requirements = lang === 'es' ? pos.requirementsEs : pos.requirements;
+const niceToHave = lang === 'es' ? pos.niceToHaveEs : pos.niceToHave;
+const benefits = lang === 'es' ? pos.benefitsEs : pos.benefits;
+
+const copy = {
+  en: {
+    eyebrow: 'Open Position',
+    back: 'All open positions',
+    aboutRoleH2: 'About the Role',
+    responsibilitiesH2: 'Key Responsibilities',
+    requirementsH2: 'Requirements',
+    niceToHaveH2: 'Nice to Have',
+    benefitsH2: 'What We Offer',
+    formEyebrow: 'Apply',
+    formH2: `Apply for ${title}`,
+    formLede: 'Tell us about yourself and attach your résumé — we review every application personally.',
+    metaDescription: `${title} at Altura Talent Partners — ${location}, ${type}. ${description}`,
+  },
+  es: {
+    eyebrow: 'Posición Abierta',
+    back: 'Todas las posiciones abiertas',
+    aboutRoleH2: 'Sobre el Rol',
+    responsibilitiesH2: 'Responsabilidades Principales',
+    requirementsH2: 'Requisitos',
+    niceToHaveH2: 'Deseable',
+    benefitsH2: 'Qué Ofrecemos',
+    formEyebrow: 'Postúlate',
+    formH2: `Postúlate para ${title}`,
+    formLede: 'Contanos sobre vos y adjuntá tu CV — revisamos cada postulación de forma personal.',
+    metaDescription: `${title} en Altura Talent Partners — ${location}, ${type}. ${description}`,
+  },
+}[lang];
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'JobPosting',
+  title,
+  description,
+  identifier: {
+    '@type': 'PropertyValue',
+    name: SITE.name,
+    value: pos.slug,
+  },
+  datePosted: '2026-07-23',
+  employmentType: pos.type === 'Full-time' ? 'FULL_TIME' : pos.type,
+  hiringOrganization: {
+    '@type': 'Organization',
+    name: SITE.name,
+    sameAs: SITE.url,
+  },
+  jobLocationType: 'TELECOMMUTE',
+  applicantLocationRequirements: {
+    '@type': 'Country',
+    name: 'Americas',
+  },
+};
+---
+
+<Layout title={title} description={copy.metaDescription} schema={schema}>
+  <section class="page-hero section-sm">
+    <div class="container container-narrow">
+      <a href={path('careers/')} class="back-link">
+        <Icon name="arrowRight" size={14} />
+        <span>{copy.back}</span>
+      </a>
+      <span class="eyebrow">{copy.eyebrow}</span>
+      <h1>{title}</h1>
+      <div class="job-meta">
+        <span><Icon name="pin" size={16} /> {location}</span>
+        <span><Icon name="briefcase" size={16} /> {type}</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container container-narrow">
+      <p class="lede">{aboutRole}</p>
+
+      <h2>{copy.responsibilitiesH2}</h2>
+      <ul class="job-list">
+        {responsibilities.map((item) => (
+          <li><Icon name="check" size={15} /><span>{item}</span></li>
+        ))}
+      </ul>
+
+      <h2>{copy.requirementsH2}</h2>
+      <ul class="job-list">
+        {requirements.map((item) => (
+          <li><Icon name="check" size={15} /><span>{item}</span></li>
+        ))}
+      </ul>
+
+      <h2>{copy.niceToHaveH2}</h2>
+      <ul class="job-list">
+        {niceToHave.map((item) => (
+          <li><Icon name="check" size={15} /><span>{item}</span></li>
+        ))}
+      </ul>
+
+      <h2>{copy.benefitsH2}</h2>
+      <ul class="job-list">
+        {benefits.map((item) => (
+          <li><Icon name="check" size={15} /><span>{item}</span></li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  <section class="section section-gray" id="apply">
+    <div class="container container-narrow">
+      <div class="section-header text-center mx-auto">
+        <span class="eyebrow">{copy.formEyebrow}</span>
+        <h2>{copy.formH2}</h2>
+        <p class="lede mx-auto">{copy.formLede}</p>
+      </div>
+      <ApplicationForm lang={lang} defaultRoleSlug={pos.slug} />
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--fs-xs);
+    font-weight: 600;
+    color: var(--color-ink-500);
+    margin-bottom: 1.5rem;
+    transform: scaleX(-1);
+  }
+  .back-link span {
+    transform: scaleX(-1);
+  }
+  .back-link:hover {
+    color: var(--color-accent);
+  }
+
+  .job-meta {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 1.25rem;
+  }
+  .job-meta span {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: var(--fs-sm);
+    font-weight: 500;
+    color: var(--color-ink-500);
+  }
+
+  .section h2 {
+    margin-top: 2.25rem;
+    margin-bottom: 1rem;
+  }
+  .section h2:first-of-type {
+    margin-top: 0.5rem;
+  }
+
+  .job-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+  }
+  .job-list li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.65rem;
+    font-size: var(--fs-sm);
+    color: var(--color-ink-700);
+    line-height: 1.55;
+  }
+  .job-list li :global(svg) {
+    flex-shrink: 0;
+    margin-top: 3px;
+    color: var(--color-accent);
+  }
+
+  .section-header {
+    max-width: 640px;
+    margin-bottom: 3rem;
+  }
+  .section-header .eyebrow {
+    margin-bottom: 1rem;
+  }
+  .section-header h2 {
+    margin: 1rem 0;
+  }
+</style>

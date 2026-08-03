@@ -7,6 +7,8 @@ import { SITE } from '../data/site.js';
 import { localizePath } from '../i18n/utils.js';
 
 const lang = (Astro.currentLocale ?? 'en') as 'en' | 'es';
+const base = import.meta.env.BASE_URL;
+const path = (p: string) => `${base}${localizePath(p, lang).replace(/^\//, '')}`;
 
 const copy = {
   en: {
@@ -21,7 +23,7 @@ const copy = {
     emptyState: 'We don’t have any open positions on our own team right now. If that changes, this is the first place we’ll post it — in the meantime, the application below is a great way to get on our radar for future openings.',
     positionLocation: 'Location',
     positionType: 'Type',
-    applyBtn: 'Apply for this role',
+    applyBtn: 'View Details & Apply',
     candidatesEyebrow: 'For Candidates',
     candidatesH2: 'Looking for your next role?',
     candidatesLede: 'We run confidential executive searches for growing companies across North America, LATAM and Europe. We don’t publish our clients’ open roles publicly — that’s part of running a discreet process — but we’re always building relationships with strong professionals so we can reach out when the right opportunity comes up.',
@@ -46,7 +48,7 @@ const copy = {
     emptyState: 'No tenemos posiciones abiertas en nuestro propio equipo en este momento. Si eso cambia, este va a ser el primer lugar donde lo publiquemos — mientras tanto, la postulación de abajo es una excelente forma de estar en nuestro radar para futuras oportunidades.',
     positionLocation: 'Ubicación',
     positionType: 'Tipo',
-    applyBtn: 'Postularme a este rol',
+    applyBtn: 'Ver Detalles y Postularme',
     candidatesEyebrow: 'Para Candidatos',
     candidatesH2: '¿Buscas tu próxima posición?',
     candidatesLede: 'Llevamos adelante búsquedas ejecutivas confidenciales para empresas en crecimiento de Norteamérica, LATAM y Europa. No publicamos públicamente los roles abiertos de nuestros clientes — eso es parte de mantener un proceso discreto — pero siempre estamos construyendo relaciones con profesionales sólidos para poder contactarlos cuando surge la oportunidad correcta.',
@@ -106,7 +108,7 @@ const schema = {
                 </div>
                 <p>{lang === 'es' ? pos.descriptionEs : pos.description}</p>
               </div>
-              <a href="#apply" class="btn btn-ghost" data-apply-role={pos.slug}>{copy.applyBtn}</a>
+              <a href={path(`careers/${pos.slug}/`)} class="btn btn-ghost">{copy.applyBtn} <Icon name="arrowRight" size={14} /></a>
             </article>
           ))}
         </div>

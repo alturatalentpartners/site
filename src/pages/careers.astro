@@ -13,14 +13,14 @@ const path = (p: string) => `${base}${localizePath(p, lang).replace(/^\//, '')}`
 const copy = {
   en: {
     metaTitle: 'Careers',
-    metaDescription: 'Careers at Altura Talent Partners, plus how to apply if you’re a candidate looking to be considered for the searches we run for our clients.',
+    metaDescription: 'Open positions at Altura Talent Partners — most are confidential searches we run for clients — plus how to apply if you’re a candidate looking to be considered for future opportunities.',
     eyebrow: 'Careers',
     h1: 'Build your next chapter with Altura',
-    lede: 'Two ways to connect with us: join our own team, or let us know you’re open to your next role so we can consider you for the confidential searches we run for clients.',
-    teamEyebrow: 'Careers at Altura',
-    teamH2: 'Working on our team',
-    teamLede: 'We’re a small, deliberate team — when we grow, it’s because a role genuinely needs to exist, not to hit a headcount target.',
-    emptyState: 'We don’t have any open positions on our own team right now. If that changes, this is the first place we’ll post it — in the meantime, the application below is a great way to get on our radar for future openings.',
+    lede: 'Most of what we post here are confidential opportunities we’re recruiting for on behalf of our clients. Explore what’s open below, or let us know you’re interested in future roles.',
+    teamEyebrow: 'Open Positions',
+    teamH2: 'Current opportunities',
+    teamLede: 'A mix of roles we’re recruiting for on behalf of clients, and occasionally a position here at Altura itself — read each listing for the specifics.',
+    emptyState: 'We don’t have any open positions right now. Most of what we post here are opportunities for clients, so check back often — or apply below to get on our radar.',
     positionLocation: 'Location',
     positionType: 'Type',
     applyBtn: 'View Details & Apply',
@@ -38,14 +38,14 @@ const copy = {
   },
   es: {
     metaTitle: 'Empleo',
-    metaDescription: 'Oportunidades en Altura Talent Partners, y cómo postularte si eres candidato/a y quieres que te tengamos en cuenta para las búsquedas que hacemos para nuestros clientes.',
+    metaDescription: 'Vacantes abiertas en Altura Talent Partners — la mayoría son búsquedas confidenciales que llevamos adelante para clientes — y cómo postularte si quieres que te tengamos en cuenta para futuras oportunidades.',
     eyebrow: 'Empleo',
     h1: 'Construye tu próximo capítulo con Altura',
-    lede: 'Dos formas de conectar con nosotros: sumarte a nuestro equipo, o avisarnos que estás abierto/a a una nueva oportunidad para que te tengamos en cuenta en las búsquedas confidenciales que hacemos para nuestros clientes.',
-    teamEyebrow: 'Empleo en Altura',
-    teamH2: 'Trabajar en nuestro equipo',
-    teamLede: 'Somos un equipo pequeño y deliberado — cuando crecemos, es porque un rol realmente necesita existir, no para cumplir un número de headcount.',
-    emptyState: 'No tenemos posiciones abiertas en nuestro propio equipo en este momento. Si eso cambia, este va a ser el primer lugar donde lo publiquemos — mientras tanto, la postulación de abajo es una excelente forma de estar en nuestro radar para futuras oportunidades.',
+    lede: 'La mayoría de lo que publicamos aquí son oportunidades confidenciales que reclutamos en nombre de nuestros clientes. Explora lo que está abierto ahora, o dinos que te interesan futuras oportunidades.',
+    teamEyebrow: 'Vacantes Abiertas',
+    teamH2: 'Oportunidades actuales',
+    teamLede: 'Una combinación de roles que reclutamos en nombre de clientes y, ocasionalmente, alguna posición aquí en Altura — lee cada aviso para conocer los detalles.',
+    emptyState: 'No tenemos vacantes abiertas en este momento. La mayoría de lo que publicamos aquí son oportunidades para clientes, así que vuelve a revisar pronto — o postúlate abajo para estar en nuestro radar.',
     positionLocation: 'Ubicación',
     positionType: 'Tipo',
     applyBtn: 'Ver Detalles y Postularme',
@@ -82,7 +82,7 @@ const schema = {
     </div>
   </section>
 
-  <!-- Internal openings -->
+  <!-- Open positions -->
   <section class="section">
     <div class="container container-narrow">
       <div class="section-header">

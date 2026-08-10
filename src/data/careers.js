@@ -1,9 +1,11 @@
-// Internal open positions AT Altura Talent Partners itself (not client
-// roles — those stay confidential, which is why candidates apply through
-// the general application form instead of a public job board).
+// Listings shown on the Careers page. `kind: 'internal'` = an actual open
+// role AT Altura itself. `kind: 'client'` = a broad, unnamed campaign for
+// roles Altura is filling on behalf of clients — no specific client or role
+// is ever named here, consistent with how we run confidential searches.
 export const OPEN_POSITIONS = [
   {
     slug: 'executive-assistant',
+    kind: 'internal',
     title: 'Executive Assistant',
     titleEs: 'Asistente Ejecutivo/a',
     location: 'Remote (Americas time zones)',
@@ -74,6 +76,73 @@ export const OPEN_POSITIONS = [
       'Compensación competitiva, según experiencia',
       'Totalmente remoto',
       'Mentoría directa del Managing Partner de Altura, con exposición real a cómo funciona una firma boutique de búsqueda',
+    ],
+  },
+  {
+    slug: 'tech-talent-us',
+    kind: 'client',
+    title: 'Tech Talent — Multiple US Opportunities',
+    titleEs: 'Talento Tech — Múltiples Oportunidades en EE. UU.',
+    location: 'San Francisco · New York · Texas',
+    locationEs: 'San Francisco · Nueva York · Texas',
+    type: 'Onsite',
+    typeEs: 'Presencial',
+    description:
+      'We’re actively recruiting tech talent on behalf of several client companies, with onsite roles open in San Francisco, New York and Texas.',
+    descriptionEs:
+      'Estamos reclutando activamente talento tech en nombre de varias empresas clientes, con roles presenciales abiertos en San Francisco, Nueva York y Texas.',
+
+    aboutRole:
+      'We’re supporting several companies hiring across engineering, product and data roles in the US right now. Most positions are onsite in San Francisco, New York or Texas, and we’re looking to build relationships with strong technical profiles — whether or not there’s an exact match today.',
+    aboutRoleEs:
+      'Estamos apoyando a varias empresas que están contratando en áreas de ingeniería, producto y datos en Estados Unidos. La mayoría de las posiciones son presenciales en San Francisco, Nueva York o Texas, y buscamos construir relaciones con buenos perfiles técnicos, haya o no un match exacto hoy.',
+
+    responsibilities: [
+      'Software engineers, product managers, data scientists and other technical profiles, across seniority levels',
+      'Based in — or open to relocating to — San Francisco, New York or Texas',
+      'Comfortable with onsite, in-person collaboration; most of these roles are not remote',
+      'Genuinely interested in a well-matched opportunity, not just a mass application',
+    ],
+    responsibilitiesEs: [
+      'Ingenieros/as de software, product managers, data scientists y otros perfiles técnicos, en distintos niveles de seniority',
+      'Que vivan en — o estén dispuestos/as a mudarse a — San Francisco, Nueva York o Texas',
+      'Cómodos/as con trabajo presencial y colaboración en persona; la mayoría de estos roles no son remotos',
+      'Con interés genuino en una oportunidad bien matcheada, no solo en postularse en masa',
+    ],
+
+    requirements: [
+      'Authorized to work in the United States for most roles',
+      'Based in, or willing to relocate to, San Francisco, New York or Texas',
+      'Open to onsite work',
+      'Sponsorship may be available for a limited number of roles — let us know if you’d need it',
+    ],
+    requirementsEs: [
+      'Autorización para trabajar en Estados Unidos para la mayoría de los roles',
+      'Vivir en, o estar dispuesto/a a mudarte a, San Francisco, Nueva York o Texas',
+      'Disponibilidad para trabajo presencial',
+      'Sponsorship puede estar disponible para un número limitado de roles — avísanos si lo necesitas',
+    ],
+
+    niceToHave: [
+      'We’re working on behalf of several companies at once, so we’ll match your profile to the right opportunity rather than a single fixed role',
+      'Referrals are welcome — if you know someone great, send them our way',
+      'We respond personally to every submission',
+    ],
+    niceToHaveEs: [
+      'Trabajamos en nombre de varias empresas a la vez, así que vamos a matchear tu perfil con la oportunidad correcta en lugar de un solo rol fijo',
+      'Las referencias son bienvenidas — si conoces a alguien bueno/a, mándanoslo/a',
+      'Respondemos personalmente cada postulación',
+    ],
+
+    benefits: [
+      'Share your profile once — we’ll reach out if there’s a genuine match with one of our active client searches',
+      'Confidential by default — your information isn’t shared until you say go',
+      'No mass outreach — we only contact you about roles that actually fit',
+    ],
+    benefitsEs: [
+      'Comparte tu perfil una sola vez — te contactamos si hay un match genuino con alguna de nuestras búsquedas activas para clientes',
+      'Confidencial por defecto — tu información no se comparte hasta que tú lo autorices',
+      'Sin contacto masivo — te contactamos solo cuando un rol realmente coincide contigo',
     ],
   },
 ];

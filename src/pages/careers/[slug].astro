@@ -25,34 +25,42 @@ const requirements = lang === 'es' ? pos.requirementsEs : pos.requirements;
 const niceToHave = lang === 'es' ? pos.niceToHaveEs : pos.niceToHave;
 const benefits = lang === 'es' ? pos.benefitsEs : pos.benefits;
 
+const isClientSearch = pos.kind === 'client';
+
 const copy = {
   en: {
-    eyebrow: 'Open Position',
+    eyebrow: isClientSearch ? 'Active Search' : 'Open Position',
     back: 'All open positions',
     aboutRoleH2: 'About the Role',
-    responsibilitiesH2: 'Key Responsibilities',
+    responsibilitiesH2: isClientSearch ? 'What We’re Looking For' : 'Key Responsibilities',
     requirementsH2: 'Requirements',
-    niceToHaveH2: 'Nice to Have',
-    benefitsH2: 'What We Offer',
+    niceToHaveH2: isClientSearch ? 'Good to Know' : 'Nice to Have',
+    benefitsH2: isClientSearch ? 'How This Works' : 'What We Offer',
     formEyebrow: 'Apply',
     formH2: `Apply for ${title}`,
     formLede: 'Tell us about yourself and attach your résumé — we review every application personally.',
     metaDescription: `${title} at Altura Talent Partners — ${location}, ${type}. ${description}`,
   },
   es: {
-    eyebrow: 'Posición Abierta',
+    eyebrow: isClientSearch ? 'Búsqueda Activa' : 'Posición Abierta',
     back: 'Todas las posiciones abiertas',
     aboutRoleH2: 'Sobre el Rol',
-    responsibilitiesH2: 'Responsabilidades Principales',
+    responsibilitiesH2: isClientSearch ? 'Qué Estamos Buscando' : 'Responsabilidades Principales',
     requirementsH2: 'Requisitos',
-    niceToHaveH2: 'Deseable',
-    benefitsH2: 'Qué Ofrecemos',
+    niceToHaveH2: isClientSearch ? 'Para Tener en Cuenta' : 'Deseable',
+    benefitsH2: isClientSearch ? 'Cómo Funciona' : 'Qué Ofrecemos',
     formEyebrow: 'Postúlate',
     formH2: `Postúlate para ${title}`,
-    formLede: 'Contanos sobre vos y adjuntá tu CV — revisamos cada postulación de forma personal.',
+    formLede: 'Cuéntanos sobre ti y adjunta tu CV — revisamos cada postulación de forma personal.',
     metaDescription: `${title} en Altura Talent Partners — ${location}, ${type}. ${description}`,
   },
 }[lang];
+
+const defaultInterestLabel = isClientSearch
+  ? lang === 'es'
+    ? 'Búsquedas para clientes — Tecnología'
+    : 'Client searches — Technology'
+  : undefined;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -71,10 +79,10 @@ const schema = {
     name: SITE.name,
     sameAs: SITE.url,
   },
-  jobLocationType: 'TELECOMMUTE',
+  jobLocationType: isClientSearch ? 'ONSITE' : 'TELECOMMUTE',
   applicantLocationRequirements: {
     '@type': 'Country',
-    name: 'Americas',
+    name: isClientSearch ? 'United States' : 'Americas',
   },
 };
 ---
@@ -136,7 +144,7 @@ const schema = {
         <h2>{copy.formH2}</h2>
         <p class="lede mx-auto">{copy.formLede}</p>
       </div>
-      <ApplicationForm lang={lang} defaultRoleSlug={pos.slug} />
+      <ApplicationForm lang={lang} defaultRoleSlug={isClientSearch ? undefined : pos.slug} defaultInterestLabel={defaultInterestLabel} />
     </div>
   </section>
 </Layout>

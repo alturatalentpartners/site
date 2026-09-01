@@ -26,16 +26,17 @@ const niceToHave = lang === 'es' ? pos.niceToHaveEs : pos.niceToHave;
 const benefits = lang === 'es' ? pos.benefitsEs : pos.benefits;
 
 const isClientSearch = pos.kind === 'client';
+const isCampaign = pos.campaign === true;
 
 const copy = {
   en: {
     eyebrow: isClientSearch ? 'Active Search' : 'Open Position',
     back: 'All open positions',
     aboutRoleH2: 'About the Role',
-    responsibilitiesH2: isClientSearch ? 'What We’re Looking For' : 'Key Responsibilities',
+    responsibilitiesH2: isCampaign ? 'What We’re Looking For' : 'Key Responsibilities',
     requirementsH2: 'Requirements',
-    niceToHaveH2: isClientSearch ? 'Good to Know' : 'Nice to Have',
-    benefitsH2: isClientSearch ? 'How This Works' : 'What We Offer',
+    niceToHaveH2: isCampaign ? 'Good to Know' : 'Nice to Have',
+    benefitsH2: isCampaign ? 'How This Works' : 'What We Offer',
     formEyebrow: 'Apply',
     formH2: `Apply for ${title}`,
     formLede: 'Tell us about yourself and attach your résumé — we review every application personally.',
@@ -45,10 +46,10 @@ const copy = {
     eyebrow: isClientSearch ? 'Búsqueda Activa' : 'Posición Abierta',
     back: 'Todas las posiciones abiertas',
     aboutRoleH2: 'Sobre el Rol',
-    responsibilitiesH2: isClientSearch ? 'Qué Estamos Buscando' : 'Responsabilidades Principales',
+    responsibilitiesH2: isCampaign ? 'Qué Estamos Buscando' : 'Responsabilidades Principales',
     requirementsH2: 'Requisitos',
-    niceToHaveH2: isClientSearch ? 'Para Tener en Cuenta' : 'Deseable',
-    benefitsH2: isClientSearch ? 'Cómo Funciona' : 'Qué Ofrecemos',
+    niceToHaveH2: isCampaign ? 'Para Tener en Cuenta' : 'Deseable',
+    benefitsH2: isCampaign ? 'Cómo Funciona' : 'Qué Ofrecemos',
     formEyebrow: 'Postúlate',
     formH2: `Postúlate para ${title}`,
     formLede: 'Cuéntanos sobre ti y adjunta tu CV — revisamos cada postulación de forma personal.',
@@ -56,7 +57,7 @@ const copy = {
   },
 }[lang];
 
-const defaultInterestLabel = isClientSearch
+const defaultInterestLabel = isCampaign
   ? lang === 'es'
     ? 'Búsquedas para clientes — Tecnología'
     : 'Client searches — Technology'
@@ -73,7 +74,7 @@ const schema = {
     value: pos.slug,
   },
   datePosted: '2026-07-23',
-  employmentType: pos.type === 'Full-time' ? 'FULL_TIME' : pos.type,
+  employmentType: pos.type.includes('Full-time') ? 'FULL_TIME' : pos.type,
   hiringOrganization: {
     '@type': 'Organization',
     name: SITE.name,
@@ -144,7 +145,7 @@ const schema = {
         <h2>{copy.formH2}</h2>
         <p class="lede mx-auto">{copy.formLede}</p>
       </div>
-      <ApplicationForm lang={lang} defaultRoleSlug={isClientSearch ? undefined : pos.slug} defaultInterestLabel={defaultInterestLabel} />
+      <ApplicationForm lang={lang} defaultRoleSlug={isCampaign ? undefined : pos.slug} defaultInterestLabel={defaultInterestLabel} />
     </div>
   </section>
 </Layout>

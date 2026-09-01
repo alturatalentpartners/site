@@ -1,7 +1,11 @@
 // Listings shown on the Careers page. `kind: 'internal'` = an actual open
-// role AT Altura itself. `kind: 'client'` = a broad, unnamed campaign for
-// roles Altura is filling on behalf of clients — no specific client or role
-// is ever named here, consistent with how we run confidential searches.
+// role AT Altura itself. `kind: 'client'` = a role Altura is filling on
+// behalf of a client — the client's name is never used, consistent with how
+// we run confidential searches. `campaign: true` marks a broad, multi-role/
+// multi-location listing (no single fixed comp or client) rather than a
+// specific job order — it gets different section labels on its detail page
+// (see careers/[slug].astro) and a generic "interest" preselect instead of
+// its own dropdown option.
 export const OPEN_POSITIONS = [
   {
     slug: 'executive-assistant',
@@ -81,6 +85,7 @@ export const OPEN_POSITIONS = [
   {
     slug: 'tech-talent-us',
     kind: 'client',
+    campaign: true,
     title: 'Tech Talent — Multiple US Opportunities',
     titleEs: 'Talento Tech — Múltiples Oportunidades en EE. UU.',
     location: 'San Francisco · New York · Texas',
@@ -143,6 +148,214 @@ export const OPEN_POSITIONS = [
       'Comparte tu perfil una sola vez — te contactamos si hay un match genuino con alguna de nuestras búsquedas activas para clientes',
       'Confidencial por defecto — tu información no se comparte hasta que tú lo autorices',
       'Sin contacto masivo — te contactamos solo cuando un rol realmente coincide contigo',
+    ],
+  },
+  {
+    slug: 'forward-deployed-engineer',
+    kind: 'client',
+    title: 'Forward Deployed Engineer',
+    titleEs: 'Forward Deployed Engineer',
+    location: 'San Francisco, CA or New York, NY',
+    locationEs: 'San Francisco, CA o Nueva York, NY',
+    type: 'Full-time · Onsite',
+    typeEs: 'Tiempo completo · Presencial',
+    description:
+      'A confidential search for an early-stage AI company — we’re looking for a Forward Deployed Engineer who’s equally comfortable building production software and working directly with customers in real-world environments.',
+    descriptionEs:
+      'Una búsqueda confidencial para una empresa de IA en etapa temprana — buscamos un/a Forward Deployed Engineer que se sienta igual de cómodo/a construyendo software de producción y trabajando directamente con clientes en entornos reales.',
+
+    aboutRole:
+      'This is a confidential search managed by Altura Talent Partners for an early-stage AI company. We’re looking for a Forward Deployed Engineer who is equally comfortable building production software and working directly with customers in real-world environments. You’ll sit at the intersection of engineering, product and customer deployment — understanding complex workflows, building technical solutions, implementing them alongside users, and turning what you learn in the field into improvements to the core product. This is not a traditional customer success role — we’re looking for a strong software engineer who can communicate just as effectively with non-technical users as with engineers.',
+    aboutRoleEs:
+      'Esta es una búsqueda confidencial gestionada por Altura Talent Partners para una empresa de IA en etapa temprana. Buscamos un/a Forward Deployed Engineer que se sienta igual de cómodo/a construyendo software de producción y trabajando directamente con clientes en entornos reales. Vas a estar en la intersección entre ingeniería, producto e implementación con clientes — entendiendo flujos de trabajo complejos, construyendo soluciones técnicas, implementándolas junto a los usuarios, y convirtiendo lo que aprendas en el campo en mejoras al producto principal. Este no es un rol tradicional de customer success — buscamos un/a ingeniero/a de software sólido/a que pueda comunicarse igual de bien con usuarios no técnicos que con otros ingenieros.',
+
+    responsibilities: [
+      'Build production software using Python and TypeScript',
+      'Deploy technical solutions directly with customers',
+      'Work alongside users during onboarding and implementation',
+      'Build customer-specific integrations and configurations',
+      'Diagnose and resolve technical issues during live deployments',
+      'Translate customer workflows into product and engineering requirements',
+      'Own ambiguous problems from discovery through production',
+      'Work closely with the core engineering team',
+      'Travel to customer locations when required',
+    ],
+    responsibilitiesEs: [
+      'Construir software de producción usando Python y TypeScript',
+      'Implementar soluciones técnicas directamente con clientes',
+      'Trabajar junto a los usuarios durante el onboarding e implementación',
+      'Construir integraciones y configuraciones específicas para cada cliente',
+      'Diagnosticar y resolver problemas técnicos durante implementaciones en vivo',
+      'Traducir flujos de trabajo de clientes en requerimientos de producto e ingeniería',
+      'Hacerte cargo de problemas ambiguos desde el descubrimiento hasta producción',
+      'Trabajar de cerca con el equipo de ingeniería principal',
+      'Viajar a las instalaciones de clientes cuando sea necesario',
+    ],
+
+    requirements: [
+      'Strong software engineering fundamentals',
+      'Production experience with Python',
+      'Production experience with TypeScript',
+      'Ability to independently own problems end-to-end',
+      'Comfortable operating in ambiguous environments',
+      'Excellent communication skills',
+      'Comfortable working directly with non-technical users',
+      'Willingness to travel',
+      'Comfortable working onsite in San Francisco or New York',
+    ],
+    requirementsEs: [
+      'Fundamentos sólidos de ingeniería de software',
+      'Experiencia en producción con Python',
+      'Experiencia en producción con TypeScript',
+      'Capacidad de hacerte cargo de problemas de punta a punta de forma independiente',
+      'Comodidad operando en entornos ambiguos',
+      'Excelentes habilidades de comunicación',
+      'Comodidad trabajando directamente con usuarios no técnicos',
+      'Disposición para viajar',
+      'Comodidad trabajando de forma presencial en San Francisco o Nueva York',
+    ],
+
+    niceToHave: [
+      'Forward Deployed Engineering or Solutions Engineering experience',
+      'Customer-facing technical experience',
+      'Early-stage startup experience',
+      'AWS',
+      'Industrial or field-heavy industry experience',
+      'AI-enabled product experience',
+      'Exceptional new graduates with unusually strong technical ability and ownership may also be considered',
+    ],
+    niceToHaveEs: [
+      'Experiencia en Forward Deployed Engineering o Solutions Engineering',
+      'Experiencia técnica de cara al cliente',
+      'Experiencia en startups en etapa temprana',
+      'AWS',
+      'Experiencia en industrias operativas o de campo',
+      'Experiencia en productos con IA',
+      'Recién graduados/as excepcionales con capacidad técnica y ownership fuera de lo común también pueden ser considerados/as',
+    ],
+
+    benefits: [
+      'Base salary: $140,000–$160,000 USD',
+      'Equity: 0.30%–1.00%',
+      'Visa sponsorship available',
+      'Relocation available',
+      'Onsite in San Francisco or New York',
+    ],
+    benefitsEs: [
+      'Salario base: USD $140,000–$160,000',
+      'Equity: 0.30%–1.00%',
+      'Sponsorship de visa disponible',
+      'Reubicación disponible',
+      'Presencial en San Francisco o Nueva York',
+    ],
+  },
+  {
+    slug: 'founding-engineer',
+    kind: 'client',
+    title: 'Founding Engineer',
+    titleEs: 'Founding Engineer',
+    location: 'San Francisco, CA or New York, NY',
+    locationEs: 'San Francisco, CA o Nueva York, NY',
+    type: 'Full-time · Onsite',
+    typeEs: 'Tiempo completo · Presencial',
+    description:
+      'A confidential search for an early-stage AI company — we’re looking for a highly autonomous Founding Engineer to become one of the earliest members of the product and engineering team, in a true 0→1 role.',
+    descriptionEs:
+      'Una búsqueda confidencial para una empresa de IA en etapa temprana — buscamos un/a Founding Engineer muy autónomo/a para ser uno de los primeros miembros del equipo de producto e ingeniería, en un rol 0→1 real.',
+
+    aboutRole:
+      'This is a confidential search managed by Altura Talent Partners for an early-stage AI company. We’re looking for a highly autonomous Founding Engineer to become one of the earliest members of the product and engineering team. This is a true 0→1 opportunity with significant ownership. You’ll work across the stack, take ambiguous problems from idea to production, collaborate directly with users, and help shape both the product and the technical foundation of the company.',
+    aboutRoleEs:
+      'Esta es una búsqueda confidencial gestionada por Altura Talent Partners para una empresa de IA en etapa temprana. Buscamos un/a Founding Engineer muy autónomo/a para convertirse en uno de los primeros miembros del equipo de producto e ingeniería. Esta es una oportunidad 0→1 real, con ownership significativo. Vas a trabajar a lo largo de todo el stack, llevar problemas ambiguos desde la idea hasta producción, colaborar directamente con usuarios, y ayudar a moldear tanto el producto como la base técnica de la empresa.',
+
+    responsibilities: [
+      'Own major product features from concept through production',
+      'Build across frontend, backend and AI-enabled functionality',
+      'Develop primarily with Python and TypeScript',
+      'Work on complex interactive and data-heavy product experiences',
+      'Build AI-assisted workflows',
+      'Solve technically ambiguous problems with limited structure',
+      'Work directly with users and iterate based on real feedback',
+      'Influence architecture and technical decisions',
+      'Help establish engineering processes and culture',
+      'Contribute to future engineering hiring',
+      'Ship quickly and continuously improve the product',
+    ],
+    responsibilitiesEs: [
+      'Hacerte cargo de features de producto importantes, desde el concepto hasta producción',
+      'Construir en frontend, backend y funcionalidad habilitada por IA',
+      'Desarrollar principalmente con Python y TypeScript',
+      'Trabajar en experiencias de producto complejas, interactivas y con mucho manejo de datos',
+      'Construir flujos de trabajo asistidos por IA',
+      'Resolver problemas técnicamente ambiguos con poca estructura',
+      'Trabajar directamente con usuarios e iterar en base a feedback real',
+      'Influir en decisiones de arquitectura y técnicas',
+      'Ayudar a establecer procesos y cultura de ingeniería',
+      'Contribuir a futuras contrataciones de ingeniería',
+      'Lanzar rápido y mejorar el producto de forma continua',
+    ],
+
+    requirements: [
+      'Strong engineering generalist',
+      'Production experience with Python',
+      'Production experience with TypeScript',
+      'Ability to work across different parts of the stack',
+      'Strong product intuition',
+      'High autonomy and ownership',
+      'Comfortable solving poorly defined problems',
+      'Strong bias toward shipping',
+      'Ability to take projects from ambiguity to production',
+      'Comfortable in an early-stage startup environment',
+      'Willing to work onsite in San Francisco or New York',
+    ],
+    requirementsEs: [
+      'Ingeniero/a generalista sólido/a',
+      'Experiencia en producción con Python',
+      'Experiencia en producción con TypeScript',
+      'Capacidad de trabajar en distintas partes del stack',
+      'Buena intuición de producto',
+      'Alta autonomía y ownership',
+      'Comodidad resolviendo problemas mal definidos',
+      'Fuerte sesgo hacia lanzar (shippear)',
+      'Capacidad de llevar proyectos desde la ambigüedad hasta producción',
+      'Comodidad en un entorno de startup en etapa temprana',
+      'Disposición a trabajar de forma presencial en San Francisco o Nueva York',
+    ],
+
+    niceToHave: [
+      'LLM-powered applications',
+      'Computer vision',
+      'Geometry, rendering or canvas-based applications',
+      'Real-time or collaborative software',
+      'Industrial or operational technology',
+      'Zero-to-one product development',
+      'Early-stage startup experience',
+      'Exceptional new graduates with unusually strong technical ability, product thinking and independence may also be considered',
+    ],
+    niceToHaveEs: [
+      'Aplicaciones potenciadas por LLMs',
+      'Visión por computadora',
+      'Aplicaciones de geometría, rendering o basadas en canvas',
+      'Software en tiempo real o colaborativo',
+      'Tecnología industrial u operativa',
+      'Desarrollo de producto de cero a uno',
+      'Experiencia en startups en etapa temprana',
+      'Recién graduados/as excepcionales con capacidad técnica, pensamiento de producto e independencia fuera de lo común también pueden ser considerados/as',
+    ],
+
+    benefits: [
+      'Base salary: $140,000–$160,000 USD',
+      'Equity: 0.30%–1.00%',
+      'Visa sponsorship available',
+      'Relocation available',
+      'Onsite in San Francisco or New York',
+    ],
+    benefitsEs: [
+      'Salario base: USD $140,000–$160,000',
+      'Equity: 0.30%–1.00%',
+      'Sponsorship de visa disponible',
+      'Reubicación disponible',
+      'Presencial en San Francisco o Nueva York',
     ],
   },
 ];

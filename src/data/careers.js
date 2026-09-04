@@ -5,7 +5,8 @@
 // multi-location listing (no single fixed comp or client) rather than a
 // specific job order — it gets different section labels on its detail page
 // (see careers/[slug].astro) and a generic "interest" preselect instead of
-// its own dropdown option.
+// its own dropdown option. `country` feeds the JobPosting schema's
+// applicantLocationRequirements — defaults to 'Americas' when omitted.
 export const OPEN_POSITIONS = [
   {
     slug: 'executive-assistant',
@@ -86,6 +87,7 @@ export const OPEN_POSITIONS = [
     slug: 'tech-talent-us',
     kind: 'client',
     campaign: true,
+    country: 'United States',
     title: 'Tech Talent — Multiple US Opportunities',
     titleEs: 'Talento Tech — Múltiples Oportunidades en EE. UU.',
     location: 'San Francisco · New York · Texas',
@@ -153,6 +155,7 @@ export const OPEN_POSITIONS = [
   {
     slug: 'forward-deployed-engineer',
     kind: 'client',
+    country: 'United States',
     title: 'Forward Deployed Engineer',
     titleEs: 'Forward Deployed Engineer',
     location: 'San Francisco, CA or New York, NY',
@@ -252,6 +255,7 @@ export const OPEN_POSITIONS = [
   {
     slug: 'founding-engineer',
     kind: 'client',
+    country: 'United States',
     title: 'Founding Engineer',
     titleEs: 'Founding Engineer',
     location: 'San Francisco, CA or New York, NY',
@@ -356,6 +360,118 @@ export const OPEN_POSITIONS = [
       'Sponsorship de visa disponible',
       'Reubicación disponible',
       'Presencial en San Francisco o Nueva York',
+    ],
+  },
+  {
+    slug: 'hotel-operations-manager',
+    kind: 'client',
+    country: 'Dominican Republic',
+    title: 'Hotel Operations Manager',
+    titleEs: 'Gerente/a de Operaciones Hoteleras',
+    location: 'Gascue, Santo Domingo, Dominican Republic',
+    locationEs: 'Gascue, Santo Domingo, República Dominicana',
+    type: 'Indefinite-term · Onsite',
+    typeEs: 'Tiempo Indefinido · Presencial',
+    description:
+      'Altura Talent Partners is managing this search for an independent 27-room hotel in Gascue, Santo Domingo — currently going through renovation and reorganization, and looking for a hands-on Operations Manager to lead daily operations.',
+    descriptionEs:
+      'Altura Talent Partners está gestionando esta búsqueda para un hotel independiente de 27 habitaciones en Gascue, Santo Domingo — en proceso de renovación y reorganización, busca un/a Gerente/a de Operaciones práctico/a para liderar la operación diaria.',
+
+    aboutRole:
+      'This is a confidential search managed by Altura Talent Partners for an independent 27-room hotel in Gascue, Santo Domingo. The hotel is going through a renovation and reorganization process. The person selected will be responsible for leading day-to-day operations, improving existing processes, and ensuring a consistent guest experience. Given the hotel’s size, we’re looking for a well-rounded, hands-on profile — someone able to supervise, execute, resolve issues, and directly support different areas of the operation when needed.',
+    aboutRoleEs:
+      'Altura Talent Partners está gestionando la búsqueda de un/a Gerente/a de Operaciones Hoteleras para un hotel independiente de 27 habitaciones ubicado en Gascue, Santo Domingo. El hotel se encuentra en un proceso de renovación y reorganización. La persona seleccionada será responsable de liderar su operación diaria, mejorar los procesos existentes y garantizar una experiencia consistente para los huéspedes. Por el tamaño del hotel, buscamos un perfil integral y práctico — con capacidad para supervisar, ejecutar, resolver incidencias y apoyar directamente las diferentes áreas de la operación cuando sea necesario.',
+
+    responsibilities: [
+      'Coordinate daily hotel operations and ensure smooth communication across departments',
+      'Oversee front desk, accommodations, reservations and guest service',
+      'Manage direct bookings and reservations coming from OTA platforms',
+      'Monitor availability, rates, occupancy, billing and key operating metrics',
+      'Coordinate, supervise and train the front desk team',
+      'Develop procedures and standards that maintain operational continuity',
+      'Organize schedules, assign responsibilities and follow up on staff performance',
+      'Manage purchasing, inventory, vendors and cost control',
+      'Oversee preventive and corrective maintenance of the property',
+      'Handle and resolve operational issues and guest-related situations',
+      'Implement actions to increase occupancy, direct sales and hotel revenue',
+      'Prepare periodic operations and results reports for management',
+      'Ensure compliance with internal policies and applicable regulations',
+    ],
+    responsibilitiesEs: [
+      'Coordinar la operación diaria del hotel y asegurar la correcta comunicación entre sus diferentes áreas',
+      'Supervisar la recepción, el alojamiento, las reservas y la atención al huésped',
+      'Gestionar las reservas directas y las provenientes de plataformas OTA',
+      'Monitorear disponibilidad, tarifas, ocupación, facturación y principales indicadores operativos',
+      'Coordinar, supervisar y formar al equipo de recepción',
+      'Desarrollar procedimientos y estándares que permitan mantener la continuidad de la operación',
+      'Organizar horarios, asignar responsabilidades y dar seguimiento al desempeño del personal',
+      'Gestionar compras, inventarios, proveedores y control de costes',
+      'Supervisar el mantenimiento preventivo y correctivo de las instalaciones',
+      'Atender y resolver incidencias operativas y situaciones relacionadas con huéspedes',
+      'Implementar acciones para aumentar la ocupación, las ventas directas y los ingresos del hotel',
+      'Preparar reportes periódicos de operación y resultados para la dirección',
+      'Asegurar el cumplimiento de las políticas internas y de la normativa aplicable',
+    ],
+
+    requirements: [
+      'Bachelor’s degree in Hospitality, Tourism, Hotel Administration or a related field',
+      '5 to 15 years of professional experience in hospitality',
+      'Direct experience in front desk, accommodations and hotel operations',
+      'Familiarity with PMS systems, booking engines and OTA platforms such as Booking.com and Expedia',
+      'Experience managing purchasing, vendors, inventory and operating costs',
+      'Experience supervising and training staff',
+      'Commercial mindset and results orientation',
+      'Functional to advanced English for communicating with international guests',
+      'Solid digital-tools proficiency and reporting skills',
+      'Availability to work onsite in Santo Domingo',
+    ],
+    requirementsEs: [
+      'Licenciatura en Hotelería, Turismo, Administración Hotelera o carrera relacionada',
+      'Entre 5 y 15 años de experiencia profesional en hotelería',
+      'Experiencia directa en recepción, alojamiento y operación hotelera',
+      'Conocimiento de sistemas PMS, motores de reservas y plataformas OTA como Booking.com y Expedia',
+      'Experiencia gestionando compras, proveedores, inventarios y costes operativos',
+      'Experiencia supervisando y formando personal',
+      'Capacidad comercial y orientación a resultados',
+      'Inglés funcional o avanzado para comunicarse con huéspedes internacionales',
+      'Buen manejo de herramientas digitales y elaboración de reportes',
+      'Disponibilidad para trabajar presencialmente en Santo Domingo',
+    ],
+
+    niceToHave: [
+      'Organized, resourceful and proactive person',
+      'Hands-on leadership style, with a focus on developing the team',
+      'Strong service orientation and focus on the guest experience',
+      'Ability to make decisions and resolve situations independently',
+      'Commercial mindset and discipline around cost control',
+      'Flexibility to get directly involved in operations',
+      'Genuine interest in running an independent hotel, where everyone takes on broad responsibilities',
+    ],
+    niceToHaveEs: [
+      'Persona organizada, resolutiva y con iniciativa',
+      'Liderazgo cercano y capacidad para desarrollar al equipo',
+      'Orientación al servicio y a la experiencia del huésped',
+      'Capacidad para tomar decisiones y resolver situaciones con autonomía',
+      'Mentalidad comercial y disciplina en el control de costes',
+      'Flexibilidad para involucrarse directamente en la operación',
+      'Interés en gestionar un hotel independiente, donde cada persona asume responsabilidades amplias',
+    ],
+
+    benefits: [
+      'Monthly salary of RD$65,000–RD$70,000, gross, based on experience',
+      'Legally applicable tip/service charge',
+      'Variable bonus tied to occupancy or revenue targets',
+      'Indefinite-term (permanent) contract',
+      'Initial three-month evaluation period, per applicable labor regulations',
+      'Onsite work in Gascue, Santo Domingo',
+    ],
+    benefitsEs: [
+      'Salario mensual de RD$65,000 a RD$70,000, brutos, según experiencia',
+      'Propina legal aplicable',
+      'Comisión variable vinculada al cumplimiento de objetivos de ocupación o facturación',
+      'Contrato por tiempo indefinido',
+      'Etapa inicial de evaluación de tres meses, conforme a la normativa laboral aplicable',
+      'Trabajo presencial en Gascue, Santo Domingo',
     ],
   },
 ];

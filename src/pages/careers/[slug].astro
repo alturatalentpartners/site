@@ -74,16 +74,16 @@ const schema = {
     value: pos.slug,
   },
   datePosted: '2026-07-23',
-  employmentType: pos.type.includes('Full-time') ? 'FULL_TIME' : pos.type,
+  employmentType: /Full-time|Indefinite/.test(pos.type) ? 'FULL_TIME' : pos.type,
   hiringOrganization: {
     '@type': 'Organization',
     name: SITE.name,
     sameAs: SITE.url,
   },
-  jobLocationType: isClientSearch ? 'ONSITE' : 'TELECOMMUTE',
+  jobLocationType: pos.location.includes('Remote') ? 'TELECOMMUTE' : 'ONSITE',
   applicantLocationRequirements: {
     '@type': 'Country',
-    name: isClientSearch ? 'United States' : 'Americas',
+    name: pos.country ?? 'Americas',
   },
 };
 ---

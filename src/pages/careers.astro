@@ -63,7 +63,7 @@ const copy = {
   },
 }[lang];
 
-const positions = OPEN_POSITIONS;
+const positions = [...OPEN_POSITIONS].sort((a, b) => b.datePosted.localeCompare(a.datePosted));
 
 const schema = {
   '@context': 'https://schema.org',
@@ -100,14 +100,12 @@ const schema = {
         <div class="positions-list">
           {positions.map((pos) => (
             <article class="position-card reveal">
-              <div>
-                <h3>{lang === 'es' ? pos.titleEs : pos.title}</h3>
-                <div class="position-meta">
-                  <span>{copy.positionLocation}: {lang === 'es' ? pos.locationEs : pos.location}</span>
-                  <span>{copy.positionType}: {lang === 'es' ? pos.typeEs : pos.type}</span>
-                </div>
-                <p>{lang === 'es' ? pos.descriptionEs : pos.description}</p>
+              <h3>{lang === 'es' ? pos.titleEs : pos.title}</h3>
+              <div class="position-meta">
+                <span>{copy.positionLocation}: {lang === 'es' ? pos.locationEs : pos.location}</span>
+                <span>{copy.positionType}: {lang === 'es' ? pos.typeEs : pos.type}</span>
               </div>
+              <p>{lang === 'es' ? pos.descriptionEs : pos.description}</p>
               <a href={path(`careers/${pos.slug}/`)} class="btn btn-ghost">{copy.applyBtn} <Icon name="arrowRight" size={14} /></a>
             </article>
           ))}
@@ -177,16 +175,17 @@ const schema = {
   }
 
   .positions-list {
-    display: flex;
-    flex-direction: column;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 1.25rem;
+    align-items: stretch;
   }
 
   .position-card {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 1.5rem;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0;
     padding: 1.75rem;
     border: 1px solid var(--color-ink-200);
     border-radius: var(--radius-md);
@@ -199,7 +198,8 @@ const schema = {
 
   .position-meta {
     display: flex;
-    gap: 1.25rem;
+    flex-wrap: wrap;
+    gap: 0.5rem 1.25rem;
     font-size: var(--fs-xs);
     color: var(--color-ink-500);
     margin-bottom: 0.75rem;
@@ -207,7 +207,11 @@ const schema = {
 
   .position-card p {
     font-size: var(--fs-sm);
-    max-width: 56ch;
+    margin-bottom: 1.25rem;
+  }
+
+  .position-card .btn {
+    margin-top: auto;
   }
 
   .point-card {
@@ -235,10 +239,9 @@ const schema = {
     font-size: var(--fs-sm);
   }
 
-  @media (max-width: 640px) {
-    .position-card {
-      flex-direction: column;
-      align-items: flex-start;
+  @media (max-width: 860px) {
+    .positions-list {
+      grid-template-columns: 1fr;
     }
   }
 </style>

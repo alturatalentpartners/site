@@ -73,7 +73,7 @@ const schema = {
     name: SITE.name,
     value: pos.slug,
   },
-  datePosted: '2026-07-23',
+  datePosted: pos.datePosted,
   employmentType: /Full-time|Indefinite/.test(pos.type) ? 'FULL_TIME' : pos.type,
   hiringOrganization: {
     '@type': 'Organization',

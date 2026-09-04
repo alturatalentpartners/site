@@ -10,6 +10,7 @@
 export const OPEN_POSITIONS = [
   {
     slug: 'executive-assistant',
+    datePosted: '2026-07-23',
     kind: 'internal',
     title: 'Executive Assistant',
     titleEs: 'Asistente Ejecutivo/a',
@@ -85,6 +86,7 @@ export const OPEN_POSITIONS = [
   },
   {
     slug: 'tech-talent-us',
+    datePosted: '2026-08-24',
     kind: 'client',
     campaign: true,
     country: 'United States',
@@ -154,6 +156,7 @@ export const OPEN_POSITIONS = [
   },
   {
     slug: 'forward-deployed-engineer',
+    datePosted: '2026-08-27',
     kind: 'client',
     country: 'United States',
     title: 'Forward Deployed Engineer',
@@ -254,6 +257,7 @@ export const OPEN_POSITIONS = [
   },
   {
     slug: 'founding-engineer',
+    datePosted: '2026-08-27',
     kind: 'client',
     country: 'United States',
     title: 'Founding Engineer',
@@ -364,6 +368,7 @@ export const OPEN_POSITIONS = [
   },
   {
     slug: 'hotel-operations-manager',
+    datePosted: '2026-09-03',
     kind: 'client',
     country: 'Dominican Republic',
     title: 'Hotel Operations Manager',

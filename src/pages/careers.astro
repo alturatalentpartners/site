@@ -24,6 +24,8 @@ const copy = {
     positionLocation: 'Location',
     positionType: 'Type',
     applyBtn: 'View Details & Apply',
+    viewOnlyBtn: 'View Details',
+    onHoldBadge: 'On Hold',
     candidatesEyebrow: 'For Candidates',
     candidatesH2: 'Looking for your next role?',
     candidatesLede: 'We run confidential executive searches for growing companies across North America, LATAM and Europe. We don’t publish our clients’ open roles publicly — that’s part of running a discreet process — but we’re always building relationships with strong professionals so we can reach out when the right opportunity comes up.',
@@ -49,6 +51,8 @@ const copy = {
     positionLocation: 'Ubicación',
     positionType: 'Tipo',
     applyBtn: 'Ver Detalles y Postularme',
+    viewOnlyBtn: 'Ver Detalles',
+    onHoldBadge: 'En Pausa',
     candidatesEyebrow: 'Para Candidatos',
     candidatesH2: '¿Buscas tu próxima posición?',
     candidatesLede: 'Llevamos adelante búsquedas ejecutivas confidenciales para empresas en crecimiento de Norteamérica, LATAM y Europa. No publicamos públicamente los roles abiertos de nuestros clientes — eso es parte de mantener un proceso discreto — pero siempre estamos construyendo relaciones con profesionales sólidos para poder contactarlos cuando surge la oportunidad correcta.',
@@ -99,14 +103,17 @@ const schema = {
       ) : (
         <div class="positions-list">
           {positions.map((pos) => (
-            <article class="position-card reveal">
-              <h3>{lang === 'es' ? pos.titleEs : pos.title}</h3>
+            <article class:list={['position-card', 'reveal', { 'on-hold': pos.onHold }]}>
+              <div class="position-title-row">
+                <h3>{lang === 'es' ? pos.titleEs : pos.title}</h3>
+                {pos.onHold && <span class="hold-badge">{copy.onHoldBadge}</span>}
+              </div>
               <div class="position-meta">
                 <span>{copy.positionLocation}: {lang === 'es' ? pos.locationEs : pos.location}</span>
                 <span>{copy.positionType}: {lang === 'es' ? pos.typeEs : pos.type}</span>
               </div>
               <p>{lang === 'es' ? pos.descriptionEs : pos.description}</p>
-              <a href={path(`careers/${pos.slug}/`)} class="btn btn-ghost">{copy.applyBtn} <Icon name="arrowRight" size={14} /></a>
+              <a href={path(`careers/${pos.slug}/`)} class="btn btn-ghost">{pos.onHold ? copy.viewOnlyBtn : copy.applyBtn} <Icon name="arrowRight" size={14} /></a>
             </article>
           ))}
         </div>
@@ -191,9 +198,41 @@ const schema = {
     border-radius: var(--radius-md);
   }
 
+  .position-title-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+    margin-bottom: 0.5rem;
+  }
+
   .position-card h3 {
     font-size: var(--fs-lg);
-    margin-bottom: 0.5rem;
+    margin-bottom: 0;
+  }
+
+  .hold-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-ink-200);
+    color: var(--color-ink-500);
+    font-size: var(--fs-2xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .position-card.on-hold {
+    background: var(--color-gray-50);
+  }
+
+  .position-card.on-hold h3,
+  .position-card.on-hold p {
+    color: var(--color-ink-500);
   }
 
   .position-meta {

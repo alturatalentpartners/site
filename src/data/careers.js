@@ -7,10 +7,14 @@
 // (see careers/[slug].astro) and a generic "interest" preselect instead of
 // its own dropdown option. `country` feeds the JobPosting schema's
 // applicantLocationRequirements — defaults to 'Americas' when omitted.
+// `onHold: true` keeps a listing visible (with an "On Hold" badge and no
+// apply form) but drops it from every application-form dropdown sitewide,
+// so it stops collecting new applications.
 export const OPEN_POSITIONS = [
   {
     slug: 'executive-assistant',
     datePosted: '2026-07-23',
+    onHold: true,
     kind: 'internal',
     title: 'Executive Assistant',
     titleEs: 'Asistente Ejecutivo/a',
@@ -369,6 +373,7 @@ export const OPEN_POSITIONS = [
   {
     slug: 'hotel-operations-manager',
     datePosted: '2026-09-03',
+    onHold: true,
     kind: 'client',
     country: 'Dominican Republic',
     title: 'Hotel Operations Manager',

@@ -21,7 +21,8 @@ const WEB3FORMS_ACCESS_KEY = 'e6845b16-e6d9-4326-a801-27cee37681b3';
 // (via data-role-slug) so the "Apply for this role" buttons on the careers
 // page can auto-select the right one. The submitted value is always the
 // human-readable label, not the slug. Generic client-search categories follow.
-const roleOptions = OPEN_POSITIONS.map((pos) => ({
+// Positions marked `onHold` are left out — they're not accepting applications.
+const roleOptions = OPEN_POSITIONS.filter((pos) => !pos.onHold).map((pos) => ({
   label: lang === 'es' ? pos.titleEs : pos.title,
   slug: pos.slug,
 }));

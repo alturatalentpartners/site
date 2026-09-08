@@ -41,6 +41,11 @@ const copy = {
     formH2: `Apply for ${title}`,
     formLede: 'Tell us about yourself and attach your résumé — we review every application personally.',
     metaDescription: `${title} at Altura Talent Partners — ${location}, ${type}. ${description}`,
+    holdBadge: 'On Hold',
+    holdEyebrow: 'On Hold',
+    holdH2: 'This search is currently on hold',
+    holdBody: 'We’re not accepting new applications for this role right now. Feel free to check back later, or explore our other open positions.',
+    holdCta: 'View all open positions',
   },
   es: {
     eyebrow: isClientSearch ? 'Búsqueda Activa' : 'Posición Abierta',
@@ -54,6 +59,11 @@ const copy = {
     formH2: `Postúlate para ${title}`,
     formLede: 'Cuéntanos sobre ti y adjunta tu CV — revisamos cada postulación de forma personal.',
     metaDescription: `${title} en Altura Talent Partners — ${location}, ${type}. ${description}`,
+    holdBadge: 'En Pausa',
+    holdEyebrow: 'En Pausa',
+    holdH2: 'Esta búsqueda está en pausa',
+    holdBody: 'En este momento no estamos aceptando nuevas postulaciones para este rol. Podés volver a revisar más adelante, o explorar nuestras otras vacantes abiertas.',
+    holdCta: 'Ver todas las vacantes abiertas',
   },
 }[lang];
 
@@ -95,7 +105,10 @@ const schema = {
         <Icon name="arrowRight" size={14} />
         <span>{copy.back}</span>
       </a>
-      <span class="eyebrow">{copy.eyebrow}</span>
+      <div class="eyebrow-row">
+        <span class="eyebrow">{copy.eyebrow}</span>
+        {pos.onHold && <span class="hold-badge">{copy.holdBadge}</span>}
+      </div>
       <h1>{title}</h1>
       <div class="job-meta">
         <span><Icon name="pin" size={16} /> {location}</span>
@@ -138,16 +151,29 @@ const schema = {
     </div>
   </section>
 
-  <section class="section section-gray" id="apply">
-    <div class="container container-narrow">
-      <div class="section-header text-center mx-auto">
-        <span class="eyebrow">{copy.formEyebrow}</span>
-        <h2>{copy.formH2}</h2>
-        <p class="lede mx-auto">{copy.formLede}</p>
+  {pos.onHold ? (
+    <section class="section section-gray" id="apply">
+      <div class="container container-narrow">
+        <div class="section-header text-center mx-auto hold-notice">
+          <span class="eyebrow">{copy.holdEyebrow}</span>
+          <h2>{copy.holdH2}</h2>
+          <p class="lede mx-auto">{copy.holdBody}</p>
+          <a href={path('careers/')} class="btn btn-ghost">{copy.holdCta} <Icon name="arrowRight" size={14} /></a>
+        </div>
       </div>
-      <ApplicationForm lang={lang} defaultRoleSlug={isCampaign ? undefined : pos.slug} defaultInterestLabel={defaultInterestLabel} />
-    </div>
-  </section>
+    </section>
+  ) : (
+    <section class="section section-gray" id="apply">
+      <div class="container container-narrow">
+        <div class="section-header text-center mx-auto">
+          <span class="eyebrow">{copy.formEyebrow}</span>
+          <h2>{copy.formH2}</h2>
+          <p class="lede mx-auto">{copy.formLede}</p>
+        </div>
+        <ApplicationForm lang={lang} defaultRoleSlug={isCampaign ? undefined : pos.slug} defaultInterestLabel={defaultInterestLabel} />
+      </div>
+    </section>
+  )}
 </Layout>
 
 <style>
@@ -166,6 +192,32 @@ const schema = {
   }
   .back-link:hover {
     color: var(--color-accent);
+  }
+
+  .eyebrow-row {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  .hold-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 0.2rem 0.6rem;
+    border-radius: 999px;
+    background: var(--color-gray-50);
+    border: 1px solid var(--color-ink-200);
+    color: var(--color-ink-500);
+    font-size: var(--fs-2xs);
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    white-space: nowrap;
+  }
+
+  .hold-notice .btn {
+    margin-top: 1.5rem;
   }
 
   .job-meta {
